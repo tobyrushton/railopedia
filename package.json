@@ -1,0 +1,25 @@
+{
+  "name": "railopedia",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "sst dev",
+    "build": "sst build",
+    "deploy": "sst deploy",
+    "remove": "sst remove",
+    "console": "sst console",
+    "typecheck": "tsc --noEmit",
+    "postinstall": "rm -rf node_modules/sst-aws-cdk/lib/init-templates/app/go node_modules/sst-aws-cdk/lib/init-templates/sample-app/go node_modules/sst-aws-cdk/test/commands/test-resources/stacks/s3.go"
+  },
+  "devDependencies": {
+    "sst": "^2.41.4",
+    "aws-cdk-lib": "2.132.1",
+    "constructs": "10.3.0",
+    "typescript": "^5.4.5",
+    "@tsconfig/node18": "^18.2.4"
+  },
+  "workspaces": [
+    "packages/*"
+  ]
+}
