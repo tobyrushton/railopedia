@@ -1,4 +1,4 @@
-package main
+package search
 
 import (
 	"github.com/aws/aws-lambda-go/events"
@@ -12,6 +12,6 @@ func Handler(request events.APIGatewayV2HTTPRequest) (events.APIGatewayProxyResp
 	}, nil
 }
 
-func main() {
+func Main() {
 	lambda.Start(Handler)
 }

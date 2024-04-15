@@ -10,16 +10,21 @@
     "remove": "sst remove",
     "console": "sst console",
     "typecheck": "tsc --noEmit",
-    "postinstall": "rm -rf node_modules/sst-aws-cdk/lib/init-templates/app/go node_modules/sst-aws-cdk/lib/init-templates/sample-app/go node_modules/sst-aws-cdk/test/commands/test-resources/stacks/s3.go"
+    "postinstall": "rm -rf node_modules/sst-aws-cdk/lib/init-templates/app/go node_modules/sst-aws-cdk/lib/init-templates/sample-app/go node_modules/sst-aws-cdk/test/commands/test-resources/stacks/s3.go",
+    "build:stations": "tsx data/create-station-list.ts"
   },
   "devDependencies": {
-    "sst": "^2.41.4",
+    "@tsconfig/node18": "^18.2.4",
     "aws-cdk-lib": "2.132.1",
     "constructs": "10.3.0",
-    "typescript": "^5.4.5",
-    "@tsconfig/node18": "^18.2.4"
+    "sst": "^2.41.4",
+    "tsx": "^4.7.2",
+    "typescript": "^5.4.5"
   },
   "workspaces": [
     "packages/*"
-  ]
+  ],
+  "dependencies": {
+    "convert-csv-to-json": "^2.44.0"
+  }
 }
