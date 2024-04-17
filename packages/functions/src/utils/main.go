@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"strconv"
 	"strings"
+	"time"
 )
 
 func RoundToNextFive(num int) int {
@@ -22,4 +23,15 @@ func PriceToFloat(price string) float32 {
 func SanitisePrice(price string) string {
 	temp := strings.Replace(price, "£", "", -1)
 	return strings.Replace(temp, "+", "", -1)
+}
+
+func GetTime(timeString string) (time.Time, error) {
+	return time.Parse("2006-01-02T15:04:05Z0700", timeString)
+}
+
+func RoundToNextFifteen(num int) int {
+	for num%15 != 0 {
+		num++
+	}
+	return num
 }
