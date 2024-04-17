@@ -4,17 +4,13 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"io"
-	"os"
 	"strconv"
-	"strings"
 	"time"
 
 	"github.com/gocolly/colly/v2"
 )
 
-var searchUrl string = "https://www.thetrainline.com/buytickets/"
-var iso8601Layout string = "2006-01-02T15:04:05Z0700"
+var trainlineUrl string = "https://www.thetrainline.com/buytickets/"
 
 type Station struct {
 	Name string `json:"name"`
@@ -32,30 +28,6 @@ type StandardTickets struct {
 
 type scrapedJson struct {
 	FullJourneys []StandardTickets `json:"fullJourneys"`
-}
-
-func getStationByCode(code string) (string, error) {
-	jsonFile, err := os.Open("../../../../data/station-list.json")
-
-	if err != nil {
-		return "", err
-	}
-
-	defer jsonFile.Close()
-
-	byteValue, _ := io.ReadAll(jsonFile)
-
-	var stations []Station
-
-	json.Unmarshal(byteValue, &stations)
-
-	for _, station := range stations {
-		if station.Code == code {
-			return strings.ReplaceAll(station.Name, "-", " "), nil
-		}
-	}
-
-	return "", errors.New("Station not found")
 }
 
 func ScrapeTrainline(req Request) (ScrapeResults, error) {
@@ -132,7 +104,7 @@ func ScrapeTrainline(req Request) (ScrapeResults, error) {
 		}
 	})
 
-	c.Post(searchUrl, form)
+	c.Post(trainlineUrl, form)
 
 	return res, nil
 }
