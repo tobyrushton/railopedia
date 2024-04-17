@@ -30,24 +30,36 @@ func ScrapeTrainpal(req Request) (ScrapeResults, error) {
 	page.MustElement("div.el-station_cdf6f").MustClick()
 
 	// select the dates
-	SelectDate(page, out, true)
+	selectTrainpalDate(page, out, true)
 	if req.Return != "" {
 		in, err := time.Parse(iso8601Layout, req.Return)
 		if err != nil {
 			return nil, errors.New("invalid date")
 		}
-		SelectDate(page, in, false)
+		selectTrainpalDate(page, in, false)
 	}
 
 	//submit form
 	page.MustElement("button.search-btn_db7b7").MustClick()
 
-	page.MustWaitStable().MustScreenshot("screenshot.png")
+	// gets journeys from page
+	outboundJourneys := page.MustWaitStable().MustElement("div.left-inner_ac0c4").MustElements("div.journey-section_d201d")
+	inboundJourneys := page.MustWaitStable().MustElement("div.right-inner_cf7d7").MustElements("div.journey-section_d201d")
 
-	return nil, nil
+	fmt.Println(len(outboundJourneys), len(inboundJourneys))
+	res := ScrapeResults{}
+
+	for _, journey := range outboundJourneys {
+		res = append(res, getTrainpalJourneyDetails(journey))
+	}
+	for _, journey := range inboundJourneys {
+		res = append(res, getTrainpalJourneyDetails(journey))
+	}
+
+	return res, nil
 }
 
-func SelectDate(page *rod.Page, date time.Time, single bool) {
+func selectTrainpalDate(page *rod.Page, date time.Time, single bool) {
 	// activate the date picker
 	if !single {
 		page.MustElement("div.add-return_df7cf").MustClick()
@@ -95,4 +107,19 @@ func SelectDate(page *rod.Page, date time.Time, single bool) {
 		}
 	}
 
+}
+
+func getTrainpalJourneyDetails(journey *rod.Element) ScrapeResult {
+	// get departure time
+	departureTime, _ := journey.MustElement("div.from_fa71c").Text()
+	// get arrival time
+	arrivalTime, _ := journey.MustElement("div.to_cc86d").Text()
+	// get price
+	price, _ := journey.MustElement("div.price_f360e").MustElement("div").Text()
+
+	return ScrapeResult{
+		DepartureTime: departureTime,
+		ArrivalTime:   arrivalTime,
+		Price:         utils.PriceToFloat(utils.SanitisePrice(price)),
+	}
 }

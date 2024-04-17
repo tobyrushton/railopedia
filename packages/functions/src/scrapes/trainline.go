@@ -4,10 +4,10 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"strconv"
 	"time"
 
 	"github.com/gocolly/colly/v2"
+	"github.com/tobyrushton/railopedia/packages/functions/src/utils"
 )
 
 var trainlineUrl string = "https://www.thetrainline.com/buytickets/"
@@ -88,8 +88,7 @@ func ScrapeTrainline(req Request) (ScrapeResults, error) {
 		for _, ticket := range results.FullJourneys[0].StandardTickets[0].Tickets {
 			result := ScrapeResult{}
 			if priceVal, ok := ticket["price"].(string); ok {
-				price64, _ := strconv.ParseFloat(priceVal, 32)
-				result.Price = float32(price64)
+				result.Price = utils.PriceToFloat(priceVal)
 			}
 			if departureVal, ok := ticket["departureDateTime"].(string); ok {
 				result.DepartureTime = departureVal
