@@ -11,9 +11,10 @@ import (
 
 var raileasyUrl string = "https://new.raileasy.co.uk/"
 
-func ScrapeRaileasy(req Request) (ScrapeResults, error) {
+func ScrapeRaileasy(req Request) (ScrapeResultsConditional, error) {
 	// open browser
 	page := rod.New().MustConnect().MustPage(raileasyUrl)
+	defer page.MustClose()
 
 	// input stations
 	page.MustElement("#station-autocomplete-from").MustInput(req.Origin)
@@ -36,13 +37,24 @@ func ScrapeRaileasy(req Request) (ScrapeResults, error) {
 		selectRaileasyDate(page, in, false)
 	}
 
-	// submit form
+	wait := page.MustWaitRequestIdle()
+	// submit form and wait for the results
 	page.MustElement("#cookie-banner-accept").MustClick()
 	page.MustElement("#search-button").MustClick()
+	wait()
+
+	// get outbound journeys
+	outboundJourneys := page.MustElement("div.grid").MustElement("div.grid").MustElements("div")[0].MustElements(`div[tabindex="0"]`)
+	results := make(ScrapeResultsConditional, 0)
+
+	removeLaterAndEarlier(&outboundJourneys)
+	for _, journey := range outboundJourneys {
+		results = append(results, getRaileasyPrice(page, journey, out))
+	}
 
 	page.MustWaitStable().MustScreenshot("screenshot.png")
 
-	return nil, nil
+	return results, nil
 }
 
 func setRaileasySingle(page *rod.Page) {
@@ -60,7 +72,6 @@ func selectRaileasyDate(page *rod.Page, date time.Time, single bool) {
 
 	// select correct month
 	monthString := date.Month().String()[0:3]
-	fmt.Println(monthString)
 	currMonth := page.MustElement(`button[aria-label="Open months overlay"]`)
 
 	for monthString != currMonth.MustText() {
@@ -88,7 +99,6 @@ func selectRaileasyTime(page *rod.Page, date time.Time, outbound bool) {
 		hourId += "return-depart-hour"
 		minuteId += "return-depart-minute"
 	}
-	fmt.Println(hourId, minuteId)
 	// select the correct hour
 	hour := date.Hour()
 	page.MustElement(hourId).MustSelect(fmt.Sprintf("%d", hour))
@@ -96,4 +106,57 @@ func selectRaileasyTime(page *rod.Page, date time.Time, outbound bool) {
 	// select the correct minute
 	minute := utils.RoundToNextFifteen(date.Minute())
 	page.MustElement(minuteId).MustSelect(fmt.Sprintf("%d", minute))
+}
+
+func getRaileasyPrice(page *rod.Page, journey *rod.Element, day time.Time) ScrapeResultConditional {
+	// get journey times
+	timeRaw := journey.MustElement("#journey-time").MustText()
+	departureTime, arrivalTime := utils.SplitString(timeRaw, " -> ")
+
+	//get the base price
+	basePriceRaw := journey.MustElement("p.block").MustElement("span").MustText()
+	_, basePriceString := utils.SplitString(basePriceRaw, " ")
+	basePrice := utils.PriceToFloat(utils.SanitisePrice(basePriceString))
+
+	// get journey prices
+	journey.MustClick()
+
+	// get the prices
+	returnJourneys := page.MustElement("div.grid").MustElement("div.grid").MustElements("div.overflow-hidden")[1].MustElements(`div[tabindex="0"]`)
+	removeLaterAndEarlier(&returnJourneys)
+
+	price := make(map[string]float32)
+
+	for _, returnJourney := range returnJourneys {
+		// get outbound time
+		timeRaw := returnJourney.MustElement("#journey-time").MustText()
+		departureTimeReturn, _ := utils.SplitString(timeRaw, " -> ")
+
+		timeValue := fmt.Sprintf("%d-%02d-%02d %s:%02d", day.Year(), day.Month(), day.Day(), departureTimeReturn, 0)
+		departTime, _ := time.Parse("2006-01-02 15:04:05", timeValue)
+		ISOTime := departTime.Format(iso8601Layout)
+
+		if returnJourney.MustHas("p.block") {
+			// get the price
+			priceRaw := returnJourney.MustElement("p.block").MustElement("span").MustText()
+			priceFloat := utils.PriceToFloat(utils.SanitisePrice(priceRaw)) + basePrice
+
+			price[ISOTime] = priceFloat
+
+		} else { // is the cheapest option
+			price[ISOTime] = basePrice
+		}
+
+	}
+
+	return ScrapeResultConditional{
+		DepartureTime: departureTime,
+		ArrivalTime:   arrivalTime,
+		Price:         price,
+	}
+}
+
+// removes the later and earlier buttons from list of journeys
+func removeLaterAndEarlier(list *rod.Elements) {
+	*list = (*list)[1 : len(*list)-1]
 }

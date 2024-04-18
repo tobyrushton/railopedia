@@ -1,7 +1,6 @@
 package utils
 
 import (
-	"fmt"
 	"strconv"
 	"strings"
 	"time"
@@ -15,7 +14,6 @@ func RoundToNextFive(num int) int {
 }
 
 func PriceToFloat(price string) float32 {
-	fmt.Println(price)
 	price64, _ := strconv.ParseFloat(price, 32)
 	return float32(price64)
 }
@@ -34,4 +32,9 @@ func RoundToNextFifteen(num int) int {
 		num++
 	}
 	return num
+}
+
+func SplitString(str string, key string) (string, string) {
+	split := strings.Split(str, key)
+	return split[0], split[1]
 }

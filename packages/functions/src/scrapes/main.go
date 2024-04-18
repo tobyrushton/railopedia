@@ -15,7 +15,15 @@ type ScrapeResult struct {
 	Price float32
 }
 
+type ScrapeResultConditional struct {
+	DepartureTime string // ISO
+	ArrivalTime   string // ISO
+	// Link          string
+	Price map[string]float32 // format iso8601:price
+}
+
 type ScrapeResults []ScrapeResult
+type ScrapeResultsConditional []ScrapeResultConditional
 
 type Request struct {
 	Origin      string

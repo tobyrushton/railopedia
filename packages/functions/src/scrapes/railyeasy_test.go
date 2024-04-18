@@ -10,7 +10,7 @@ func TestRaileasy(t *testing.T) {
 		Origin:      "SAC",
 		Destination: "STP",
 		Departure:   "2024-05-19T17:26:25Z",
-		Return:      "",
+		Return:      "2024-05-20T12:26:25Z",
 	}
 
 	res, err := ScrapeRaileasy(req)
