@@ -46,7 +46,6 @@ func ScrapeTrainpal(req Request) (ScrapeResults, error) {
 	outboundJourneys := page.MustWaitStable().MustElement("div.left-inner_ac0c4").MustElements("div.journey-section_d201d")
 	inboundJourneys := page.MustWaitStable().MustElement("div.right-inner_cf7d7").MustElements("div.journey-section_d201d")
 
-	fmt.Println(len(outboundJourneys), len(inboundJourneys))
 	res := ScrapeResults{}
 
 	for _, journey := range outboundJourneys {

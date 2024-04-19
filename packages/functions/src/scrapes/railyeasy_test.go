@@ -1,22 +1,59 @@
 package scrapes
 
-// import (
-// 	"fmt"
-// 	"testing"
-// )
+import (
+	"regexp"
+	"testing"
+	"time"
+)
 
-// func TestRaileasy(t *testing.T) {
-// 	req := Request{
-// 		Origin:      "SAC",
-// 		Destination: "STP",
-// 		Departure:   "2024-05-19T17:26:25Z",
-// 		Return:      "2024-05-20T12:26:25Z",
-// 	}
+var now = time.Now().Add(1 * time.Hour)
+var threeHoursLater = now.Add(3 * time.Hour)
 
-// 	res, err := ScrapeRaileasy(req)
-// 	if err != nil {
-// 		t.Error(err)
-// 	}
+var TestRequest = Request{
+	Origin:      "SAC",
+	Destination: "STP",
+	Departure:   now.Format(iso8601Layout),
+	Return:      "",
+}
 
-// 	fmt.Println(res)
-// }
+var TestRequestReturn = Request{
+	Origin:      "SAC",
+	Destination: "STP",
+	Departure:   now.Format(iso8601Layout),
+	Return:      threeHoursLater.Format(iso8601Layout),
+}
+
+var timeRegexString = "(?i)[0-9]+:[0-9]+"
+var isoRegexString = "(?i)[0-9]+-[0-9]+-[0-9]+T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]{1,3})?Z"
+
+var timeRegex = regexp.MustCompile(timeRegexString)
+var isoRegex = regexp.MustCompile(isoRegexString)
+
+func TestRaileasyReturn(t *testing.T) {
+	res, err := ScrapeRaileasy(TestRequestReturn)
+	if err != nil {
+		t.Error(err)
+	}
+
+	if len(res) == 0 {
+		t.Error("No results")
+	}
+
+	for _, r := range res {
+		if !timeRegex.MatchString(r.DepartureTime) {
+			t.Errorf("Invalid departure time: %s", r.DepartureTime)
+		}
+		if !timeRegex.MatchString(r.ArrivalTime) {
+			t.Errorf("Invalid arrival time: %s", r.ArrivalTime)
+		}
+
+		for time, price := range r.Price {
+			if !isoRegex.MatchString(time) {
+				t.Errorf("Invalid time: %s", time)
+			}
+			if price < 0 {
+				t.Errorf("Invalid price: %f", price)
+			}
+		}
+	}
+}

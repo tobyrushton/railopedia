@@ -52,8 +52,6 @@ func ScrapeRaileasy(req Request) (ScrapeResultsConditional, error) {
 		results = append(results, getRaileasyPrice(page, journey, out))
 	}
 
-	page.MustWaitStable().MustScreenshot("screenshot.png")
-
 	return results, nil
 }
 

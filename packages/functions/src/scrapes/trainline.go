@@ -90,10 +90,6 @@ func ScrapeTrainline(req Request) (ScrapeResults, error) {
 
 	var res ScrapeResults
 
-	// c.OnHTML("html", func(e *colly.HTMLElement) {
-	// 	e.Response.Save("trainline.html")
-	// })
-
 	c.OnHTML("body", func(e *colly.HTMLElement) {
 		data := e.ChildAttr("form", "data-defaults")
 
@@ -128,10 +124,10 @@ func getTrainlinePrices(data scrapedJson, outbound bool) ScrapeResults {
 			result.Price = utils.PriceToFloat(priceVal)
 		}
 		if departureVal, ok := ticket["departureDateTime"].(string); ok {
-			result.DepartureTime = departureVal
+			result.DepartureTime = formatTrainlineDate(departureVal)
 		}
 		if arrivalVal, ok := ticket["arrivalDateTime"].(string); ok {
-			result.ArrivalTime = arrivalVal
+			result.ArrivalTime = formatTrainlineDate(arrivalVal)
 		}
 		// TODO: Error handling if one is wrong
 		// TODO: Add link
@@ -140,4 +136,14 @@ func getTrainlinePrices(data scrapedJson, outbound bool) ScrapeResults {
 	}
 
 	return res
+}
+
+// 2006-01-02 15:04:05
+
+func formatTrainlineDate(date string) string {
+	t, err := time.Parse("2006-01-02T15:04:05", date)
+	if err != nil {
+		return ""
+	}
+	return t.Format(iso8601Layout)
 }
