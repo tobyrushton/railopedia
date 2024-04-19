@@ -3,6 +3,7 @@ package scrapes
 import (
 	"errors"
 	"fmt"
+	"strings"
 	"time"
 
 	"github.com/go-rod/rod"
@@ -49,7 +50,18 @@ func ScrapeRaileasy(req Request) (ScrapeResultsConditional, error) {
 
 	removeLaterAndEarlier(&outboundJourneys)
 	for _, journey := range outboundJourneys {
-		results = append(results, getRaileasyPrice(page, journey, out))
+		if req.Return != "" {
+			results = append(results, getRaileasyPrice(page, journey, out))
+		} else {
+			price := getRaileasyBasePrice(journey)
+			time := getRaileasyDepartTimeISO(journey, out)
+			departTime, arrivalTime := getRaileasyJourneyTimes(journey)
+			results = append(results, ScrapeResultConditional{
+				DepartureTime: departTime,
+				ArrivalTime:   arrivalTime,
+				Price:         map[string]float32{time: price},
+			})
+		}
 	}
 
 	return results, nil
@@ -99,22 +111,55 @@ func selectRaileasyTime(page *rod.Page, date time.Time, outbound bool) {
 	}
 	// select the correct hour
 	hour := date.Hour()
+	minute := utils.RoundToNextFifteen(date.Minute())
+	if minute == 60 {
+		minute = 00
+		if hour == 23 {
+			hour = 00
+		} else {
+			hour++
+		}
+	}
 	page.MustElement(hourId).MustSelect(fmt.Sprintf("%d", hour))
 
 	// select the correct minute
-	minute := utils.RoundToNextFifteen(date.Minute())
 	page.MustElement(minuteId).MustSelect(fmt.Sprintf("%d", minute))
+}
+
+func getRaileasyBasePrice(journey *rod.Element) float32 {
+	// get the base price
+	basePriceRaw := journey.MustElement("p.block").MustElement("span").MustText()
+	if strings.Contains(basePriceRaw, "from") {
+		_, basePriceRaw = utils.SplitString(basePriceRaw, " ")
+	}
+	basePrice := utils.PriceToFloat(utils.SanitisePrice(basePriceRaw))
+
+	return basePrice
+}
+
+func getRaileasyDepartTimeISO(journey *rod.Element, day time.Time) string {
+	timeRaw := journey.MustElement("#journey-time").MustText()
+	departureTime, _ := utils.SplitString(timeRaw, " -> ")
+
+	timeValue := fmt.Sprintf("%d-%02d-%02d %s:%02d", day.Year(), day.Month(), day.Day(), departureTime, 0)
+	departTime, _ := time.Parse("2006-01-02 15:04:05", timeValue)
+	ISOTime := departTime.Format(iso8601Layout)
+
+	return ISOTime
+}
+
+func getRaileasyJourneyTimes(journey *rod.Element) (string, string) {
+	timeRaw := journey.MustElement("#journey-time").MustText()
+	departureTime, arrivalTime := utils.SplitString(timeRaw, " -> ")
+
+	return departureTime, arrivalTime
 }
 
 func getRaileasyPrice(page *rod.Page, journey *rod.Element, day time.Time) ScrapeResultConditional {
 	// get journey times
-	timeRaw := journey.MustElement("#journey-time").MustText()
-	departureTime, arrivalTime := utils.SplitString(timeRaw, " -> ")
+	departureTime, arrivalTime := getRaileasyJourneyTimes(journey)
 
-	//get the base price
-	basePriceRaw := journey.MustElement("p.block").MustElement("span").MustText()
-	_, basePriceString := utils.SplitString(basePriceRaw, " ")
-	basePrice := utils.PriceToFloat(utils.SanitisePrice(basePriceString))
+	basePrice := getRaileasyBasePrice(journey)
 
 	// get journey prices
 	journey.MustClick()
@@ -126,13 +171,7 @@ func getRaileasyPrice(page *rod.Page, journey *rod.Element, day time.Time) Scrap
 	price := make(map[string]float32)
 
 	for _, returnJourney := range returnJourneys {
-		// get outbound time
-		timeRaw := returnJourney.MustElement("#journey-time").MustText()
-		departureTimeReturn, _ := utils.SplitString(timeRaw, " -> ")
-
-		timeValue := fmt.Sprintf("%d-%02d-%02d %s:%02d", day.Year(), day.Month(), day.Day(), departureTimeReturn, 0)
-		departTime, _ := time.Parse("2006-01-02 15:04:05", timeValue)
-		ISOTime := departTime.Format(iso8601Layout)
+		ISOTime := getRaileasyDepartTimeISO(returnJourney, day)
 
 		if returnJourney.MustHas("p.block") {
 			// get the price
