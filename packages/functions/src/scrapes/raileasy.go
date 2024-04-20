@@ -141,11 +141,7 @@ func getRaileasyDepartTimeISO(journey *rod.Element, day time.Time) string {
 	timeRaw := journey.MustElement("#journey-time").MustText()
 	departureTime, _ := utils.SplitString(timeRaw, " -> ")
 
-	timeValue := fmt.Sprintf("%d-%02d-%02d %s:%02d", day.Year(), day.Month(), day.Day(), departureTime, 0)
-	departTime, _ := time.Parse("2006-01-02 15:04:05", timeValue)
-	ISOTime := departTime.Format(iso8601Layout)
-
-	return ISOTime
+	return utils.HourStringToISO(departureTime, day)
 }
 
 func getRaileasyJourneyTimes(journey *rod.Element) (string, string) {
