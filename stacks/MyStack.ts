@@ -7,7 +7,7 @@ export function API({ stack }: StackContext) {
 
   const api = new Api(stack, "api", {
     routes: {
-      "GET /": "packages/functions/src/lambda.go",
+      "GET /search": "packages/functions/src/endpoints/search.go",
     },
   })
 
