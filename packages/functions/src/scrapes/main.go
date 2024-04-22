@@ -15,6 +15,11 @@ type ScrapeResult struct {
 	Price float32
 }
 
+type ScrapeResultNonConditional struct {
+	Outbound []ScrapeResult
+	Return   []ScrapeResult
+}
+
 type ScrapeResultConditional struct {
 	DepartureTime string // ISO
 	ArrivalTime   string // ISO
@@ -56,4 +61,61 @@ func getStationByCode(code string) (string, error) {
 	}
 
 	return "", errors.New("Station not found")
+}
+
+func aggregateNonConditionalScrapeResults(results ScrapeResultNonConditional, journeys *map[string]JourneyWithPrices, provider string) {
+	for _, result := range results.Outbound {
+		key := result.DepartureTime + "," + result.ArrivalTime
+		if journey, ok := (*journeys)[key]; ok {
+			price := journey.Prices
+
+			for _, returnJourney := range results.Return {
+				index, found := 0, false
+				priceItem := Journey{}
+				for index < len(price) && !found {
+					if price[index].DepartureTime == returnJourney.DepartureTime && price[index].ArrivalTime == returnJourney.ArrivalTime {
+						priceItem = price[index]
+						found = true
+					} else {
+						index++
+					}
+				}
+				if !found {
+					priceItem = Journey{
+						DepartureTime: returnJourney.DepartureTime,
+						ArrivalTime:   returnJourney.ArrivalTime,
+						Prices:        []Price{{Provider: provider, Price: result.Price + returnJourney.Price}},
+					}
+					price = append(price, priceItem)
+				} else {
+					priceItem.Prices = append(priceItem.Prices, Price{Provider: provider, Price: result.Price + returnJourney.Price})
+					price[index] = priceItem
+				}
+			}
+
+			journey.Prices = price
+			(*journeys)[key] = journey
+		} else {
+			(*journeys)[key] = JourneyWithPrices{
+				DepartureTime: result.DepartureTime,
+				ArrivalTime:   result.ArrivalTime,
+				Prices:        make([]Journey, 0),
+			}
+
+			journey = (*journeys)[key]
+
+			price := make([]Journey, 0)
+
+			for _, returnJourney := range results.Return {
+				price = append(price, Journey{
+					DepartureTime: returnJourney.DepartureTime,
+					ArrivalTime:   returnJourney.ArrivalTime,
+					Prices:        []Price{{Provider: provider, Price: result.Price + returnJourney.Price}},
+				})
+			}
+
+			journey.Prices = price
+			(*journeys)[key] = journey
+		}
+	}
 }

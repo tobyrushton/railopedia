@@ -21,6 +21,7 @@ func ScrapeTrainpal(req Request) (ScrapeResultNonConditional, error) {
 
 	// open browser
 	page := rod.New().MustConnect().MustPage(trainpalUrl)
+	defer page.MustClose()
 
 	// input stations
 	page.MustElement("#fromStation").MustInput(req.Origin)
@@ -42,18 +43,34 @@ func ScrapeTrainpal(req Request) (ScrapeResultNonConditional, error) {
 	//submit form
 	page.MustElement("button.search-btn_db7b7").MustClick()
 
+	// accept split tickets popup
+	page.MustElementR("button", "Got It").MustClick()
+
 	// gets journeys from page
-	outboundJourneys := page.MustWaitStable().MustElement("div.left-inner_ac0c4").MustElements("div.journey-section_d201d")
-	inboundJourneys := page.MustWaitStable().MustElement("div.right-inner_cf7d7").MustElements("div.journey-section_d201d")
+	outboundJourneys := page.MustElement("div.left-inner_ac0c4").MustElements("div.journey-section_d201d")
+
+	inboundJourneys := make(rod.Elements, 0)
+
+	if req.Return != "" {
+		page.MustElement("div.active_f5b20")
+		inboundJourneys = page.MustElement("div.right-inner_cf7d7").MustElements("div.journey-section_d201d")
+	}
 
 	outbound := make([]ScrapeResult, 0)
 	inbound := make([]ScrapeResult, 0)
 
 	for _, journey := range outboundJourneys {
-		outbound = append(outbound, getTrainpalJourneyDetails(journey))
+		outbound = append(outbound, getTrainpalJourneyDetails(journey, out))
 	}
-	for _, journey := range inboundJourneys {
-		inbound = append(inbound, getTrainpalJourneyDetails(journey))
+	if len(inboundJourneys) > 0 {
+		in, err := time.Parse(iso8601Layout, req.Return)
+		if err != nil {
+			return ScrapeResultNonConditional{}, errors.New("invalid date")
+		}
+
+		for _, journey := range inboundJourneys {
+			inbound = append(inbound, getTrainpalJourneyDetails(journey, in))
+		}
 	}
 
 	return ScrapeResultNonConditional{
@@ -112,7 +129,7 @@ func selectTrainpalDate(page *rod.Page, date time.Time, single bool) {
 
 }
 
-func getTrainpalJourneyDetails(journey *rod.Element) ScrapeResult {
+func getTrainpalJourneyDetails(journey *rod.Element, day time.Time) ScrapeResult {
 	// get departure time
 	departureTime, _ := journey.MustElement("div.from_fa71c").Text()
 	// get arrival time
@@ -120,9 +137,13 @@ func getTrainpalJourneyDetails(journey *rod.Element) ScrapeResult {
 	// get price
 	price, _ := journey.MustElement("div.price_f360e").MustElement("div").Text()
 
+	// get iso times
+	departureISO := utils.HourStringToISO(departureTime, day)
+	arrivalISO := utils.HourStringToISO(arrivalTime, day)
+
 	return ScrapeResult{
-		DepartureTime: departureTime,
-		ArrivalTime:   arrivalTime,
+		DepartureTime: departureISO,
+		ArrivalTime:   arrivalISO,
 		Price:         utils.PriceToFloat(utils.SanitisePrice(price)),
 	}
 }
