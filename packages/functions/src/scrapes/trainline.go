@@ -30,11 +30,11 @@ type scrapedJson struct {
 	FullJourneys []StandardTickets `json:"fullJourneys"`
 }
 
-func ScrapeTrainline(req Request) (ScrapeResults, error) {
+func ScrapeTrainline(req Request) (ScrapeResultNonConditional, error) {
 	out, err := time.Parse(iso8601Layout, req.Departure)
 	if err != nil {
 		fmt.Print(err)
-		return nil, errors.New("invalid date")
+		return ScrapeResultNonConditional{}, errors.New("invalid date")
 	}
 	outDay := out.Day()
 	outMonth := out.Month()
@@ -44,12 +44,12 @@ func ScrapeTrainline(req Request) (ScrapeResults, error) {
 
 	outStation, err := getStationByCode(req.Origin)
 	if err != nil {
-		return nil, err
+		return ScrapeResultNonConditional{}, err
 	}
 
 	inStation, err := getStationByCode(req.Destination)
 	if err != nil {
-		return nil, err
+		return ScrapeResultNonConditional{}, err
 	}
 
 	form := map[string]string{
@@ -73,7 +73,7 @@ func ScrapeTrainline(req Request) (ScrapeResults, error) {
 	if req.Return != "" {
 		in, err := time.Parse(iso8601Layout, req.Return)
 		if err != nil {
-			return nil, errors.New("invalid date")
+			return ScrapeResultNonConditional{}, errors.New("invalid date")
 		}
 		inDay := in.Day()
 		inMonth := in.Month()
@@ -88,17 +88,17 @@ func ScrapeTrainline(req Request) (ScrapeResults, error) {
 
 	c := colly.NewCollector()
 
-	var res ScrapeResults
+	var res ScrapeResultNonConditional
 
 	c.OnHTML("body", func(e *colly.HTMLElement) {
 		data := e.ChildAttr("form", "data-defaults")
 
 		var results scrapedJson
 		json.Unmarshal([]byte(data), &results)
-		res = getTrainlinePrices(results, true)
+		res.Outbound = getTrainlinePrices(results, true)
 
 		if req.Return != "" {
-			res = append(res, getTrainlinePrices(results, false)...)
+			res.Return = getTrainlinePrices(results, false)
 		}
 	})
 

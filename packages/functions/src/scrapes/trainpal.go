@@ -13,10 +13,10 @@ import (
 
 var trainpalUrl string = "https://www.mytrainpal.com/"
 
-func ScrapeTrainpal(req Request) (ScrapeResults, error) {
+func ScrapeTrainpal(req Request) (ScrapeResultNonConditional, error) {
 	out, err := time.Parse(iso8601Layout, req.Departure)
 	if err != nil {
-		return nil, errors.New("invalid date")
+		return ScrapeResultNonConditional{}, errors.New("invalid date")
 	}
 
 	// open browser
@@ -34,7 +34,7 @@ func ScrapeTrainpal(req Request) (ScrapeResults, error) {
 	if req.Return != "" {
 		in, err := time.Parse(iso8601Layout, req.Return)
 		if err != nil {
-			return nil, errors.New("invalid date")
+			return ScrapeResultNonConditional{}, errors.New("invalid date")
 		}
 		selectTrainpalDate(page, in, false)
 	}
@@ -46,16 +46,20 @@ func ScrapeTrainpal(req Request) (ScrapeResults, error) {
 	outboundJourneys := page.MustWaitStable().MustElement("div.left-inner_ac0c4").MustElements("div.journey-section_d201d")
 	inboundJourneys := page.MustWaitStable().MustElement("div.right-inner_cf7d7").MustElements("div.journey-section_d201d")
 
-	res := ScrapeResults{}
+	outbound := make([]ScrapeResult, 0)
+	inbound := make([]ScrapeResult, 0)
 
 	for _, journey := range outboundJourneys {
-		res = append(res, getTrainpalJourneyDetails(journey))
+		outbound = append(outbound, getTrainpalJourneyDetails(journey))
 	}
 	for _, journey := range inboundJourneys {
-		res = append(res, getTrainpalJourneyDetails(journey))
+		inbound = append(inbound, getTrainpalJourneyDetails(journey))
 	}
 
-	return res, nil
+	return ScrapeResultNonConditional{
+		Outbound: outbound,
+		Return:   inbound,
+	}, nil
 }
 
 func selectTrainpalDate(page *rod.Page, date time.Time, single bool) {
