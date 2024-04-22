@@ -29,3 +29,9 @@ Railopedia currently has support to search the following websites
 
 I'm planning on adding additional sites later on during development.
 The data is obtained via scrapes where I'm using [Colly](https://github.com/gocolly/colly) or [Rod](https://github.com/go-rod/rod)
+
+## License
+This work is licensed under a
+[Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License][cc-by-nc-sa].
+
+[cc-by-nc-sa]: http://creativecommons.org/licenses/by-nc-sa/4.0/
