@@ -95,7 +95,6 @@ func ScrapeTrainline(req Request) (ScrapeResults, error) {
 
 		var results scrapedJson
 		json.Unmarshal([]byte(data), &results)
-
 		res = getTrainlinePrices(results, true)
 
 		if req.Return != "" {

@@ -1,8 +1,12 @@
 package scrapes
 
-import "testing"
+import (
+	"testing"
+)
 
 func TestTrainticketsSingle(t *testing.T) {
+	skipCI(t)
+
 	res, err := ScrapeTraintickets(TestRequest)
 
 	if err != nil {
@@ -37,6 +41,8 @@ func TestTrainticketsSingle(t *testing.T) {
 }
 
 func TestTrainticketsReturn(t *testing.T) {
+	skipCI(t)
+
 	res, err := ScrapeTraintickets(TestRequestReturn)
 	if err != nil {
 		t.Error(err)

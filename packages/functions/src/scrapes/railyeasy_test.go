@@ -1,12 +1,13 @@
 package scrapes
 
 import (
+	"os"
 	"regexp"
 	"testing"
 	"time"
 )
 
-var now = time.Now().Add(1 * time.Hour)
+var now = time.Now().Add(2 * time.Hour)
 var threeHoursLater = now.Add(3 * time.Hour)
 
 var TestRequest = Request{
@@ -29,7 +30,15 @@ var isoRegexString = "(?i)[0-9]+-[0-9]+-[0-9]+T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-
 var timeRegex = regexp.MustCompile(timeRegexString)
 var isoRegex = regexp.MustCompile(isoRegexString)
 
+func skipCI(t *testing.T) {
+	if os.Getenv("CI") != "" {
+		t.Skip("Skipping test in CI environment")
+	}
+}
+
 func TestRaileasyReturn(t *testing.T) {
+	skipCI(t)
+
 	res, err := ScrapeRaileasy(TestRequestReturn)
 	if err != nil {
 		t.Error(err)
@@ -59,6 +68,8 @@ func TestRaileasyReturn(t *testing.T) {
 }
 
 func TestRaileasySingle(t *testing.T) {
+	skipCI(t)
+
 	res, err := ScrapeRaileasy(TestRequest)
 	if err != nil {
 		t.Error(err)

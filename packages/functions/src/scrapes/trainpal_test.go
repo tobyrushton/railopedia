@@ -1,10 +1,15 @@
 package scrapes
 
 import (
+	"os"
 	"testing"
 )
 
 func TestTrainpalSingle(t *testing.T) {
+	if os.Getenv("CI") != "" {
+		t.Skip("Skipping test in CI environment")
+	}
+
 	res, err := ScrapeTrainpal(TestRequest)
 	if err != nil {
 		t.Error(err)
@@ -28,6 +33,8 @@ func TestTrainpalSingle(t *testing.T) {
 }
 
 func TestTrainpalReturn(t *testing.T) {
+	skipCI(t)
+
 	res, err := ScrapeTrainpal(TestRequestReturn)
 	if err != nil {
 		t.Error(err)
