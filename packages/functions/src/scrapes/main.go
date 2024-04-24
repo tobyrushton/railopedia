@@ -6,6 +6,8 @@ import (
 	"io"
 	"os"
 	"strings"
+
+	"github.com/tobyrushton/railopedia/packages/functions/src/utils"
 )
 
 type ScrapeResult struct {
@@ -118,4 +120,61 @@ func aggregateNonConditionalScrapeResults(results ScrapeResultNonConditional, jo
 			(*journeys)[key] = journey
 		}
 	}
+}
+
+func aggregateConditionalScrapeResults(results ScrapeResultsConditional, journeys *map[string]JourneyWithPrices, provider string) {
+	for _, result := range results {
+		key := result.DepartureTime + "," + result.ArrivalTime
+		if journey, ok := (*journeys)[key]; ok {
+			price := journey.Prices
+
+			for key, val := range result.Price {
+				departureTime, arrivalTime := utils.SplitString(key, ",")
+
+				if journey, i, found := findJourney(price, departureTime, arrivalTime); found {
+					journey.Prices = append(journey.Prices, Price{Provider: provider, Price: val})
+					price[i] = journey
+				} else {
+					price = append(price, Journey{
+						DepartureTime: departureTime,
+						ArrivalTime:   arrivalTime,
+						Prices:        []Price{{Provider: provider, Price: val}},
+					})
+				}
+			}
+
+		} else {
+			(*journeys)[key] = JourneyWithPrices{
+				DepartureTime: result.DepartureTime,
+				ArrivalTime:   result.ArrivalTime,
+				Prices:        make([]Journey, 0),
+			}
+
+			journey = (*journeys)[key]
+
+			price := make([]Journey, 0)
+
+			for key, val := range result.Price {
+				departureTime, arrivalTime := utils.SplitString(key, ",")
+				price = append(price, Journey{
+					DepartureTime: departureTime,
+					ArrivalTime:   arrivalTime,
+					Prices:        []Price{{Provider: provider, Price: val}},
+				})
+			}
+
+			journey.Prices = price
+			(*journeys)[key] = journey
+		}
+	}
+}
+
+func findJourney(journeys []Journey, departureTime string, arrivalTime string) (Journey, int, bool) {
+	for i, journey := range journeys {
+		if journey.DepartureTime == departureTime && journey.ArrivalTime == arrivalTime {
+			return journey, i, true
+		}
+	}
+
+	return Journey{}, -1, false
 }

@@ -18,10 +18,10 @@ func TestTrainticketsSingle(t *testing.T) {
 	}
 
 	for _, r := range res {
-		if !timeRegex.MatchString(r.DepartureTime) {
+		if !isoRegex.MatchString(r.DepartureTime) {
 			t.Errorf("Invalid departure time: %s", r.DepartureTime)
 		}
-		if !timeRegex.MatchString(r.ArrivalTime) {
+		if !isoRegex.MatchString(r.ArrivalTime) {
 			t.Errorf("Invalid arrival time: %s", r.ArrivalTime)
 		}
 

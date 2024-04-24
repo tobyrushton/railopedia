@@ -20,7 +20,7 @@ type JourneyWithPrices struct {
 func Scrape(req Request) []JourneyWithPrices {
 	trainlineChannel := make(chan ScrapeResultNonConditional)
 	trainpalChannel := make(chan ScrapeResultNonConditional)
-	// trainticketsChannel := make(chan ScrapeResultsConditional)
+	trainticketsChannel := make(chan ScrapeResultsConditional)
 	// raileasyChannel := make(chan ScrapeResultsConditional)
 
 	// scrape each site concurrently
@@ -34,10 +34,10 @@ func Scrape(req Request) []JourneyWithPrices {
 		trainpalChannel <- val
 	}()
 
-	// go func() {
-	// 	val, _ := ScrapeTraintickets(req)
-	// 	trainticketsChannel <- val
-	// }()
+	go func() {
+		val, _ := ScrapeTraintickets(req)
+		trainticketsChannel <- val
+	}()
 
 	// go func() {
 	// 	val, _ := ScrapeRaileasy(req)
@@ -48,16 +48,16 @@ func Scrape(req Request) []JourneyWithPrices {
 	journeys := make(map[string]JourneyWithPrices)
 
 	// wait for all channels to return
-	for i := 0; i < 2; i++ {
+	for i := 0; i < 3; i++ {
 		select {
 		case trainline := <-trainlineChannel:
 			aggregateNonConditionalScrapeResults(trainline, &journeys, "trainline")
 		case trainpal := <-trainpalChannel:
 			aggregateNonConditionalScrapeResults(trainpal, &journeys, "trainpal")
-			// case traintickets := <-trainticketsChannel:
-			// 	// do something with traintickets
+		case traintickets := <-trainticketsChannel:
+			aggregateConditionalScrapeResults(traintickets, &journeys, "traintickets")
 			// case raileasy := <-raileasyChannel:
-			// 	// do something with raileasy
+			// 	addRaileasyResults(raileasy, &journeys, "raileasy") <- broken
 		}
 	}
 

@@ -2,7 +2,6 @@ package scrapes
 
 import (
 	"encoding/json"
-	"fmt"
 	"os"
 	"testing"
 )
@@ -19,6 +18,4 @@ func TestScrape(t *testing.T) {
 	jsonData, _ := json.Marshal(res)
 
 	os.WriteFile("test.json", jsonData, 0644)
-
-	fmt.Println(res)
 }
