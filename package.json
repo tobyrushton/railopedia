@@ -25,6 +25,7 @@
     "packages/*"
   ],
   "dependencies": {
-    "convert-csv-to-json": "^2.44.0"
+    "convert-csv-to-json": "^2.44.0",
+    "dayjs": "^1.11.10"
   }
 }

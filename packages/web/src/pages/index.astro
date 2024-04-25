@@ -1,10 +1,12 @@
 ---
 import Layout from '../layouts/Layout.astro'
 import StationInput from '../components/StationInput.svelte'
+import DateInput from '../components/DateInput.svelte'
 ---
 
 <Layout title="Railopedia">
-    <main class="p-10">
+    <main class="flex flex-col p-10 gap-2">
         <StationInput placeholder="Departure Station" setValue={(val: string) => console.log(val)} client:load/>
+        <DateInput client:load />
     </main>
 </Layout>
