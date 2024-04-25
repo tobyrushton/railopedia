@@ -10,7 +10,6 @@ const rawJson = csvToJson.csvStringToJson(stationListCsv)
 const stationListJSON = rawJson.map((station: any) => {
     if(station.country === 'GB')
         return {
-            trainline_id: station.id,
             name: station.name,
             code: station.atoc_id,
         }
