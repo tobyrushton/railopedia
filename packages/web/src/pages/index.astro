@@ -1,8 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro'
+import StationInput from '../components/StationInput.svelte'
 ---
 
 <Layout title="Railopedia">
-    <main>
+    <main class="p-10">
+        <StationInput placeholder="Departure Station" setValue={(val: string) => console.log(val)} client:load/>
     </main>
 </Layout>
