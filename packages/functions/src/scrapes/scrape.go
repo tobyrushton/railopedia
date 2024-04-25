@@ -17,26 +17,41 @@ type JourneyWithPrices struct {
 	Prices        []Journey
 }
 
-func Scrape(req Request) []JourneyWithPrices {
+func Scrape(req Request) ([]JourneyWithPrices, error) {
 	trainlineChannel := make(chan ScrapeResultNonConditional)
 	trainpalChannel := make(chan ScrapeResultNonConditional)
 	trainticketsChannel := make(chan ScrapeResultsConditional)
 	// raileasyChannel := make(chan ScrapeResultsConditional)
 
+	errChannel := make(chan error)
+
 	// scrape each site concurrently
 	go func() {
-		val, _ := ScrapeTrainline(req)
-		trainlineChannel <- val
+		val, err := ScrapeTrainline(req)
+		if err != nil {
+			errChannel <- err
+		} else {
+			trainlineChannel <- val
+		}
 	}()
 
 	go func() {
-		val, _ := ScrapeTrainpal(req)
-		trainpalChannel <- val
+		val, err := ScrapeTrainpal(req)
+		if err != nil {
+			errChannel <- err
+		} else {
+			trainpalChannel <- val
+		}
 	}()
 
 	go func() {
-		val, _ := ScrapeTraintickets(req)
+		val, err := ScrapeTraintickets(req)
 		trainticketsChannel <- val
+		if err != nil {
+			errChannel <- err
+		} else {
+			trainticketsChannel <- val
+		}
 	}()
 
 	// go func() {
@@ -58,6 +73,8 @@ func Scrape(req Request) []JourneyWithPrices {
 			aggregateConditionalScrapeResults(traintickets, &journeys, "traintickets")
 			// case raileasy := <-raileasyChannel:
 			// 	addRaileasyResults(raileasy, &journeys, "raileasy") <- broken
+		case err := <-errChannel:
+			return nil, err
 		}
 	}
 
@@ -68,5 +85,5 @@ func Scrape(req Request) []JourneyWithPrices {
 		journeySlice = append(journeySlice, journey)
 	}
 
-	return journeySlice
+	return journeySlice, nil
 }

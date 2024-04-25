@@ -9,7 +9,7 @@ import (
 func TestScrape(t *testing.T) {
 	skipCI(t)
 
-	res := Scrape(TestRequestReturn)
+	res, _ := Scrape(TestRequestReturn)
 
 	if len(res) == 0 {
 		t.Error("No results")

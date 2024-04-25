@@ -1,12 +1,6 @@
 package scrapes
 
 import (
-	"encoding/json"
-	"errors"
-	"io"
-	"os"
-	"strings"
-
 	"github.com/tobyrushton/railopedia/packages/functions/src/utils"
 )
 
@@ -41,29 +35,29 @@ type Request struct {
 
 var iso8601Layout string = "2006-01-02T15:04:05Z0700"
 
-func getStationByCode(code string) (string, error) {
-	jsonFile, err := os.Open("../../../../data/station-list.json")
+// func getStationByCode(code string) (string, error) {
+// 	jsonFile, err := os.Open("../../../../data/station-list.json")
 
-	if err != nil {
-		return "", err
-	}
+// 	if err != nil {
+// 		return "", err
+// 	}
 
-	defer jsonFile.Close()
+// 	defer jsonFile.Close()
 
-	byteValue, _ := io.ReadAll(jsonFile)
+// 	byteValue, _ := io.ReadAll(jsonFile)
 
-	var stations []Station
+// 	var stations []Station
 
-	json.Unmarshal(byteValue, &stations)
+// 	json.Unmarshal(byteValue, &stations)
 
-	for _, station := range stations {
-		if station.Code == code {
-			return strings.ReplaceAll(station.Name, "-", " "), nil
-		}
-	}
+// 	for _, station := range stations {
+// 		if station.Code == code {
+// 			return strings.ReplaceAll(station.Name, "-", " "), nil
+// 		}
+// 	}
 
-	return "", errors.New("Station not found")
-}
+// 	return "", errors.New("Station not found")
+// }
 
 func aggregateNonConditionalScrapeResults(results ScrapeResultNonConditional, journeys *map[string]JourneyWithPrices, provider string) {
 	for _, result := range results.Outbound {

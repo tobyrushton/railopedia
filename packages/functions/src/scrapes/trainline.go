@@ -42,19 +42,9 @@ func ScrapeTrainline(req Request) (ScrapeResultNonConditional, error) {
 	outHour := out.Hour()
 	outMin := out.Minute()
 
-	outStation, err := getStationByCode(req.Origin)
-	if err != nil {
-		return ScrapeResultNonConditional{}, err
-	}
-
-	inStation, err := getStationByCode(req.Destination)
-	if err != nil {
-		return ScrapeResultNonConditional{}, err
-	}
-
 	form := map[string]string{
-		"OriginStation":             outStation,
-		"DestinationStation":        inStation,
+		"OriginStation":             req.Origin,
+		"DestinationStation":        req.Destination,
 		"RouteRestriction":          "NULL",
 		"ViaAvoidStation":           "",
 		"outwardDate":               fmt.Sprintf("%d-%d-%d", outYear, outMonth, outDay),
