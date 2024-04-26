@@ -4,7 +4,7 @@
     import { Calendar } from 'lucide-svelte'
     import dayjs from 'dayjs'
 
-    let date = new Date()
+    export let date = new Date()
 
     let inputSelected = false
 

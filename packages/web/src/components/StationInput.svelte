@@ -1,7 +1,7 @@
 <script lang="ts">
     import stations from '../../../../data/station-list.json'
     export let placeholder: string
-    export let setValue: (value: string) => void
+    export let value: journey.IStation
 
     interface IStation {
         name: string
@@ -22,7 +22,7 @@
 
     const handleSelect = (station: IStation): void => {
         inputValue = station.name
-        // setValue(station.code)
+        value = station
         filteredStations = []
     }
 
