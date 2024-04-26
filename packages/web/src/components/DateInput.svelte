@@ -29,6 +29,8 @@
         />
     </label>
     {#if inputSelected}
-        <DatePicker bind:value={date} min={new Date()} timePrecision="minute" class="w-80"/>
+        <div class="absolute z-10">
+            <DatePicker bind:value={date} min={new Date()} timePrecision="minute"/>        
+        </div>
     {/if}
 </div>

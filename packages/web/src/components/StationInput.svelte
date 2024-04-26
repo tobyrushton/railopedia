@@ -3,13 +3,7 @@
     export let placeholder: string
     export let value: journey.IStation
 
-    interface IStation {
-        name: string
-        code: string
-        trainline_id: string
-    }
-
-    let filteredStations: IStation[] = []
+    let filteredStations: journey.IStation[] = []
 
     const filterStations = (string: string): void => {
         filteredStations = stations.filter((station) => {
@@ -20,7 +14,7 @@
 
     let inputValue = ""
 
-    const handleSelect = (station: IStation): void => {
+    const handleSelect = (station: journey.IStation): void => {
         inputValue = station.name
         value = station
         filteredStations = []
@@ -40,7 +34,7 @@
         bind:value={inputValue}
         on:input={() => filterStations(inputValue)}
     />
-    <div class="flex flex-col rounded-md shadow">
+    <div class="flex flex-col rounded-md shadow absolute bg-white z-10 w-80">
         {#if filteredStations.length > 0}
                 {#each filteredStations as station}
                     <button 

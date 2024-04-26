@@ -67,9 +67,9 @@
     
 </script>
 
-<form class="flex flex-col gap-2 w-fit">
+<form class="flex flex-col gap-4 w-fit">
     <JourneyRadio bind:journey={form.journey} />
-    <span class="flex gap-2">
+    <span class="flex flex-col gap-4 sm:flex-row">
         <span class="flex flex-col gap-2">
             <StationInput placeholder="Departing from" bind:value={form.origin}/>
             {#if errorMessages['origin']}
@@ -96,7 +96,7 @@
         </span>
     </span>
     <button 
-        class="w-fit self-end bg-primary text-white font-bold p-2 rounded"
+        class="w-full self-end bg-primary text-white font-bold p-2 rounded sm:w-fit"
         on:click|preventDefault={handleSubmit}
     >
         Find tickets
