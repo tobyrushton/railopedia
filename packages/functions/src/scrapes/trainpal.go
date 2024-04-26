@@ -13,14 +13,15 @@ import (
 
 var trainpalUrl string = "https://www.mytrainpal.com/"
 
-func ScrapeTrainpal(req Request) (ScrapeResults, error) {
+func ScrapeTrainpal(req Request) (ScrapeResultNonConditional, error) {
 	out, err := time.Parse(iso8601Layout, req.Departure)
 	if err != nil {
-		return nil, errors.New("invalid date")
+		return ScrapeResultNonConditional{}, errors.New("invalid date")
 	}
 
 	// open browser
 	page := rod.New().MustConnect().MustPage(trainpalUrl)
+	defer page.MustClose()
 
 	// input stations
 	page.MustElement("#fromStation").MustInput(req.Origin)
@@ -34,7 +35,7 @@ func ScrapeTrainpal(req Request) (ScrapeResults, error) {
 	if req.Return != "" {
 		in, err := time.Parse(iso8601Layout, req.Return)
 		if err != nil {
-			return nil, errors.New("invalid date")
+			return ScrapeResultNonConditional{}, errors.New("invalid date")
 		}
 		selectTrainpalDate(page, in, false)
 	}
@@ -42,20 +43,40 @@ func ScrapeTrainpal(req Request) (ScrapeResults, error) {
 	//submit form
 	page.MustElement("button.search-btn_db7b7").MustClick()
 
-	// gets journeys from page
-	outboundJourneys := page.MustWaitStable().MustElement("div.left-inner_ac0c4").MustElements("div.journey-section_d201d")
-	inboundJourneys := page.MustWaitStable().MustElement("div.right-inner_cf7d7").MustElements("div.journey-section_d201d")
+	// accept split tickets popup
+	page.MustElementR("button", "Got It").MustClick()
 
-	res := ScrapeResults{}
+	// gets journeys from page
+	outboundJourneys := page.MustElement("div.left-inner_ac0c4").MustElements("div.journey-section_d201d")
+
+	inboundJourneys := make(rod.Elements, 0)
+
+	if req.Return != "" {
+		page.MustElement("div.active_f5b20")
+		inboundJourneys = page.MustElement("div.right-inner_cf7d7").MustElements("div.journey-section_d201d")
+	}
+
+	outbound := make([]ScrapeResult, 0)
+	inbound := make([]ScrapeResult, 0)
 
 	for _, journey := range outboundJourneys {
-		res = append(res, getTrainpalJourneyDetails(journey))
+		outbound = append(outbound, getTrainpalJourneyDetails(journey, out))
 	}
-	for _, journey := range inboundJourneys {
-		res = append(res, getTrainpalJourneyDetails(journey))
+	if len(inboundJourneys) > 0 {
+		in, err := time.Parse(iso8601Layout, req.Return)
+		if err != nil {
+			return ScrapeResultNonConditional{}, errors.New("invalid date")
+		}
+
+		for _, journey := range inboundJourneys {
+			inbound = append(inbound, getTrainpalJourneyDetails(journey, in))
+		}
 	}
 
-	return res, nil
+	return ScrapeResultNonConditional{
+		Outbound: outbound,
+		Return:   inbound,
+	}, nil
 }
 
 func selectTrainpalDate(page *rod.Page, date time.Time, single bool) {
@@ -108,7 +129,7 @@ func selectTrainpalDate(page *rod.Page, date time.Time, single bool) {
 
 }
 
-func getTrainpalJourneyDetails(journey *rod.Element) ScrapeResult {
+func getTrainpalJourneyDetails(journey *rod.Element, day time.Time) ScrapeResult {
 	// get departure time
 	departureTime, _ := journey.MustElement("div.from_fa71c").Text()
 	// get arrival time
@@ -116,9 +137,13 @@ func getTrainpalJourneyDetails(journey *rod.Element) ScrapeResult {
 	// get price
 	price, _ := journey.MustElement("div.price_f360e").MustElement("div").Text()
 
+	// get iso times
+	departureISO := utils.HourStringToISO(departureTime, day)
+	arrivalISO := utils.HourStringToISO(arrivalTime, day)
+
 	return ScrapeResult{
-		DepartureTime: departureTime,
-		ArrivalTime:   arrivalTime,
+		DepartureTime: departureISO,
+		ArrivalTime:   arrivalISO,
 		Price:         utils.PriceToFloat(utils.SanitisePrice(price)),
 	}
 }

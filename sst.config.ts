@@ -5,10 +5,10 @@ export default {
   config(_input) {
     return {
       name: "railopedia",
-      region: "us-east-1",
+      region: "eu-west-2",
     };
   },
   stacks(app) {
-    app.stack(API);
+    app.stack(API);    
   }
 } satisfies SSTConfig;

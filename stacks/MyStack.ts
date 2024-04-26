@@ -1,13 +1,16 @@
 import { StackContext, Api } from "sst/constructs";
 
 export function API({ stack }: StackContext) {
-  stack.setDefaultFunctionProps({
-    runtime: "go",
-  })
-
   const api = new Api(stack, "api", {
     routes: {
-      "GET /search": "packages/functions/src/endpoints/search.go",
+      "GET /search": {
+        function: {
+          runtime: "go",
+          timeout: 20,
+          memorySize: 256,
+          handler: "packages/functions/src/endpoints/search.go",
+        }
+      },
     },
   })
 

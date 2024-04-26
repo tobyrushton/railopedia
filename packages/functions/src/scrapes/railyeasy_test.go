@@ -5,6 +5,8 @@ import (
 	"regexp"
 	"testing"
 	"time"
+
+	"github.com/tobyrushton/railopedia/packages/functions/src/utils"
 )
 
 var now = time.Now().Add(2 * time.Hour)
@@ -49,15 +51,19 @@ func TestRaileasyReturn(t *testing.T) {
 	}
 
 	for _, r := range res {
-		if !timeRegex.MatchString(r.DepartureTime) {
+		if !isoRegex.MatchString(r.DepartureTime) {
 			t.Errorf("Invalid departure time: %s", r.DepartureTime)
 		}
-		if !timeRegex.MatchString(r.ArrivalTime) {
+		if !isoRegex.MatchString(r.ArrivalTime) {
 			t.Errorf("Invalid arrival time: %s", r.ArrivalTime)
 		}
 
 		for time, price := range r.Price {
-			if !isoRegex.MatchString(time) {
+			time1, time2 := utils.SplitString(time, ",")
+			if !isoRegex.MatchString(time1) {
+				t.Errorf("Invalid time: %s", time)
+			}
+			if !isoRegex.MatchString(time2) {
 				t.Errorf("Invalid time: %s", time)
 			}
 			if price < 0 {

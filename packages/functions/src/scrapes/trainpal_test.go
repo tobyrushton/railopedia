@@ -15,11 +15,14 @@ func TestTrainpalSingle(t *testing.T) {
 		t.Error(err)
 	}
 
-	if len(res) == 0 {
+	if len(res.Outbound) == 0 {
 		t.Error("No results")
 	}
+	if len(res.Return) != 0 {
+		t.Error("Results returned for single journey")
+	}
 
-	for _, r := range res {
+	for _, r := range res.Outbound {
 		if !timeRegex.MatchString(r.DepartureTime) {
 			t.Errorf("Invalid departure time: %s", r.DepartureTime)
 		}
@@ -40,11 +43,18 @@ func TestTrainpalReturn(t *testing.T) {
 		t.Error(err)
 	}
 
-	if len(res) == 0 {
+	if len(res.Outbound) == 0 {
+		t.Error("No results")
+	}
+	if len(res.Return) == 0 {
 		t.Error("No results")
 	}
 
-	for _, r := range res {
+	vals := make(ScrapeResults, 0)
+	vals = append(vals, res.Outbound...)
+	vals = append(vals, res.Return...)
+
+	for _, r := range vals {
 		if !timeRegex.MatchString(r.DepartureTime) {
 			t.Errorf("Invalid departure time: %s", r.DepartureTime)
 		}

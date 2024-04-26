@@ -40,24 +40,26 @@ func ScrapeTraintickets(req Request) (ScrapeResultsConditional, error) {
 	page.MustElementR("h3", "Choose") // waits for journeys to finish loading
 	outboundJourneys := page.MustWaitLoad().MustElement("#outbound").MustElements("li.journey")
 	res := make(ScrapeResultsConditional, 0)
+	out, _ := time.Parse(iso8601Layout, req.Departure)
 
 	if req.Return == "" {
-		out, _ := time.Parse(iso8601Layout, req.Departure)
 		for _, journey := range outboundJourneys {
 			price := getTrainticketsPrice(journey)
 			departTime, arrivalTime := getTrainticketsJourneyTimes(journey)
-			isoString := utils.HourStringToISO(departTime, out)
+			isoDepartTime := utils.HourStringToISO(departTime, out)
+			isoArrivalTime := utils.HourStringToISO(arrivalTime, out)
+			key := isoDepartTime + "," + isoArrivalTime
 			res = append(res, ScrapeResultConditional{
-				DepartureTime: departTime,
-				ArrivalTime:   arrivalTime,
-				Price:         map[string]float32{isoString: price},
+				DepartureTime: isoDepartTime,
+				ArrivalTime:   isoArrivalTime,
+				Price:         map[string]float32{key: price},
 			})
 
 		}
 	} else {
 		in, _ := time.Parse(iso8601Layout, req.Return)
 		for _, journey := range outboundJourneys {
-			res = append(res, getTrainticketsJourneyPriceReturn(page, journey, in))
+			res = append(res, getTrainticketsJourneyPriceReturn(page, journey, out, in))
 		}
 	}
 
@@ -129,7 +131,7 @@ func getTrainticketsJourneyTimes(journey *rod.Element) (string, string) {
 	return times[0].MustText(), times[1].MustText()
 }
 
-func getTrainticketsJourneyPriceReturn(page *rod.Page, journey *rod.Element, day time.Time) ScrapeResultConditional {
+func getTrainticketsJourneyPriceReturn(page *rod.Page, journey *rod.Element, out time.Time, in time.Time) ScrapeResultConditional {
 	// select outbound journey
 	journey.MustElement("button.go").MustClick()
 
@@ -140,18 +142,22 @@ func getTrainticketsJourneyPriceReturn(page *rod.Page, journey *rod.Element, day
 
 	for _, returnJourney := range returnJourneys {
 		journeyPrice := getTrainticketsPrice(returnJourney)
-		departTime, _ := getTrainticketsJourneyTimes(returnJourney)
-		departTimeISO := utils.HourStringToISO(departTime, day)
-		price[departTimeISO] = journeyPrice
+		departTime, arrivalTime := getTrainticketsJourneyTimes(returnJourney)
+		departTimeISO := utils.HourStringToISO(departTime, in)
+		arrivalTimeISO := utils.HourStringToISO(arrivalTime, in)
+		key := departTimeISO + "," + arrivalTimeISO
+		price[key] = journeyPrice
 	}
 
 	departTime, arrivalTime := getTrainticketsJourneyTimes(journey)
+	departTimeISO := utils.HourStringToISO(departTime, out)
+	arrivalTimeISO := utils.HourStringToISO(arrivalTime, out)
 
 	page.MustElement("#change-outbound").MustClick()
 
 	return ScrapeResultConditional{
-		DepartureTime: departTime,
-		ArrivalTime:   arrivalTime,
+		DepartureTime: departTimeISO,
+		ArrivalTime:   arrivalTimeISO,
 		Price:         price,
 	}
 }

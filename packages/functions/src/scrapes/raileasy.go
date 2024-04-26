@@ -51,15 +51,22 @@ func ScrapeRaileasy(req Request) (ScrapeResultsConditional, error) {
 	removeLaterAndEarlier(&outboundJourneys)
 	for _, journey := range outboundJourneys {
 		if req.Return != "" {
-			results = append(results, getRaileasyPrice(page, journey, out))
+			in, err := utils.GetTime(req.Return)
+			if err != nil {
+				return nil, errors.New("invalid date")
+			}
+
+			results = append(results, getRaileasyPrice(page, journey, out, in))
 		} else {
 			price := getRaileasyBasePrice(journey)
-			time := getRaileasyDepartTimeISO(journey, out)
 			departTime, arrivalTime := getRaileasyJourneyTimes(journey)
+			departTimeISO := utils.HourStringToISO(departTime, out)
+			arrivalTimeISO := utils.HourStringToISO(arrivalTime, out)
+			key := departTimeISO + "," + arrivalTimeISO
 			results = append(results, ScrapeResultConditional{
 				DepartureTime: departTime,
 				ArrivalTime:   arrivalTime,
-				Price:         map[string]float32{time: price},
+				Price:         map[string]float32{key: price},
 			})
 		}
 	}
@@ -137,13 +144,6 @@ func getRaileasyBasePrice(journey *rod.Element) float32 {
 	return basePrice
 }
 
-func getRaileasyDepartTimeISO(journey *rod.Element, day time.Time) string {
-	timeRaw := journey.MustElement("#journey-time").MustText()
-	departureTime, _ := utils.SplitString(timeRaw, " -> ")
-
-	return utils.HourStringToISO(departureTime, day)
-}
-
 func getRaileasyJourneyTimes(journey *rod.Element) (string, string) {
 	timeRaw := journey.MustElement("#journey-time").MustText()
 	departureTime, arrivalTime := utils.SplitString(timeRaw, " -> ")
@@ -151,9 +151,11 @@ func getRaileasyJourneyTimes(journey *rod.Element) (string, string) {
 	return departureTime, arrivalTime
 }
 
-func getRaileasyPrice(page *rod.Page, journey *rod.Element, day time.Time) ScrapeResultConditional {
+func getRaileasyPrice(page *rod.Page, journey *rod.Element, out time.Time, in time.Time) ScrapeResultConditional {
 	// get journey times
 	departureTime, arrivalTime := getRaileasyJourneyTimes(journey)
+	departureTimeISO := utils.HourStringToISO(departureTime, out)
+	arrivalTimeISO := utils.HourStringToISO(arrivalTime, out)
 
 	basePrice := getRaileasyBasePrice(journey)
 
@@ -167,24 +169,25 @@ func getRaileasyPrice(page *rod.Page, journey *rod.Element, day time.Time) Scrap
 	price := make(map[string]float32)
 
 	for _, returnJourney := range returnJourneys {
-		ISOTime := getRaileasyDepartTimeISO(returnJourney, day)
+		returnDepartTime, returnArrivalTime := getRaileasyJourneyTimes(returnJourney)
+		key := utils.HourStringToISO(returnDepartTime, in) + "," + utils.HourStringToISO(returnArrivalTime, in)
 
 		if returnJourney.MustHas("p.block") {
 			// get the price
 			priceRaw := returnJourney.MustElement("p.block").MustElement("span").MustText()
 			priceFloat := utils.PriceToFloat(utils.SanitisePrice(priceRaw)) + basePrice
 
-			price[ISOTime] = priceFloat
+			price[key] = priceFloat
 
 		} else { // is the cheapest option
-			price[ISOTime] = basePrice
+			price[key] = basePrice
 		}
 
 	}
 
 	return ScrapeResultConditional{
-		DepartureTime: departureTime,
-		ArrivalTime:   arrivalTime,
+		DepartureTime: departureTimeISO,
+		ArrivalTime:   arrivalTimeISO,
 		Price:         price,
 	}
 }
