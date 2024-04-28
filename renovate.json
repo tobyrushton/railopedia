@@ -1,0 +1,29 @@
+{
+    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+    "extends": [
+      "config:base"
+    ],
+      "groupName": "all dependencies",
+      "groupSlug": "all",
+      "lockFileMaintenance": {
+          "enabled": false
+      },
+      "packageRules": [
+        {
+          "matchPackageNames": ["@tanstack/react-query"],
+          "enabled": false
+        },
+          {
+              "groupName": "all dependencies",
+              "groupSlug": "all",
+              "matchPackagePatterns": ["*"]
+          }
+      ],
+      "separateMajorMinor": true,
+      "dependencyDashboard": false,
+      "schedule": [
+        "after 10pm every weekday",
+        "before 5am every weekday",
+        "every weekend"
+      ]
+}
