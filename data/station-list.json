@@ -408,10 +408,6 @@
     "code": "WGN"
   },
   {
-    "name": "Devils bridge",
-    "code": ""
-  },
-  {
     "name": "Annan",
     "code": "ANN"
   },
@@ -434,10 +430,6 @@
   {
     "name": "Dalwhinnie",
     "code": "DLW"
-  },
-  {
-    "name": "Lincoln-St-Marks",
-    "code": ""
   },
   {
     "name": "Haymarket (Edinburgh)",
@@ -840,10 +832,6 @@
     "code": "ADV"
   },
   {
-    "name": "Ashford International",
-    "code": ""
-  },
-  {
     "name": "Harlech",
     "code": "HRL"
   },
@@ -910,10 +898,6 @@
   {
     "name": "Bury St Edmunds",
     "code": "BSE"
-  },
-  {
-    "name": "Dover eastern docks",
-    "code": ""
   },
   {
     "name": "Stowmarket",
@@ -1106,10 +1090,6 @@
   {
     "name": "Polmont",
     "code": "PMT"
-  },
-  {
-    "name": "Dover hoverport",
-    "code": ""
   },
   {
     "name": "Dalmally",
@@ -1548,16 +1528,8 @@
     "code": "ABD"
   },
   {
-    "name": "Gatwick Airport",
-    "code": ""
-  },
-  {
     "name": "Eastbourne",
     "code": "EBN"
-  },
-  {
-    "name": "Fishguard harbour",
-    "code": ""
   },
   {
     "name": "Rochester",
@@ -1584,10 +1556,6 @@
     "code": "ARB"
   },
   {
-    "name": "Ashford",
-    "code": ""
-  },
-  {
     "name": "Ashford International",
     "code": "AFK"
   },
@@ -1596,16 +1564,8 @@
     "code": "AYW"
   },
   {
-    "name": "London St-Pancras",
-    "code": ""
-  },
-  {
     "name": "Tilbury Town",
     "code": "TIL"
-  },
-  {
-    "name": "Larne",
-    "code": ""
   },
   {
     "name": "Snowdown",
@@ -1832,14 +1792,6 @@
     "code": "DON"
   },
   {
-    "name": "Dover",
-    "code": ""
-  },
-  {
-    "name": "Dover western docks",
-    "code": ""
-  },
-  {
     "name": "Tamworth",
     "code": "TAM"
   },
@@ -1892,14 +1844,6 @@
     "code": "FTW"
   },
   {
-    "name": "Gatwick",
-    "code": ""
-  },
-  {
-    "name": "Gatwick Airport",
-    "code": ""
-  },
-  {
     "name": "Gloucester",
     "code": "GCR"
   },
@@ -1940,10 +1884,6 @@
     "code": "HFX"
   },
   {
-    "name": "Hull",
-    "code": ""
-  },
-  {
     "name": "Holyhead",
     "code": "HHD"
   },
@@ -1972,10 +1912,6 @@
     "code": "HXX"
   },
   {
-    "name": "Harwich International",
-    "code": ""
-  },
-  {
     "name": "Hayle",
     "code": "HYL"
   },
@@ -1986,10 +1922,6 @@
   {
     "name": "Inverness",
     "code": "INV"
-  },
-  {
-    "name": "Jersey",
-    "code": ""
   },
   {
     "name": "Kirkcaldy",
@@ -2050,10 +1982,6 @@
   {
     "name": "London Waterloo",
     "code": "WAT"
-  },
-  {
-    "name": "London Southern Railway",
-    "code": ""
   },
   {
     "name": "Stratford International",
@@ -2412,10 +2340,6 @@
     "code": "OXF"
   },
   {
-    "name": "Gde bretagne",
-    "code": ""
-  },
-  {
     "name": "Peterborough",
     "code": "PBO"
   },
@@ -2484,14 +2408,6 @@
     "code": "THS"
   },
   {
-    "name": "Hull",
-    "code": ""
-  },
-  {
-    "name": "Weymouth",
-    "code": ""
-  },
-  {
     "name": "Woking (Main)",
     "code": "WOK"
   },
@@ -2504,32 +2420,12 @@
     "code": "WVH"
   },
   {
-    "name": "Gatwick",
-    "code": ""
-  },
-  {
     "name": "Heathrow Airport",
     "code": "193"
   },
   {
-    "name": "London City Airport",
-    "code": ""
-  },
-  {
     "name": "York",
     "code": "YRK"
-  },
-  {
-    "name": "London Victoria Coach Station",
-    "code": ""
-  },
-  {
-    "name": "Ashford International",
-    "code": ""
-  },
-  {
-    "name": "Ebbsfleet International",
-    "code": ""
   },
   {
     "name": "Abbey Wood",
@@ -11150,13 +11046,5 @@
   {
     "name": "Yeovil",
     "code": "181"
-  },
-  {
-    "name": "Dover",
-    "code": ""
-  },
-  {
-    "name": "Milton Keynes",
-    "code": ""
   }
 ]
