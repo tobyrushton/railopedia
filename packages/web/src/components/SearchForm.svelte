@@ -57,7 +57,7 @@
         errorMessages = {}
         if(res.success) {
             window.location.href = 
-                `/search?origin=${form.origin.code}&destination=${form.destination.code}&outboundDate=${form.outboundDate.toISOString()}&returnDate=${form.journey === 'return' ? form.returnDate.toISOString() : ''}`
+                `/search?origin=${form.origin.code}&destination=${form.destination.code}&departure=${form.outboundDate.toISOString()}&return=${form.journey === 'return' ? form.returnDate.toISOString() : ''}`
         } else {
             res.error.errors.map(({ path, message }) => {
                 errorMessages[path[0]] = message

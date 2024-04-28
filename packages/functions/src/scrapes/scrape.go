@@ -25,12 +25,13 @@ func Scrape(req Request) ([]JourneyWithPrices, error) {
 	trainlineChannel := make(chan ScrapeResultNonConditional)
 	trainpalChannel := make(chan ScrapeResultNonConditional)
 	trainticketsChannel := make(chan ScrapeResultsConditional)
-	raileasyChannel := make(chan ScrapeResultsConditional)
+	// raileasyChannel := make(chan ScrapeResultsConditional)
 
 	errChannel := make(chan error)
 
 	// catches any panics and sends them to the error channel
-	catchPanic := func() {
+	catchPanic := func(t string) {
+		fmt.Println("panic: ", t)
 		if r := recover(); r != nil {
 			fmt.Println("panic: ", r)
 			errChannel <- fmt.Errorf("panic: %v", r)
@@ -39,7 +40,7 @@ func Scrape(req Request) ([]JourneyWithPrices, error) {
 
 	// scrape each site concurrently
 	go func() {
-		defer catchPanic()
+		defer catchPanic("tl")
 		val, err := ScrapeTrainline(req)
 		if err != nil {
 			errChannel <- err
@@ -49,7 +50,7 @@ func Scrape(req Request) ([]JourneyWithPrices, error) {
 	}()
 
 	go func() {
-		defer catchPanic()
+		defer catchPanic("tp")
 		val, err := ScrapeTrainpal(req)
 		if err != nil {
 			errChannel <- err
@@ -59,7 +60,7 @@ func Scrape(req Request) ([]JourneyWithPrices, error) {
 	}()
 
 	go func() {
-		defer catchPanic()
+		defer catchPanic("tt")
 		val, err := ScrapeTraintickets(req)
 		trainticketsChannel <- val
 		if err != nil {
@@ -69,21 +70,21 @@ func Scrape(req Request) ([]JourneyWithPrices, error) {
 		}
 	}()
 
-	go func() {
-		defer catchPanic()
-		val, err := ScrapeRaileasy(req)
-		if err != nil {
-			errChannel <- err
-		} else {
-			raileasyChannel <- val
-		}
-	}()
+	// go func() {
+	// 	defer catchPanic()
+	// 	val, err := ScrapeRaileasy(req)
+	// 	if err != nil {
+	// 		errChannel <- err
+	// 	} else {
+	// 		raileasyChannel <- val
+	// 	}
+	// }()
 
 	// key for map should be [depart iso],[arrive iso]
 	journeys := make(map[string]JourneyWithPrices)
 
 	// wait for all channels to return
-	for i := 0; i < 4; i++ {
+	for i := 0; i < 3; i++ {
 		select {
 		case trainline := <-trainlineChannel:
 			aggregateNonConditionalScrapeResults(trainline, &journeys, "trainline")
@@ -91,8 +92,8 @@ func Scrape(req Request) ([]JourneyWithPrices, error) {
 			aggregateNonConditionalScrapeResults(trainpal, &journeys, "trainpal")
 		case traintickets := <-trainticketsChannel:
 			aggregateConditionalScrapeResults(traintickets, &journeys, "traintickets")
-		case raileasy := <-raileasyChannel:
-			aggregateConditionalScrapeResults(raileasy, &journeys, "raileasy")
+		// case raileasy := <-raileasyChannel:
+		// 	aggregateConditionalScrapeResults(raileasy, &journeys, "raileasy")
 		case err := <-errChannel:
 			return nil, err
 		}

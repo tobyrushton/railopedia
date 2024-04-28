@@ -1,0 +1,28 @@
+---
+import dayjs from 'dayjs'
+
+interface Props {
+    day: string
+    isOutbound?: boolean
+    outbound: string
+    inbound: string
+}
+
+const { day, outbound, isOutbound, inbound } = Astro.props
+---
+<div class="rounded h-fit shadow p-3 grow">
+    <span class="border-solid border-b-2 border-ternary">
+        <h3 class="font-bold">
+            {isOutbound ? "OUT" : "RETURN"}
+        </h3>
+        <span class="flex">
+            <p>
+                {dayjs(day).format("ddd DD MMM")} -&nbsp;
+            </p>
+            <p class="font-semibold">
+                {isOutbound ? inbound : outbound} to {isOutbound ? outbound : inbound}
+            </p>
+        </span>
+    </span>
+    <slot />
+</div>
