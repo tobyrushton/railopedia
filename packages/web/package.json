@@ -28,6 +28,7 @@
         "@astrojs/svelte": "^5.4.0",
         "@astrojs/tailwind": "^5.1.0",
         "@fontsource-variable/raleway": "^5.0.19",
+        "astro-sst": "^2.41.5",
         "date-picker-svelte": "^2.12.0",
         "lucide-astro": "^0.373.0",
         "lucide-svelte": "^0.373.0",
