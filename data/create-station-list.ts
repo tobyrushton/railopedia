@@ -10,10 +10,9 @@ const rawJson = csvToJson.csvStringToJson(stationListCsv)
 const stationListJSON = rawJson.map((station: any) => {
     if(station.country === 'GB')
         return {
-            trainline_id: station.id,
             name: station.name,
             code: station.atoc_id,
         }
-}).filter(station => station)
+}).filter(station => station).filter(station => station?.code)
 
 fs.writeFileSync('data/station-list.json', JSON.stringify(stationListJSON, null, 2))
