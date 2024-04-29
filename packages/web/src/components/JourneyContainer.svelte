@@ -74,24 +74,26 @@
 
 </script>
 
-{#each journeyList as journey, index}
-    <JourneyItem
-        departure={journey.DepartureTime}
-        arrival={journey.ArrivalTime}
-        price={getPrice(index)}
-        selected={index === selectedIndex}
-        outbound={!returnJourney}
-        onClick={() => {
-            if(returnJourney) {
-                selectedJourneyIndex.update(value => [value[0], index])
-            } else {
-                selectedJourneyIndex.update(value => [index, value[1]])
-                if(isIJourney(journeyList)) {
-                    const outboundJourney = journeyList[index]
-                    inboundJourneys.set(outboundJourney.Prices)
+{#key journeyList}
+    {#each journeyList as journey, index}
+        <JourneyItem
+            departure={journey.DepartureTime}
+            arrival={journey.ArrivalTime}
+            price={getPrice(index)}
+            selected={index === selectedIndex}
+            outbound={!returnJourney}
+            onClick={() => {
+                if(returnJourney) {
+                    selectedJourneyIndex.update(value => [value[0], index])
+                } else {
+                    selectedJourneyIndex.update(value => [index, value[1]])
+                    if(isIJourney(journeyList)) {
+                        const outboundJourney = journeyList[index]
+                        inboundJourneys.set(outboundJourney.Prices)
+                    }
                 }
-            }
-        }}
-    />
-{/each}
+            }}
+        />
+    {/each}
+{/key}
 
