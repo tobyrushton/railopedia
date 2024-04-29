@@ -4,7 +4,8 @@ import JourneyList from '../components/JourneyList.astro'
 import JourneyContainer from '../components/JourneyContainer.svelte'
 import JourneySummary from '../components/JourneySummary.svelte'
 import { getStationName } from '../utils/station'
-import data from '../../../../data/test.json'
+// import data from '../../../../data/test.json'
+import fs from 'fs'
 
 export const prerender = false
 
@@ -14,13 +15,15 @@ const origin = Astro.url.searchParams.get('origin')
 const departure = Astro.url.searchParams.get('departure')
 const returnDate = Astro.url.searchParams.get('return')
 
-// const API_URL = (import.meta as unknown as { env: { API_URL: string } }).env.API_URL
+const API_URL = (import.meta as unknown as { env: { API_URL: string } }).env.API_URL
 
 const outboundStation = getStationName(origin)
 const inboundStation = getStationName(destination)
 
-// const journeys = await fetch(`${API_URL}/search?origin=${origin}&destination=${destination}&departure=${departure}&return=${returnDate}`)
-// console.log(await journeys.json())
+const journeys = await fetch(`${API_URL}/search?origin=${origin}&destination=${destination}&departure=${departure}&return=${returnDate}`)
+const data = await journeys.json()
+// console.log(data)
+fs.writeFileSync("test.json", JSON.stringify(data))
 ---
 
 <Layout title="Search">
@@ -30,8 +33,8 @@ const inboundStation = getStationName(destination)
         </h1>
         <span class="flex flex-col md:flex-row p-2 gap-5">
             <JourneyList outbound={outboundStation} inbound={inboundStation} day={departure} isOutbound>
-                <JourneyContainer client:load journeyList={data} />
-            </JourneyList>
+                <JourneyContainer client:load journeyListProp={JSON.stringify(data)} />
+            </JourneyList>  
             {returnDate && (
                 <JourneyList outbound={inboundStation} inbound={outboundStation} day={returnDate}>
                     <JourneyContainer client:load returnJourney />

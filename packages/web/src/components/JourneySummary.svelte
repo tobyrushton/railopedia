@@ -1,25 +1,19 @@
 <script lang="ts">
     import { onDestroy } from 'svelte'
     import { ChevronRight } from 'lucide-svelte'
-    import { inboundJourneys, outboundJourneys, selectedJourneyIndex } from '../stores/journey'
+    import { inboundJourneys, selectedJourneyIndex } from '../stores/journey'
 
     let selectedIndex:[number, number] = [0, 0]
     let inboundJourneysList: journey.IJourneyPrice[] = []
-    // let outboundJourneysList: journey.IJourneyPrice[] = []
-
     const unsubcribedFromIndex = selectedJourneyIndex.subscribe(value => {
         selectedIndex = value
     })
-    // const unsubscribeFromOutboundJourneys = outboundJourneys.subscribe(value => {
-    //     outboundJourneysList = value
-    // })
     const unsubscribeFromInboundJourneys = inboundJourneys.subscribe(value => {
         inboundJourneysList = value
     })
 
     onDestroy(() => {
         unsubcribedFromIndex()
-        // unsubscribeFromOutboundJourneys()
         unsubscribeFromInboundJourneys()
     })
 

@@ -3,10 +3,17 @@
     import { inboundJourneys, outboundJourneys, selectedJourneyIndex } from '../stores/journey'
     import { onDestroy, onMount} from 'svelte'
     import { isIJourney } from '../utils/types'
-    import data from '../../../../data/test.json'
 
-    export let journeyList: journey.IJourney[] | journey.IJourneyPrice[] = []
+    export let journeyListProp = ""
+
+    let journeyList: journey.IJourney[] | journey.IJourneyPrice[] = []
     export let returnJourney: boolean = false
+
+    $: {
+        if(journeyListProp !== "") {
+            journeyList = JSON.parse(journeyListProp).sort((a, b) => a.DepartureTime.localeCompare(b.DepartureTime))
+        }
+    }
 
     let selectedIndex:number = 0
 
@@ -31,12 +38,9 @@
     })
 
     onMount(() => {
-        if(!returnJourney) {
-            outboundJourneys.set(data.sort((a, b) => a.DepartureTime.localeCompare(b.DepartureTime)))
-            if(isIJourney(journeyList)) {
-                const outboundJourney = journeyList[0]
-                inboundJourneys.set(outboundJourney.Prices)
-            }
+        if(!returnJourney && journeyList.length > 0 && isIJourney(journeyList)) {
+            const outboundJourney = journeyList[0]
+            inboundJourneys.set(outboundJourney.Prices)
         }
     })
 
