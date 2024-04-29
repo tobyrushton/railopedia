@@ -5,6 +5,7 @@ import (
 )
 
 func TestTrainlineReturn(t *testing.T) {
+	skipCI(t)
 	res, err := ScrapeTrainline(TestRequestReturn)
 	if err != nil {
 		t.Error(err)
@@ -32,6 +33,7 @@ func TestTrainlineReturn(t *testing.T) {
 }
 
 func TestTrainlineSingle(t *testing.T) {
+	skipCI(t)
 	res, err := ScrapeTrainline(TestRequest)
 	if err != nil {
 		t.Error(err)
