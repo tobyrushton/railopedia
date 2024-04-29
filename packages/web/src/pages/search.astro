@@ -1,7 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro'
 import JourneyList from '../components/JourneyList.astro'
+import JourneyContainer from '../components/JourneyContainer.svelte'
 import { getStationName } from '../utils/station'
+import data from '../../../../data/test.json'
 
 export const prerender = false
 
@@ -11,24 +13,28 @@ const origin = Astro.url.searchParams.get('origin')
 const departure = Astro.url.searchParams.get('departure')
 const returnDate = Astro.url.searchParams.get('return')
 
-const API_URL = (import.meta as unknown as { env: { API_URL: string } }).env.API_URL
+// const API_URL = (import.meta as unknown as { env: { API_URL: string } }).env.API_URL
 
-const outboundStation = await getStationName(origin)
-const inboundStation = await getStationName(destination)
+const outboundStation = getStationName(origin)
+const inboundStation = getStationName(destination)
 
 // const journeys = await fetch(`${API_URL}/search?origin=${origin}&destination=${destination}&departure=${departure}&return=${returnDate}`)
 // console.log(await journeys.json())
 ---
 
 <Layout title="Search">
-    <main class="flex flex-col px-10 py-5">
+    <main class="flex flex-col px-5 md:px-10 py-5 grow">
         <h1 class="text-xl font-bold">
             Searching from {outboundStation} to {inboundStation}
         </h1>
-        <span class="flex p-2 gap-5">
-            <JourneyList outbound={outboundStation} inbound={inboundStation} day={departure} />
+        <span class="flex flex-col md:flex-row p-2 gap-5">
+            <JourneyList outbound={outboundStation} inbound={inboundStation} day={departure} isOutbound>
+                <JourneyContainer client:load journeyList={data} />
+            </JourneyList>
             {returnDate && (
-                <JourneyList outbound={inboundStation} inbound={outboundStation} day={returnDate} />
+                <JourneyList outbound={inboundStation} inbound={outboundStation} day={returnDate}>
+                    <JourneyContainer client:load returnJourney />
+                </JourneyList>
             )}
         </span>
     </main>
