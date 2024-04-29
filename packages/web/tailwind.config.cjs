@@ -11,6 +11,7 @@ export default {
             colors: {
                 primary: '#FE2340',
                 ternary: '#F1F2F6',
+                'primary-tint': '#ffbdc6',
             },
         },
     },

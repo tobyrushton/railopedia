@@ -20,6 +20,7 @@ func ScrapeTraintickets(req Request) (ScrapeResultsConditional, error) {
 	// input stations
 	setTrainticketsStation(page, req.Origin, "#origin")
 	setTrainticketsStation(page, req.Destination, "#destination")
+	fmt.Println("stations set")
 
 	// select the dates
 	err := setTrainticketsDate(page, req.Departure, true)
@@ -35,9 +36,11 @@ func ScrapeTraintickets(req Request) (ScrapeResultsConditional, error) {
 
 	// submit form
 	page.MustElement("#searchButton").MustClick()
+	fmt.Println("searching")
 
 	// get outbound journeys
 	page.MustElementR("h3", "Choose") // waits for journeys to finish loading
+	fmt.Println("search complete")
 	outboundJourneys := page.MustWaitLoad().MustElement("#outbound").MustElements("li.journey")
 	res := make(ScrapeResultsConditional, 0)
 	out, _ := time.Parse(iso8601Layout, req.Departure)
@@ -93,6 +96,7 @@ func setTrainticketsDate(page *rod.Page, date string, outbound bool) error {
 	month := dayOfJourney.Month().String()
 	for currMonth.MustText() != month {
 		dateBox.MustElement("button.bb-date__next").MustClick()
+		currMonth = dateBox.MustElement("div.bb-date__label")
 	}
 
 	// select correct day
