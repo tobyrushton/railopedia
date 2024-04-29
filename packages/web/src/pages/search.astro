@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro'
 import JourneyList from '../components/JourneyList.astro'
 import JourneyContainer from '../components/JourneyContainer.svelte'
+import JourneySummary from '../components/JourneySummary.svelte'
 import { getStationName } from '../utils/station'
 import data from '../../../../data/test.json'
 
@@ -36,6 +37,7 @@ const inboundStation = getStationName(destination)
                     <JourneyContainer client:load returnJourney />
                 </JourneyList>
             )}
+            <JourneySummary client:load />
         </span>
     </main>
 </Layout>
