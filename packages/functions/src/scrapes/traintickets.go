@@ -136,6 +136,11 @@ func getTrainticketsJourneyTimes(journey *rod.Element) (string, string) {
 }
 
 func getTrainticketsJourneyPriceReturn(page *rod.Page, journey *rod.Element, out time.Time, in time.Time) ScrapeResultConditional {
+	// get outbound journey dates
+	departTimeOut, arrivalTimeOut := getTrainticketsJourneyTimes(journey)
+	departTimeOutISO := utils.HourStringToISO(departTimeOut, out)
+	arrivalTimeOutISO := utils.HourStringToISO(arrivalTimeOut, out)
+
 	// select outbound journey
 	journey.MustElement("button.go").MustClick()
 
@@ -153,15 +158,11 @@ func getTrainticketsJourneyPriceReturn(page *rod.Page, journey *rod.Element, out
 		price[key] = journeyPrice
 	}
 
-	departTime, arrivalTime := getTrainticketsJourneyTimes(journey)
-	departTimeISO := utils.HourStringToISO(departTime, out)
-	arrivalTimeISO := utils.HourStringToISO(arrivalTime, out)
-
 	page.MustElement("#change-outbound").MustClick()
 
 	return ScrapeResultConditional{
-		DepartureTime: departTimeISO,
-		ArrivalTime:   arrivalTimeISO,
+		DepartureTime: departTimeOutISO,
+		ArrivalTime:   arrivalTimeOutISO,
 		Price:         price,
 	}
 }
