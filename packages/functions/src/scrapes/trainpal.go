@@ -137,6 +137,11 @@ func getTrainpalJourneyDetails(journey *rod.Element, day time.Time) ScrapeResult
 	// get price
 	price, _ := journey.MustElement("div.price_f360e").MustElement("div").Text()
 
+	// time may have a +1 if it is the next day
+	if len(arrivalTime) > 5 {
+		arrivalTime = arrivalTime[:5]
+	}
+
 	// get iso times
 	departureISO := utils.HourStringToISO(departureTime, day)
 	arrivalISO := utils.HourStringToISO(arrivalTime, day)

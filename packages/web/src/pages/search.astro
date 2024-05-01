@@ -22,8 +22,8 @@ const inboundStation = getStationName(destination)
 
 const journeys = await fetch(`${API_URL}/search?origin=${origin}&destination=${destination}&departure=${departure}&return=${returnDate}`)
 const data = await journeys.json()
-// console.log(data)
-fs.writeFileSync("test.json", JSON.stringify(data))
+console.log(data)
+// fs.writeFileSync('test.json', JSON.stringify(data))
 ---
 
 <Layout title="Search">

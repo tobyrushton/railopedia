@@ -14,7 +14,7 @@ var trainticketsUrl = "https://www.traintickets.com/?/"
 
 func ScrapeTraintickets(req Request) (ScrapeResultsConditional, error) {
 	//open browser
-	page := rod.New().MustConnect().MustPage(trainticketsUrl)
+	page := rod.New().MustConnect().MustPage(trainticketsUrl).MustSetViewport(1920, 2000, 1, false)
 	defer page.MustClose()
 
 	// input stations

@@ -83,6 +83,7 @@ func ScrapeTrainline(req Request) (ScrapeResultNonConditional, error) {
 	c.OnHTML("body", func(e *colly.HTMLElement) {
 		data := e.ChildAttr("form", "data-defaults")
 
+		// fmt.Println(e.DOM.Text())
 		var results scrapedJson
 		json.Unmarshal([]byte(data), &results)
 		res.Outbound = getTrainlinePrices(results, true)
