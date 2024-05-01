@@ -108,6 +108,9 @@ func getTrainlinePrices(data scrapedJson, outbound bool) ScrapeResults {
 	var res ScrapeResults
 
 	for _, ticket := range data.FullJourneys[index].StandardTickets[0].Tickets {
+		if _, ok := ticket["notAvailable"]; ok {
+			continue
+		}
 		result := ScrapeResult{}
 		if priceVal, ok := ticket["price"].(string); ok {
 			result.Price = utils.PriceToFloat(priceVal)
