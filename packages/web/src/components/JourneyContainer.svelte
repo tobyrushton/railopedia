@@ -11,7 +11,7 @@
 
     $: {
         if(journeyListProp !== "") {
-            journeyList = JSON.parse(journeyListProp).sort((a, b) => a.DepartureTime.localeCompare(b.DepartureTime))
+            journeyList = JSON.parse(journeyListProp)
         }
     }
 

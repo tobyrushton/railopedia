@@ -2,6 +2,7 @@ package scrapes
 
 import (
 	"fmt"
+	"sort"
 )
 
 type Price struct {
@@ -105,6 +106,11 @@ func Scrape(req Request) ([]JourneyWithPrices, error) {
 	for _, journey := range journeys {
 		journeySlice = append(journeySlice, journey)
 	}
+
+	// sort by departure time
+	sort.Slice(journeySlice, func(i, j int) bool {
+		return journeySlice[i].DepartureTime < journeySlice[j].DepartureTime
+	})
 
 	return journeySlice, nil
 }
