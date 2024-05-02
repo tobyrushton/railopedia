@@ -7,20 +7,20 @@ import (
 type ScrapeResult struct {
 	DepartureTime string // ISO
 	ArrivalTime   string // ISO
-	// Link          string
-	Price float32
+	Price         float32
 }
 
 type ScrapeResultNonConditional struct {
 	Outbound []ScrapeResult
 	Return   []ScrapeResult
+	Link     string
 }
 
 type ScrapeResultConditional struct {
 	DepartureTime string // ISO
 	ArrivalTime   string // ISO
-	// Link          string
-	Price map[string]float32 // format iso8601:price
+	Link          string
+	Price         map[string]float32 // format iso8601:price
 }
 
 type ScrapeResults []ScrapeResult
@@ -106,7 +106,7 @@ func aggregateNonConditionalScrapeResults(results ScrapeResultNonConditional, jo
 				price = append(price, Journey{
 					DepartureTime: returnJourney.DepartureTime,
 					ArrivalTime:   returnJourney.ArrivalTime,
-					Prices:        []Price{{Provider: provider, Price: result.Price + returnJourney.Price}},
+					Prices:        []Price{{Provider: provider, Price: result.Price + returnJourney.Price, Link: results.Link}},
 				})
 			}
 

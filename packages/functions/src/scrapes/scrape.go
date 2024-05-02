@@ -8,6 +8,7 @@ import (
 type Price struct {
 	Provider string
 	Price    float32
+	Link     string
 }
 
 type Journey struct {

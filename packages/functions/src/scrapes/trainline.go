@@ -93,6 +93,11 @@ func ScrapeTrainline(req Request) (ScrapeResultNonConditional, error) {
 		}
 	})
 
+	c.OnRequest(func(r *colly.Request) {
+		fmt.Println("Visiting", r.URL.String())
+		res.Link = r.URL.String()
+	})
+
 	c.Post(trainlineUrl, form)
 
 	return res, nil
