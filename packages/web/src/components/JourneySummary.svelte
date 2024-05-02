@@ -5,6 +5,7 @@
 
     let selectedIndex:[number, number] = [0, 0]
     let inboundJourneysList: journey.IJourneyPrice[] = []
+
     const unsubcribedFromIndex = selectedJourneyIndex.subscribe(value => {
         selectedIndex = value
     })
@@ -17,28 +18,29 @@
         unsubscribeFromInboundJourneys()
     })
 
-    let price = 0
+    let cheapestJourney: journey.IPrice
     
     $: {
         if(inboundJourneysList.length !== 0){
             const journey = inboundJourneysList[selectedIndex[1]]
+            console.log(journey)
 
-            let cheapest = Infinity
-            for (let i = 0; i < journey.Prices.length; i++) {
+            let cheapest: journey.IPrice = journey.Prices[0]
+            for (let i = 1; i < journey.Prices.length; i++) {
                 const price = journey.Prices[i]
-                if (price.Price < cheapest) {
-                    cheapest = price.Price
+                if (price.Price < cheapest.Price) {
+                    cheapest.Price = price.Price
                 }
             }
 
-            price = cheapest
+            cheapestJourney = cheapest
         }
     }
 </script>
 
 <div class="flex flex-col rounded shadow h-fit p-3">
     <h3 class="text-xl font-semibold flex justify-between">
-        TOTAL <span>£{price.toFixed(2)}</span>
+        TOTAL <span>£{cheapestJourney?.Price.toFixed(2)}</span>
     </h3>
     <ul>
         {#if inboundJourneysList.length !== 0}
@@ -50,10 +52,9 @@
             {/each}
         {/if}
     </ul>
-    <!-- TODO: INSERT REAL LINK HERE -->
     <a 
         class="bg-primary rounded text-white p-2 text-center font-semibold text-xl mt-2 cursor-pointer flex"
-        href="/"
+        href={cheapestJourney?.Link}
         target="_blank"
     >
         CONTINUE <ChevronRight class="size-7"/>
