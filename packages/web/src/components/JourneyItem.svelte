@@ -29,6 +29,6 @@
         </p>
     </span>
     <span>
-        <p>{outbound ? 'From' : ''} £{price}</p>
+        <p>{outbound ? 'From' : ''} £{price.toFixed(2)}</p>
     </span>
 </button>

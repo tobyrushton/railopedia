@@ -21,7 +21,6 @@ const inboundStation = getStationName(destination)
 
 const journeys = await fetch(`${API_URL}/search?origin=${origin}&destination=${destination}&departure=${departure}&return=${returnDate}`)
 const data = await journeys.json()
-console.log(data)
 ---
 
 <Layout title="Search">
@@ -34,7 +33,7 @@ console.log(data)
                 <JourneyContainer client:load journeyListProp={JSON.stringify(data)} />
             </JourneyList>  
             {returnDate && (
-                <JourneyList outbound={inboundStation} inbound={outboundStation} day={returnDate}>
+                <JourneyList outbound={outboundStation} inbound={inboundStation} day={returnDate}>
                     <JourneyContainer client:load returnJourney />
                 </JourneyList>
             )}
