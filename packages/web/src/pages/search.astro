@@ -5,7 +5,6 @@ import JourneyContainer from '../components/JourneyContainer.svelte'
 import JourneySummary from '../components/JourneySummary.svelte'
 import { getStationName } from '../utils/station'
 // import data from '../../../../data/test.json'
-import fs from 'fs'
 
 export const prerender = false
 
@@ -23,7 +22,6 @@ const inboundStation = getStationName(destination)
 const journeys = await fetch(`${API_URL}/search?origin=${origin}&destination=${destination}&departure=${departure}&return=${returnDate}`)
 const data = await journeys.json()
 console.log(data)
-// fs.writeFileSync('test.json', JSON.stringify(data))
 ---
 
 <Layout title="Search">

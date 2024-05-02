@@ -52,7 +52,9 @@ func ScrapeTrainpal(req Request) (ScrapeResultNonConditional, error) {
 	inboundJourneys := make(rod.Elements, 0)
 
 	if req.Return != "" {
-		page.MustElement("div.active_f5b20")
+		// waits for the page to load
+		page.MustWaitDOMStable()
+
 		inboundJourneys = page.MustElement("div.right-inner_cf7d7").MustElements("div.journey-section_d201d")
 	}
 
