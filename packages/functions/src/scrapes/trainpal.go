@@ -52,7 +52,9 @@ func ScrapeTrainpal(req Request) (ScrapeResultNonConditional, error) {
 	inboundJourneys := make(rod.Elements, 0)
 
 	if req.Return != "" {
-		page.MustElement("div.active_f5b20")
+		// waits for the page to load
+		page.MustWaitDOMStable()
+
 		inboundJourneys = page.MustElement("div.right-inner_cf7d7").MustElements("div.journey-section_d201d")
 	}
 
@@ -136,6 +138,11 @@ func getTrainpalJourneyDetails(journey *rod.Element, day time.Time) ScrapeResult
 	arrivalTime, _ := journey.MustElement("div.to_cc86d").Text()
 	// get price
 	price, _ := journey.MustElement("div.price_f360e").MustElement("div").Text()
+
+	// time may have a +1 if it is the next day
+	if len(arrivalTime) > 5 {
+		arrivalTime = arrivalTime[:5]
+	}
 
 	// get iso times
 	departureISO := utils.HourStringToISO(departureTime, day)

@@ -83,6 +83,7 @@ func ScrapeTrainline(req Request) (ScrapeResultNonConditional, error) {
 	c.OnHTML("body", func(e *colly.HTMLElement) {
 		data := e.ChildAttr("form", "data-defaults")
 
+		// fmt.Println(e.DOM.Text())
 		var results scrapedJson
 		json.Unmarshal([]byte(data), &results)
 		res.Outbound = getTrainlinePrices(results, true)
@@ -108,6 +109,9 @@ func getTrainlinePrices(data scrapedJson, outbound bool) ScrapeResults {
 	var res ScrapeResults
 
 	for _, ticket := range data.FullJourneys[index].StandardTickets[0].Tickets {
+		if _, ok := ticket["notAvailable"]; ok {
+			continue
+		}
 		result := ScrapeResult{}
 		if priceVal, ok := ticket["price"].(string); ok {
 			result.Price = utils.PriceToFloat(priceVal)
