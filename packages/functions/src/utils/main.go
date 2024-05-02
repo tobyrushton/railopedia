@@ -50,7 +50,7 @@ func ParseTime(journeyTime time.Time, requestedTime time.Time) time.Time {
 }
 
 func HourStringToISO(hour string, day time.Time) string {
-	timeValue := fmt.Sprintf("%d-%02d-%02d %s:%02d", day.Year(), day.Month(), day.Day(), hour, 0)
+	timeValue := fmt.Sprintf("%d-%02d-%02d %s:%02d", day.Year(), day.Month(), day.Day(), strings.TrimSpace(hour), 0)
 	departTime, _ := time.Parse("2006-01-02 15:04:05", timeValue)
 	ISOTime := ParseTime(departTime, day).Format(ISO8601Layout)
 	return ISOTime

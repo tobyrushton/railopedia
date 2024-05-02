@@ -97,9 +97,7 @@ func selectRaileasyDate(page *rod.Page, date time.Time, single bool) {
 
 	// select correct day
 	day := date.Day()
-	month := date.Month()
-	year := date.Year()
-	page.MustElement(fmt.Sprintf(`[id="%d-%02d-%d"]`, year, month, day)).MustClick()
+	page.MustElementR("span", fmt.Sprintf("%d", day)).MustClick()
 
 	selectRaileasyTime(page, date, single)
 
