@@ -78,6 +78,7 @@ func ScrapeTrainpal(req Request) (ScrapeResultNonConditional, error) {
 	return ScrapeResultNonConditional{
 		Outbound: outbound,
 		Return:   inbound,
+		Link:     page.MustInfo().URL,
 	}, nil
 }
 

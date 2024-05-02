@@ -55,6 +55,7 @@ func ScrapeTraintickets(req Request) (ScrapeResultsConditional, error) {
 			res = append(res, ScrapeResultConditional{
 				DepartureTime: isoDepartTime,
 				ArrivalTime:   isoArrivalTime,
+				Link:          page.MustInfo().URL,
 				Price:         map[string]float32{key: price},
 			})
 
@@ -163,6 +164,7 @@ func getTrainticketsJourneyPriceReturn(page *rod.Page, journey *rod.Element, out
 	return ScrapeResultConditional{
 		DepartureTime: departTimeOutISO,
 		ArrivalTime:   arrivalTimeOutISO,
+		Link:          page.MustInfo().URL,
 		Price:         price,
 	}
 }

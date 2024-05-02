@@ -7,6 +7,7 @@ declare namespace journey {
     interface IPrice {
         Provider: string
         Price: number
+        Link: string
     }
 
     interface IJourney {

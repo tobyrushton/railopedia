@@ -7,20 +7,20 @@ import (
 type ScrapeResult struct {
 	DepartureTime string // ISO
 	ArrivalTime   string // ISO
-	// Link          string
-	Price float32
+	Price         float32
 }
 
 type ScrapeResultNonConditional struct {
 	Outbound []ScrapeResult
 	Return   []ScrapeResult
+	Link     string
 }
 
 type ScrapeResultConditional struct {
 	DepartureTime string // ISO
 	ArrivalTime   string // ISO
-	// Link          string
-	Price map[string]float32 // format iso8601:price
+	Link          string
+	Price         map[string]float32 // format iso8601:price
 }
 
 type ScrapeResults []ScrapeResult
@@ -80,11 +80,11 @@ func aggregateNonConditionalScrapeResults(results ScrapeResultNonConditional, jo
 					priceItem = Journey{
 						DepartureTime: returnJourney.DepartureTime,
 						ArrivalTime:   returnJourney.ArrivalTime,
-						Prices:        []Price{{Provider: provider, Price: result.Price + returnJourney.Price}},
+						Prices:        []Price{{Provider: provider, Price: result.Price + returnJourney.Price, Link: results.Link}},
 					}
 					price = append(price, priceItem)
 				} else {
-					priceItem.Prices = append(priceItem.Prices, Price{Provider: provider, Price: result.Price + returnJourney.Price})
+					priceItem.Prices = append(priceItem.Prices, Price{Provider: provider, Price: result.Price + returnJourney.Price, Link: results.Link})
 					price[index] = priceItem
 				}
 			}
@@ -106,7 +106,7 @@ func aggregateNonConditionalScrapeResults(results ScrapeResultNonConditional, jo
 				price = append(price, Journey{
 					DepartureTime: returnJourney.DepartureTime,
 					ArrivalTime:   returnJourney.ArrivalTime,
-					Prices:        []Price{{Provider: provider, Price: result.Price + returnJourney.Price}},
+					Prices:        []Price{{Provider: provider, Price: result.Price + returnJourney.Price, Link: results.Link}},
 				})
 			}
 
@@ -126,13 +126,13 @@ func aggregateConditionalScrapeResults(results ScrapeResultsConditional, journey
 				departureTime, arrivalTime := utils.SplitString(key, ",")
 
 				if journey, i, found := findJourney(price, departureTime, arrivalTime); found {
-					journey.Prices = append(journey.Prices, Price{Provider: provider, Price: val})
+					journey.Prices = append(journey.Prices, Price{Provider: provider, Price: val, Link: result.Link})
 					price[i] = journey
 				} else {
 					price = append(price, Journey{
 						DepartureTime: departureTime,
 						ArrivalTime:   arrivalTime,
-						Prices:        []Price{{Provider: provider, Price: val}},
+						Prices:        []Price{{Provider: provider, Price: val, Link: result.Link}},
 					})
 				}
 			}
@@ -153,7 +153,7 @@ func aggregateConditionalScrapeResults(results ScrapeResultsConditional, journey
 				price = append(price, Journey{
 					DepartureTime: departureTime,
 					ArrivalTime:   arrivalTime,
-					Prices:        []Price{{Provider: provider, Price: val}},
+					Prices:        []Price{{Provider: provider, Price: val, Link: result.Link}},
 				})
 			}
 
