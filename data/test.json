@@ -1,0 +1,853 @@
+[
+    {
+        "DepartureTime": "2024-05-03T09:13:00Z",
+        "ArrivalTime": "2024-05-03T09:34:00Z",
+        "Prices": [
+            {
+                "DepartureTime": "2024-05-03T22:18:00Z",
+                "ArrivalTime": "2024-05-03T22:52:00Z",
+                "Prices": [
+                    {
+                        "Provider": "trainline",
+                        "Price": 30.4,
+                        "Link": "https://www.thetrainline.com/buytickets/"
+                    }
+                ]
+            },
+            {
+                "DepartureTime": "2024-05-03T22:21:00Z",
+                "ArrivalTime": "2024-05-03T22:41:00Z",
+                "Prices": [
+                    {
+                        "Provider": "trainline",
+                        "Price": 30.4,
+                        "Link": "https://www.thetrainline.com/buytickets/"
+                    }
+                ]
+            },
+            {
+                "DepartureTime": "2024-05-03T22:33:00Z",
+                "ArrivalTime": "2024-05-03T23:10:00Z",
+                "Prices": [
+                    {
+                        "Provider": "trainline",
+                        "Price": 30.4,
+                        "Link": "https://www.thetrainline.com/buytickets/"
+                    }
+                ]
+            },
+            {
+                "DepartureTime": "2024-05-03T22:51:00Z",
+                "ArrivalTime": "2024-05-03T23:15:00Z",
+                "Prices": [
+                    {
+                        "Provider": "trainline",
+                        "Price": 30.4,
+                        "Link": "https://www.thetrainline.com/buytickets/"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "DepartureTime": "2024-05-03T09:22:00Z",
+        "ArrivalTime": "2024-05-03T09:57:00Z",
+        "Prices": [
+            {
+                "DepartureTime": "2024-05-03T22:18:00Z",
+                "ArrivalTime": "2024-05-03T22:52:00Z",
+                "Prices": [
+                    {
+                        "Provider": "trainline",
+                        "Price": 30.4,
+                        "Link": "https://www.thetrainline.com/buytickets/"
+                    }
+                ]
+            },
+            {
+                "DepartureTime": "2024-05-03T22:21:00Z",
+                "ArrivalTime": "2024-05-03T22:41:00Z",
+                "Prices": [
+                    {
+                        "Provider": "trainline",
+                        "Price": 30.4,
+                        "Link": "https://www.thetrainline.com/buytickets/"
+                    }
+                ]
+            },
+            {
+                "DepartureTime": "2024-05-03T22:33:00Z",
+                "ArrivalTime": "2024-05-03T23:10:00Z",
+                "Prices": [
+                    {
+                        "Provider": "trainline",
+                        "Price": 30.4,
+                        "Link": "https://www.thetrainline.com/buytickets/"
+                    }
+                ]
+            },
+            {
+                "DepartureTime": "2024-05-03T22:51:00Z",
+                "ArrivalTime": "2024-05-03T23:15:00Z",
+                "Prices": [
+                    {
+                        "Provider": "trainline",
+                        "Price": 30.4,
+                        "Link": "https://www.thetrainline.com/buytickets/"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "DepartureTime": "2024-05-03T09:27:00Z",
+        "ArrivalTime": "2024-05-03T09:49:00Z",
+        "Prices": [
+            {
+                "DepartureTime": "2024-05-03T22:18:00Z",
+                "ArrivalTime": "2024-05-03T22:52:00Z",
+                "Prices": [
+                    {
+                        "Provider": "trainline",
+                        "Price": 30.4,
+                        "Link": "https://www.thetrainline.com/buytickets/"
+                    }
+                ]
+            },
+            {
+                "DepartureTime": "2024-05-03T22:21:00Z",
+                "ArrivalTime": "2024-05-03T22:41:00Z",
+                "Prices": [
+                    {
+                        "Provider": "trainline",
+                        "Price": 30.4,
+                        "Link": "https://www.thetrainline.com/buytickets/"
+                    }
+                ]
+            },
+            {
+                "DepartureTime": "2024-05-03T22:33:00Z",
+                "ArrivalTime": "2024-05-03T23:10:00Z",
+                "Prices": [
+                    {
+                        "Provider": "trainline",
+                        "Price": 30.4,
+                        "Link": "https://www.thetrainline.com/buytickets/"
+                    },
+                    {
+                        "Provider": "trainpal",
+                        "Price": 26,
+                        "Link": "https://www.mytrainpal.com/train-tickets?fromStationDetail%5BCountryCode%5D=GB&fromStationDetail%5BTranslatedName%5D=St%20Albans%20City&fromStationDetail%5BLocationCode%5D=GB2385&fromStationDetail%5BLocationType%5D=1&fromStationDetail%5BEname%5D=St%20Albans%20City&toStationDetail%5BCountryCode%5D=GB&toStationDetail%5BTranslatedName%5D=London%20St%20Pancras%20International&toStationDetail%5BLocationCode%5D=GB3467&toStationDetail%5BLocationType%5D=1&toStationDetail%5BEname%5D=London%20St%20Pancras%20International&outwardDate=2024-05-03T08%3A25%3A00.000Z&outwardTimeType=0&inwardDate=2024-05-03T21%3A25%3A00.000Z&inwardTimeType=0&passengers%5BAdult%5D=1&passengers%5BChild%5D=0&passengers%5BBaby%5D=0&passengers%5BpassengerList%5D%5B0%5D%5BPassengerType%5D=2&passengers%5BpassengerList%5D%5B0%5D%5BAge%5D=-1&tripTab=train&tripType=return"
+                    },
+                    {
+                        "Provider": "traintickets",
+                        "Price": 26,
+                        "Link": "https://www.traintickets.com/search/?/results/154519/153617?departdate=2024-05-03T09:30:00&returndate=2024-05-03T22:30:00"
+                    }
+                ]
+            },
+            {
+                "DepartureTime": "2024-05-03T22:51:00Z",
+                "ArrivalTime": "2024-05-03T23:15:00Z",
+                "Prices": [
+                    {
+                        "Provider": "trainline",
+                        "Price": 30.4,
+                        "Link": "https://www.thetrainline.com/buytickets/"
+                    },
+                    {
+                        "Provider": "trainpal",
+                        "Price": 26,
+                        "Link": "https://www.mytrainpal.com/train-tickets?fromStationDetail%5BCountryCode%5D=GB&fromStationDetail%5BTranslatedName%5D=St%20Albans%20City&fromStationDetail%5BLocationCode%5D=GB2385&fromStationDetail%5BLocationType%5D=1&fromStationDetail%5BEname%5D=St%20Albans%20City&toStationDetail%5BCountryCode%5D=GB&toStationDetail%5BTranslatedName%5D=London%20St%20Pancras%20International&toStationDetail%5BLocationCode%5D=GB3467&toStationDetail%5BLocationType%5D=1&toStationDetail%5BEname%5D=London%20St%20Pancras%20International&outwardDate=2024-05-03T08%3A25%3A00.000Z&outwardTimeType=0&inwardDate=2024-05-03T21%3A25%3A00.000Z&inwardTimeType=0&passengers%5BAdult%5D=1&passengers%5BChild%5D=0&passengers%5BBaby%5D=0&passengers%5BpassengerList%5D%5B0%5D%5BPassengerType%5D=2&passengers%5BpassengerList%5D%5B0%5D%5BAge%5D=-1&tripTab=train&tripType=return"
+                    },
+                    {
+                        "Provider": "traintickets",
+                        "Price": 26,
+                        "Link": "https://www.traintickets.com/search/?/results/154519/153617?departdate=2024-05-03T09:30:00&returndate=2024-05-03T22:30:00"
+                    }
+                ]
+            },
+            {
+                "DepartureTime": "2024-05-03T22:53:00Z",
+                "ArrivalTime": "2024-05-03T23:28:00Z",
+                "Prices": [
+                    {
+                        "Provider": "trainpal",
+                        "Price": 26,
+                        "Link": "https://www.mytrainpal.com/train-tickets?fromStationDetail%5BCountryCode%5D=GB&fromStationDetail%5BTranslatedName%5D=St%20Albans%20City&fromStationDetail%5BLocationCode%5D=GB2385&fromStationDetail%5BLocationType%5D=1&fromStationDetail%5BEname%5D=St%20Albans%20City&toStationDetail%5BCountryCode%5D=GB&toStationDetail%5BTranslatedName%5D=London%20St%20Pancras%20International&toStationDetail%5BLocationCode%5D=GB3467&toStationDetail%5BLocationType%5D=1&toStationDetail%5BEname%5D=London%20St%20Pancras%20International&outwardDate=2024-05-03T08%3A25%3A00.000Z&outwardTimeType=0&inwardDate=2024-05-03T21%3A25%3A00.000Z&inwardTimeType=0&passengers%5BAdult%5D=1&passengers%5BChild%5D=0&passengers%5BBaby%5D=0&passengers%5BpassengerList%5D%5B0%5D%5BPassengerType%5D=2&passengers%5BpassengerList%5D%5B0%5D%5BAge%5D=-1&tripTab=train&tripType=return"
+                    },
+                    {
+                        "Provider": "traintickets",
+                        "Price": 26,
+                        "Link": "https://www.traintickets.com/search/?/results/154519/153617?departdate=2024-05-03T09:30:00&returndate=2024-05-03T22:30:00"
+                    }
+                ]
+            },
+            {
+                "DepartureTime": "2024-05-03T23:07:00Z",
+                "ArrivalTime": "2024-05-03T23:40:00Z",
+                "Prices": [
+                    {
+                        "Provider": "trainpal",
+                        "Price": 26,
+                        "Link": "https://www.mytrainpal.com/train-tickets?fromStationDetail%5BCountryCode%5D=GB&fromStationDetail%5BTranslatedName%5D=St%20Albans%20City&fromStationDetail%5BLocationCode%5D=GB2385&fromStationDetail%5BLocationType%5D=1&fromStationDetail%5BEname%5D=St%20Albans%20City&toStationDetail%5BCountryCode%5D=GB&toStationDetail%5BTranslatedName%5D=London%20St%20Pancras%20International&toStationDetail%5BLocationCode%5D=GB3467&toStationDetail%5BLocationType%5D=1&toStationDetail%5BEname%5D=London%20St%20Pancras%20International&outwardDate=2024-05-03T08%3A25%3A00.000Z&outwardTimeType=0&inwardDate=2024-05-03T21%3A25%3A00.000Z&inwardTimeType=0&passengers%5BAdult%5D=1&passengers%5BChild%5D=0&passengers%5BBaby%5D=0&passengers%5BpassengerList%5D%5B0%5D%5BPassengerType%5D=2&passengers%5BpassengerList%5D%5B0%5D%5BAge%5D=-1&tripTab=train&tripType=return"
+                    },
+                    {
+                        "Provider": "traintickets",
+                        "Price": 26,
+                        "Link": "https://www.traintickets.com/search/?/results/154519/153617?departdate=2024-05-03T09:30:00&returndate=2024-05-03T22:30:00"
+                    }
+                ]
+            },
+            {
+                "DepartureTime": "2024-05-03T23:21:00Z",
+                "ArrivalTime": "2024-05-03T23:45:00Z",
+                "Prices": [
+                    {
+                        "Provider": "trainpal",
+                        "Price": 26,
+                        "Link": "https://www.mytrainpal.com/train-tickets?fromStationDetail%5BCountryCode%5D=GB&fromStationDetail%5BTranslatedName%5D=St%20Albans%20City&fromStationDetail%5BLocationCode%5D=GB2385&fromStationDetail%5BLocationType%5D=1&fromStationDetail%5BEname%5D=St%20Albans%20City&toStationDetail%5BCountryCode%5D=GB&toStationDetail%5BTranslatedName%5D=London%20St%20Pancras%20International&toStationDetail%5BLocationCode%5D=GB3467&toStationDetail%5BLocationType%5D=1&toStationDetail%5BEname%5D=London%20St%20Pancras%20International&outwardDate=2024-05-03T08%3A25%3A00.000Z&outwardTimeType=0&inwardDate=2024-05-03T21%3A25%3A00.000Z&inwardTimeType=0&passengers%5BAdult%5D=1&passengers%5BChild%5D=0&passengers%5BBaby%5D=0&passengers%5BpassengerList%5D%5B0%5D%5BPassengerType%5D=2&passengers%5BpassengerList%5D%5B0%5D%5BAge%5D=-1&tripTab=train&tripType=return"
+                    },
+                    {
+                        "Provider": "traintickets",
+                        "Price": 26,
+                        "Link": "https://www.traintickets.com/search/?/results/154519/153617?departdate=2024-05-03T09:30:00&returndate=2024-05-03T22:30:00"
+                    }
+                ]
+            },
+            {
+                "DepartureTime": "2024-05-03T23:23:00Z",
+                "ArrivalTime": "2024-05-03T23:58:00Z",
+                "Prices": [
+                    {
+                        "Provider": "trainpal",
+                        "Price": 26,
+                        "Link": "https://www.mytrainpal.com/train-tickets?fromStationDetail%5BCountryCode%5D=GB&fromStationDetail%5BTranslatedName%5D=St%20Albans%20City&fromStationDetail%5BLocationCode%5D=GB2385&fromStationDetail%5BLocationType%5D=1&fromStationDetail%5BEname%5D=St%20Albans%20City&toStationDetail%5BCountryCode%5D=GB&toStationDetail%5BTranslatedName%5D=London%20St%20Pancras%20International&toStationDetail%5BLocationCode%5D=GB3467&toStationDetail%5BLocationType%5D=1&toStationDetail%5BEname%5D=London%20St%20Pancras%20International&outwardDate=2024-05-03T08%3A25%3A00.000Z&outwardTimeType=0&inwardDate=2024-05-03T21%3A25%3A00.000Z&inwardTimeType=0&passengers%5BAdult%5D=1&passengers%5BChild%5D=0&passengers%5BBaby%5D=0&passengers%5BpassengerList%5D%5B0%5D%5BPassengerType%5D=2&passengers%5BpassengerList%5D%5B0%5D%5BAge%5D=-1&tripTab=train&tripType=return"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "DepartureTime": "2024-05-03T09:31:00Z",
+        "ArrivalTime": "2024-05-03T10:02:00Z",
+        "Prices": [
+            {
+                "DepartureTime": "2024-05-03T22:18:00Z",
+                "ArrivalTime": "2024-05-03T22:52:00Z",
+                "Prices": [
+                    {
+                        "Provider": "trainline",
+                        "Price": 30.4,
+                        "Link": "https://www.thetrainline.com/buytickets/"
+                    }
+                ]
+            },
+            {
+                "DepartureTime": "2024-05-03T22:21:00Z",
+                "ArrivalTime": "2024-05-03T22:41:00Z",
+                "Prices": [
+                    {
+                        "Provider": "trainline",
+                        "Price": 30.4,
+                        "Link": "https://www.thetrainline.com/buytickets/"
+                    }
+                ]
+            },
+            {
+                "DepartureTime": "2024-05-03T22:33:00Z",
+                "ArrivalTime": "2024-05-03T23:10:00Z",
+                "Prices": [
+                    {
+                        "Provider": "trainline",
+                        "Price": 30.4,
+                        "Link": "https://www.thetrainline.com/buytickets/"
+                    },
+                    {
+                        "Provider": "raileasy",
+                        "Price": 16,
+                        "Link": "https://new.raileasy.co.uk/results?FromStation=7015480&ToStation=7015550&OutboundDate=03/05/2024&OutboundTime=09:30&LeaveAfterOutbound=1&InboundDate=03/05/2024&InboundTime=22:30&LeaveAfterInbound=1&Adults=1&OpenReturn=false&adv:ob:MaxChanges=7&adv:ib:MaxChanges=7"
+                    },
+                    {
+                        "Provider": "trainpal",
+                        "Price": 16,
+                        "Link": "https://www.mytrainpal.com/train-tickets?fromStationDetail%5BCountryCode%5D=GB&fromStationDetail%5BTranslatedName%5D=St%20Albans%20City&fromStationDetail%5BLocationCode%5D=GB2385&fromStationDetail%5BLocationType%5D=1&fromStationDetail%5BEname%5D=St%20Albans%20City&toStationDetail%5BCountryCode%5D=GB&toStationDetail%5BTranslatedName%5D=London%20St%20Pancras%20International&toStationDetail%5BLocationCode%5D=GB3467&toStationDetail%5BLocationType%5D=1&toStationDetail%5BEname%5D=London%20St%20Pancras%20International&outwardDate=2024-05-03T08%3A25%3A00.000Z&outwardTimeType=0&inwardDate=2024-05-03T21%3A25%3A00.000Z&inwardTimeType=0&passengers%5BAdult%5D=1&passengers%5BChild%5D=0&passengers%5BBaby%5D=0&passengers%5BpassengerList%5D%5B0%5D%5BPassengerType%5D=2&passengers%5BpassengerList%5D%5B0%5D%5BAge%5D=-1&tripTab=train&tripType=return"
+                    },
+                    {
+                        "Provider": "traintickets",
+                        "Price": 16,
+                        "Link": "https://www.traintickets.com/search/?/results/154519/153617?departdate=2024-05-03T09:30:00&returndate=2024-05-03T22:30:00"
+                    }
+                ]
+            },
+            {
+                "DepartureTime": "2024-05-03T22:51:00Z",
+                "ArrivalTime": "2024-05-03T23:15:00Z",
+                "Prices": [
+                    {
+                        "Provider": "trainline",
+                        "Price": 30.4,
+                        "Link": "https://www.thetrainline.com/buytickets/"
+                    },
+                    {
+                        "Provider": "raileasy",
+                        "Price": 16,
+                        "Link": "https://new.raileasy.co.uk/results?FromStation=7015480&ToStation=7015550&OutboundDate=03/05/2024&OutboundTime=09:30&LeaveAfterOutbound=1&InboundDate=03/05/2024&InboundTime=22:30&LeaveAfterInbound=1&Adults=1&OpenReturn=false&adv:ob:MaxChanges=7&adv:ib:MaxChanges=7"
+                    },
+                    {
+                        "Provider": "trainpal",
+                        "Price": 16,
+                        "Link": "https://www.mytrainpal.com/train-tickets?fromStationDetail%5BCountryCode%5D=GB&fromStationDetail%5BTranslatedName%5D=St%20Albans%20City&fromStationDetail%5BLocationCode%5D=GB2385&fromStationDetail%5BLocationType%5D=1&fromStationDetail%5BEname%5D=St%20Albans%20City&toStationDetail%5BCountryCode%5D=GB&toStationDetail%5BTranslatedName%5D=London%20St%20Pancras%20International&toStationDetail%5BLocationCode%5D=GB3467&toStationDetail%5BLocationType%5D=1&toStationDetail%5BEname%5D=London%20St%20Pancras%20International&outwardDate=2024-05-03T08%3A25%3A00.000Z&outwardTimeType=0&inwardDate=2024-05-03T21%3A25%3A00.000Z&inwardTimeType=0&passengers%5BAdult%5D=1&passengers%5BChild%5D=0&passengers%5BBaby%5D=0&passengers%5BpassengerList%5D%5B0%5D%5BPassengerType%5D=2&passengers%5BpassengerList%5D%5B0%5D%5BAge%5D=-1&tripTab=train&tripType=return"
+                    },
+                    {
+                        "Provider": "traintickets",
+                        "Price": 16,
+                        "Link": "https://www.traintickets.com/search/?/results/154519/153617?departdate=2024-05-03T09:30:00&returndate=2024-05-03T22:30:00"
+                    }
+                ]
+            },
+            {
+                "DepartureTime": "2024-05-03T22:53:00Z",
+                "ArrivalTime": "2024-05-03T23:28:00Z",
+                "Prices": [
+                    {
+                        "Provider": "trainpal",
+                        "Price": 16,
+                        "Link": "https://www.mytrainpal.com/train-tickets?fromStationDetail%5BCountryCode%5D=GB&fromStationDetail%5BTranslatedName%5D=St%20Albans%20City&fromStationDetail%5BLocationCode%5D=GB2385&fromStationDetail%5BLocationType%5D=1&fromStationDetail%5BEname%5D=St%20Albans%20City&toStationDetail%5BCountryCode%5D=GB&toStationDetail%5BTranslatedName%5D=London%20St%20Pancras%20International&toStationDetail%5BLocationCode%5D=GB3467&toStationDetail%5BLocationType%5D=1&toStationDetail%5BEname%5D=London%20St%20Pancras%20International&outwardDate=2024-05-03T08%3A25%3A00.000Z&outwardTimeType=0&inwardDate=2024-05-03T21%3A25%3A00.000Z&inwardTimeType=0&passengers%5BAdult%5D=1&passengers%5BChild%5D=0&passengers%5BBaby%5D=0&passengers%5BpassengerList%5D%5B0%5D%5BPassengerType%5D=2&passengers%5BpassengerList%5D%5B0%5D%5BAge%5D=-1&tripTab=train&tripType=return"
+                    },
+                    {
+                        "Provider": "traintickets",
+                        "Price": 16,
+                        "Link": "https://www.traintickets.com/search/?/results/154519/153617?departdate=2024-05-03T09:30:00&returndate=2024-05-03T22:30:00"
+                    }
+                ]
+            },
+            {
+                "DepartureTime": "2024-05-03T23:07:00Z",
+                "ArrivalTime": "2024-05-03T23:40:00Z",
+                "Prices": [
+                    {
+                        "Provider": "trainpal",
+                        "Price": 16,
+                        "Link": "https://www.mytrainpal.com/train-tickets?fromStationDetail%5BCountryCode%5D=GB&fromStationDetail%5BTranslatedName%5D=St%20Albans%20City&fromStationDetail%5BLocationCode%5D=GB2385&fromStationDetail%5BLocationType%5D=1&fromStationDetail%5BEname%5D=St%20Albans%20City&toStationDetail%5BCountryCode%5D=GB&toStationDetail%5BTranslatedName%5D=London%20St%20Pancras%20International&toStationDetail%5BLocationCode%5D=GB3467&toStationDetail%5BLocationType%5D=1&toStationDetail%5BEname%5D=London%20St%20Pancras%20International&outwardDate=2024-05-03T08%3A25%3A00.000Z&outwardTimeType=0&inwardDate=2024-05-03T21%3A25%3A00.000Z&inwardTimeType=0&passengers%5BAdult%5D=1&passengers%5BChild%5D=0&passengers%5BBaby%5D=0&passengers%5BpassengerList%5D%5B0%5D%5BPassengerType%5D=2&passengers%5BpassengerList%5D%5B0%5D%5BAge%5D=-1&tripTab=train&tripType=return"
+                    },
+                    {
+                        "Provider": "traintickets",
+                        "Price": 16,
+                        "Link": "https://www.traintickets.com/search/?/results/154519/153617?departdate=2024-05-03T09:30:00&returndate=2024-05-03T22:30:00"
+                    }
+                ]
+            },
+            {
+                "DepartureTime": "2024-05-03T23:21:00Z",
+                "ArrivalTime": "2024-05-03T23:45:00Z",
+                "Prices": [
+                    {
+                        "Provider": "trainpal",
+                        "Price": 16,
+                        "Link": "https://www.mytrainpal.com/train-tickets?fromStationDetail%5BCountryCode%5D=GB&fromStationDetail%5BTranslatedName%5D=St%20Albans%20City&fromStationDetail%5BLocationCode%5D=GB2385&fromStationDetail%5BLocationType%5D=1&fromStationDetail%5BEname%5D=St%20Albans%20City&toStationDetail%5BCountryCode%5D=GB&toStationDetail%5BTranslatedName%5D=London%20St%20Pancras%20International&toStationDetail%5BLocationCode%5D=GB3467&toStationDetail%5BLocationType%5D=1&toStationDetail%5BEname%5D=London%20St%20Pancras%20International&outwardDate=2024-05-03T08%3A25%3A00.000Z&outwardTimeType=0&inwardDate=2024-05-03T21%3A25%3A00.000Z&inwardTimeType=0&passengers%5BAdult%5D=1&passengers%5BChild%5D=0&passengers%5BBaby%5D=0&passengers%5BpassengerList%5D%5B0%5D%5BPassengerType%5D=2&passengers%5BpassengerList%5D%5B0%5D%5BAge%5D=-1&tripTab=train&tripType=return"
+                    },
+                    {
+                        "Provider": "traintickets",
+                        "Price": 16,
+                        "Link": "https://www.traintickets.com/search/?/results/154519/153617?departdate=2024-05-03T09:30:00&returndate=2024-05-03T22:30:00"
+                    }
+                ]
+            },
+            {
+                "DepartureTime": "2024-05-03T23:23:00Z",
+                "ArrivalTime": "2024-05-03T23:58:00Z",
+                "Prices": [
+                    {
+                        "Provider": "trainpal",
+                        "Price": 16,
+                        "Link": "https://www.mytrainpal.com/train-tickets?fromStationDetail%5BCountryCode%5D=GB&fromStationDetail%5BTranslatedName%5D=St%20Albans%20City&fromStationDetail%5BLocationCode%5D=GB2385&fromStationDetail%5BLocationType%5D=1&fromStationDetail%5BEname%5D=St%20Albans%20City&toStationDetail%5BCountryCode%5D=GB&toStationDetail%5BTranslatedName%5D=London%20St%20Pancras%20International&toStationDetail%5BLocationCode%5D=GB3467&toStationDetail%5BLocationType%5D=1&toStationDetail%5BEname%5D=London%20St%20Pancras%20International&outwardDate=2024-05-03T08%3A25%3A00.000Z&outwardTimeType=0&inwardDate=2024-05-03T21%3A25%3A00.000Z&inwardTimeType=0&passengers%5BAdult%5D=1&passengers%5BChild%5D=0&passengers%5BBaby%5D=0&passengers%5BpassengerList%5D%5B0%5D%5BPassengerType%5D=2&passengers%5BpassengerList%5D%5B0%5D%5BAge%5D=-1&tripTab=train&tripType=return"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "DepartureTime": "2024-05-03T09:33:00Z",
+        "ArrivalTime": "2024-05-03T11:09:00Z",
+        "Prices": [
+            {
+                "DepartureTime": "2024-05-03T22:33:00Z",
+                "ArrivalTime": "2024-05-03T23:10:00Z",
+                "Prices": [
+                    {
+                        "Provider": "trainpal",
+                        "Price": 16,
+                        "Link": "https://www.mytrainpal.com/train-tickets?fromStationDetail%5BCountryCode%5D=GB&fromStationDetail%5BTranslatedName%5D=St%20Albans%20City&fromStationDetail%5BLocationCode%5D=GB2385&fromStationDetail%5BLocationType%5D=1&fromStationDetail%5BEname%5D=St%20Albans%20City&toStationDetail%5BCountryCode%5D=GB&toStationDetail%5BTranslatedName%5D=London%20St%20Pancras%20International&toStationDetail%5BLocationCode%5D=GB3467&toStationDetail%5BLocationType%5D=1&toStationDetail%5BEname%5D=London%20St%20Pancras%20International&outwardDate=2024-05-03T08%3A25%3A00.000Z&outwardTimeType=0&inwardDate=2024-05-03T21%3A25%3A00.000Z&inwardTimeType=0&passengers%5BAdult%5D=1&passengers%5BChild%5D=0&passengers%5BBaby%5D=0&passengers%5BpassengerList%5D%5B0%5D%5BPassengerType%5D=2&passengers%5BpassengerList%5D%5B0%5D%5BAge%5D=-1&tripTab=train&tripType=return"
+                    }
+                ]
+            },
+            {
+                "DepartureTime": "2024-05-03T22:51:00Z",
+                "ArrivalTime": "2024-05-03T23:15:00Z",
+                "Prices": [
+                    {
+                        "Provider": "trainpal",
+                        "Price": 16,
+                        "Link": "https://www.mytrainpal.com/train-tickets?fromStationDetail%5BCountryCode%5D=GB&fromStationDetail%5BTranslatedName%5D=St%20Albans%20City&fromStationDetail%5BLocationCode%5D=GB2385&fromStationDetail%5BLocationType%5D=1&fromStationDetail%5BEname%5D=St%20Albans%20City&toStationDetail%5BCountryCode%5D=GB&toStationDetail%5BTranslatedName%5D=London%20St%20Pancras%20International&toStationDetail%5BLocationCode%5D=GB3467&toStationDetail%5BLocationType%5D=1&toStationDetail%5BEname%5D=London%20St%20Pancras%20International&outwardDate=2024-05-03T08%3A25%3A00.000Z&outwardTimeType=0&inwardDate=2024-05-03T21%3A25%3A00.000Z&inwardTimeType=0&passengers%5BAdult%5D=1&passengers%5BChild%5D=0&passengers%5BBaby%5D=0&passengers%5BpassengerList%5D%5B0%5D%5BPassengerType%5D=2&passengers%5BpassengerList%5D%5B0%5D%5BAge%5D=-1&tripTab=train&tripType=return"
+                    }
+                ]
+            },
+            {
+                "DepartureTime": "2024-05-03T22:53:00Z",
+                "ArrivalTime": "2024-05-03T23:28:00Z",
+                "Prices": [
+                    {
+                        "Provider": "trainpal",
+                        "Price": 16,
+                        "Link": "https://www.mytrainpal.com/train-tickets?fromStationDetail%5BCountryCode%5D=GB&fromStationDetail%5BTranslatedName%5D=St%20Albans%20City&fromStationDetail%5BLocationCode%5D=GB2385&fromStationDetail%5BLocationType%5D=1&fromStationDetail%5BEname%5D=St%20Albans%20City&toStationDetail%5BCountryCode%5D=GB&toStationDetail%5BTranslatedName%5D=London%20St%20Pancras%20International&toStationDetail%5BLocationCode%5D=GB3467&toStationDetail%5BLocationType%5D=1&toStationDetail%5BEname%5D=London%20St%20Pancras%20International&outwardDate=2024-05-03T08%3A25%3A00.000Z&outwardTimeType=0&inwardDate=2024-05-03T21%3A25%3A00.000Z&inwardTimeType=0&passengers%5BAdult%5D=1&passengers%5BChild%5D=0&passengers%5BBaby%5D=0&passengers%5BpassengerList%5D%5B0%5D%5BPassengerType%5D=2&passengers%5BpassengerList%5D%5B0%5D%5BAge%5D=-1&tripTab=train&tripType=return"
+                    }
+                ]
+            },
+            {
+                "DepartureTime": "2024-05-03T23:07:00Z",
+                "ArrivalTime": "2024-05-03T23:40:00Z",
+                "Prices": [
+                    {
+                        "Provider": "trainpal",
+                        "Price": 16,
+                        "Link": "https://www.mytrainpal.com/train-tickets?fromStationDetail%5BCountryCode%5D=GB&fromStationDetail%5BTranslatedName%5D=St%20Albans%20City&fromStationDetail%5BLocationCode%5D=GB2385&fromStationDetail%5BLocationType%5D=1&fromStationDetail%5BEname%5D=St%20Albans%20City&toStationDetail%5BCountryCode%5D=GB&toStationDetail%5BTranslatedName%5D=London%20St%20Pancras%20International&toStationDetail%5BLocationCode%5D=GB3467&toStationDetail%5BLocationType%5D=1&toStationDetail%5BEname%5D=London%20St%20Pancras%20International&outwardDate=2024-05-03T08%3A25%3A00.000Z&outwardTimeType=0&inwardDate=2024-05-03T21%3A25%3A00.000Z&inwardTimeType=0&passengers%5BAdult%5D=1&passengers%5BChild%5D=0&passengers%5BBaby%5D=0&passengers%5BpassengerList%5D%5B0%5D%5BPassengerType%5D=2&passengers%5BpassengerList%5D%5B0%5D%5BAge%5D=-1&tripTab=train&tripType=return"
+                    }
+                ]
+            },
+            {
+                "DepartureTime": "2024-05-03T23:21:00Z",
+                "ArrivalTime": "2024-05-03T23:45:00Z",
+                "Prices": [
+                    {
+                        "Provider": "trainpal",
+                        "Price": 16,
+                        "Link": "https://www.mytrainpal.com/train-tickets?fromStationDetail%5BCountryCode%5D=GB&fromStationDetail%5BTranslatedName%5D=St%20Albans%20City&fromStationDetail%5BLocationCode%5D=GB2385&fromStationDetail%5BLocationType%5D=1&fromStationDetail%5BEname%5D=St%20Albans%20City&toStationDetail%5BCountryCode%5D=GB&toStationDetail%5BTranslatedName%5D=London%20St%20Pancras%20International&toStationDetail%5BLocationCode%5D=GB3467&toStationDetail%5BLocationType%5D=1&toStationDetail%5BEname%5D=London%20St%20Pancras%20International&outwardDate=2024-05-03T08%3A25%3A00.000Z&outwardTimeType=0&inwardDate=2024-05-03T21%3A25%3A00.000Z&inwardTimeType=0&passengers%5BAdult%5D=1&passengers%5BChild%5D=0&passengers%5BBaby%5D=0&passengers%5BpassengerList%5D%5B0%5D%5BPassengerType%5D=2&passengers%5BpassengerList%5D%5B0%5D%5BAge%5D=-1&tripTab=train&tripType=return"
+                    }
+                ]
+            },
+            {
+                "DepartureTime": "2024-05-03T23:23:00Z",
+                "ArrivalTime": "2024-05-03T23:58:00Z",
+                "Prices": [
+                    {
+                        "Provider": "trainpal",
+                        "Price": 16,
+                        "Link": "https://www.mytrainpal.com/train-tickets?fromStationDetail%5BCountryCode%5D=GB&fromStationDetail%5BTranslatedName%5D=St%20Albans%20City&fromStationDetail%5BLocationCode%5D=GB2385&fromStationDetail%5BLocationType%5D=1&fromStationDetail%5BEname%5D=St%20Albans%20City&toStationDetail%5BCountryCode%5D=GB&toStationDetail%5BTranslatedName%5D=London%20St%20Pancras%20International&toStationDetail%5BLocationCode%5D=GB3467&toStationDetail%5BLocationType%5D=1&toStationDetail%5BEname%5D=London%20St%20Pancras%20International&outwardDate=2024-05-03T08%3A25%3A00.000Z&outwardTimeType=0&inwardDate=2024-05-03T21%3A25%3A00.000Z&inwardTimeType=0&passengers%5BAdult%5D=1&passengers%5BChild%5D=0&passengers%5BBaby%5D=0&passengers%5BpassengerList%5D%5B0%5D%5BPassengerType%5D=2&passengers%5BpassengerList%5D%5B0%5D%5BAge%5D=-1&tripTab=train&tripType=return"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "DepartureTime": "2024-05-03T09:37:00Z",
+        "ArrivalTime": "2024-05-03T10:12:00Z",
+        "Prices": [
+            {
+                "DepartureTime": "2024-05-03T22:33:00Z",
+                "ArrivalTime": "2024-05-03T23:10:00Z",
+                "Prices": [
+                    {
+                        "Provider": "trainpal",
+                        "Price": 16,
+                        "Link": "https://www.mytrainpal.com/train-tickets?fromStationDetail%5BCountryCode%5D=GB&fromStationDetail%5BTranslatedName%5D=St%20Albans%20City&fromStationDetail%5BLocationCode%5D=GB2385&fromStationDetail%5BLocationType%5D=1&fromStationDetail%5BEname%5D=St%20Albans%20City&toStationDetail%5BCountryCode%5D=GB&toStationDetail%5BTranslatedName%5D=London%20St%20Pancras%20International&toStationDetail%5BLocationCode%5D=GB3467&toStationDetail%5BLocationType%5D=1&toStationDetail%5BEname%5D=London%20St%20Pancras%20International&outwardDate=2024-05-03T08%3A25%3A00.000Z&outwardTimeType=0&inwardDate=2024-05-03T21%3A25%3A00.000Z&inwardTimeType=0&passengers%5BAdult%5D=1&passengers%5BChild%5D=0&passengers%5BBaby%5D=0&passengers%5BpassengerList%5D%5B0%5D%5BPassengerType%5D=2&passengers%5BpassengerList%5D%5B0%5D%5BAge%5D=-1&tripTab=train&tripType=return"
+                    },
+                    {
+                        "Provider": "traintickets",
+                        "Price": 16,
+                        "Link": "https://www.traintickets.com/search/?/results/154519/153617?departdate=2024-05-03T09:30:00&returndate=2024-05-03T22:30:00"
+                    }
+                ]
+            },
+            {
+                "DepartureTime": "2024-05-03T22:51:00Z",
+                "ArrivalTime": "2024-05-03T23:15:00Z",
+                "Prices": [
+                    {
+                        "Provider": "trainpal",
+                        "Price": 16,
+                        "Link": "https://www.mytrainpal.com/train-tickets?fromStationDetail%5BCountryCode%5D=GB&fromStationDetail%5BTranslatedName%5D=St%20Albans%20City&fromStationDetail%5BLocationCode%5D=GB2385&fromStationDetail%5BLocationType%5D=1&fromStationDetail%5BEname%5D=St%20Albans%20City&toStationDetail%5BCountryCode%5D=GB&toStationDetail%5BTranslatedName%5D=London%20St%20Pancras%20International&toStationDetail%5BLocationCode%5D=GB3467&toStationDetail%5BLocationType%5D=1&toStationDetail%5BEname%5D=London%20St%20Pancras%20International&outwardDate=2024-05-03T08%3A25%3A00.000Z&outwardTimeType=0&inwardDate=2024-05-03T21%3A25%3A00.000Z&inwardTimeType=0&passengers%5BAdult%5D=1&passengers%5BChild%5D=0&passengers%5BBaby%5D=0&passengers%5BpassengerList%5D%5B0%5D%5BPassengerType%5D=2&passengers%5BpassengerList%5D%5B0%5D%5BAge%5D=-1&tripTab=train&tripType=return"
+                    },
+                    {
+                        "Provider": "traintickets",
+                        "Price": 16,
+                        "Link": "https://www.traintickets.com/search/?/results/154519/153617?departdate=2024-05-03T09:30:00&returndate=2024-05-03T22:30:00"
+                    }
+                ]
+            },
+            {
+                "DepartureTime": "2024-05-03T22:53:00Z",
+                "ArrivalTime": "2024-05-03T23:28:00Z",
+                "Prices": [
+                    {
+                        "Provider": "trainpal",
+                        "Price": 16,
+                        "Link": "https://www.mytrainpal.com/train-tickets?fromStationDetail%5BCountryCode%5D=GB&fromStationDetail%5BTranslatedName%5D=St%20Albans%20City&fromStationDetail%5BLocationCode%5D=GB2385&fromStationDetail%5BLocationType%5D=1&fromStationDetail%5BEname%5D=St%20Albans%20City&toStationDetail%5BCountryCode%5D=GB&toStationDetail%5BTranslatedName%5D=London%20St%20Pancras%20International&toStationDetail%5BLocationCode%5D=GB3467&toStationDetail%5BLocationType%5D=1&toStationDetail%5BEname%5D=London%20St%20Pancras%20International&outwardDate=2024-05-03T08%3A25%3A00.000Z&outwardTimeType=0&inwardDate=2024-05-03T21%3A25%3A00.000Z&inwardTimeType=0&passengers%5BAdult%5D=1&passengers%5BChild%5D=0&passengers%5BBaby%5D=0&passengers%5BpassengerList%5D%5B0%5D%5BPassengerType%5D=2&passengers%5BpassengerList%5D%5B0%5D%5BAge%5D=-1&tripTab=train&tripType=return"
+                    },
+                    {
+                        "Provider": "traintickets",
+                        "Price": 16,
+                        "Link": "https://www.traintickets.com/search/?/results/154519/153617?departdate=2024-05-03T09:30:00&returndate=2024-05-03T22:30:00"
+                    }
+                ]
+            },
+            {
+                "DepartureTime": "2024-05-03T23:07:00Z",
+                "ArrivalTime": "2024-05-03T23:40:00Z",
+                "Prices": [
+                    {
+                        "Provider": "trainpal",
+                        "Price": 16,
+                        "Link": "https://www.mytrainpal.com/train-tickets?fromStationDetail%5BCountryCode%5D=GB&fromStationDetail%5BTranslatedName%5D=St%20Albans%20City&fromStationDetail%5BLocationCode%5D=GB2385&fromStationDetail%5BLocationType%5D=1&fromStationDetail%5BEname%5D=St%20Albans%20City&toStationDetail%5BCountryCode%5D=GB&toStationDetail%5BTranslatedName%5D=London%20St%20Pancras%20International&toStationDetail%5BLocationCode%5D=GB3467&toStationDetail%5BLocationType%5D=1&toStationDetail%5BEname%5D=London%20St%20Pancras%20International&outwardDate=2024-05-03T08%3A25%3A00.000Z&outwardTimeType=0&inwardDate=2024-05-03T21%3A25%3A00.000Z&inwardTimeType=0&passengers%5BAdult%5D=1&passengers%5BChild%5D=0&passengers%5BBaby%5D=0&passengers%5BpassengerList%5D%5B0%5D%5BPassengerType%5D=2&passengers%5BpassengerList%5D%5B0%5D%5BAge%5D=-1&tripTab=train&tripType=return"
+                    },
+                    {
+                        "Provider": "traintickets",
+                        "Price": 16,
+                        "Link": "https://www.traintickets.com/search/?/results/154519/153617?departdate=2024-05-03T09:30:00&returndate=2024-05-03T22:30:00"
+                    }
+                ]
+            },
+            {
+                "DepartureTime": "2024-05-03T23:21:00Z",
+                "ArrivalTime": "2024-05-03T23:45:00Z",
+                "Prices": [
+                    {
+                        "Provider": "trainpal",
+                        "Price": 16,
+                        "Link": "https://www.mytrainpal.com/train-tickets?fromStationDetail%5BCountryCode%5D=GB&fromStationDetail%5BTranslatedName%5D=St%20Albans%20City&fromStationDetail%5BLocationCode%5D=GB2385&fromStationDetail%5BLocationType%5D=1&fromStationDetail%5BEname%5D=St%20Albans%20City&toStationDetail%5BCountryCode%5D=GB&toStationDetail%5BTranslatedName%5D=London%20St%20Pancras%20International&toStationDetail%5BLocationCode%5D=GB3467&toStationDetail%5BLocationType%5D=1&toStationDetail%5BEname%5D=London%20St%20Pancras%20International&outwardDate=2024-05-03T08%3A25%3A00.000Z&outwardTimeType=0&inwardDate=2024-05-03T21%3A25%3A00.000Z&inwardTimeType=0&passengers%5BAdult%5D=1&passengers%5BChild%5D=0&passengers%5BBaby%5D=0&passengers%5BpassengerList%5D%5B0%5D%5BPassengerType%5D=2&passengers%5BpassengerList%5D%5B0%5D%5BAge%5D=-1&tripTab=train&tripType=return"
+                    },
+                    {
+                        "Provider": "traintickets",
+                        "Price": 16,
+                        "Link": "https://www.traintickets.com/search/?/results/154519/153617?departdate=2024-05-03T09:30:00&returndate=2024-05-03T22:30:00"
+                    }
+                ]
+            },
+            {
+                "DepartureTime": "2024-05-03T23:23:00Z",
+                "ArrivalTime": "2024-05-03T23:58:00Z",
+                "Prices": [
+                    {
+                        "Provider": "trainpal",
+                        "Price": 16,
+                        "Link": "https://www.mytrainpal.com/train-tickets?fromStationDetail%5BCountryCode%5D=GB&fromStationDetail%5BTranslatedName%5D=St%20Albans%20City&fromStationDetail%5BLocationCode%5D=GB2385&fromStationDetail%5BLocationType%5D=1&fromStationDetail%5BEname%5D=St%20Albans%20City&toStationDetail%5BCountryCode%5D=GB&toStationDetail%5BTranslatedName%5D=London%20St%20Pancras%20International&toStationDetail%5BLocationCode%5D=GB3467&toStationDetail%5BLocationType%5D=1&toStationDetail%5BEname%5D=London%20St%20Pancras%20International&outwardDate=2024-05-03T08%3A25%3A00.000Z&outwardTimeType=0&inwardDate=2024-05-03T21%3A25%3A00.000Z&inwardTimeType=0&passengers%5BAdult%5D=1&passengers%5BChild%5D=0&passengers%5BBaby%5D=0&passengers%5BpassengerList%5D%5B0%5D%5BPassengerType%5D=2&passengers%5BpassengerList%5D%5B0%5D%5BAge%5D=-1&tripTab=train&tripType=return"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "DepartureTime": "2024-05-03T09:43:00Z",
+        "ArrivalTime": "2024-05-03T10:04:00Z",
+        "Prices": [
+            {
+                "DepartureTime": "2024-05-03T22:33:00Z",
+                "ArrivalTime": "2024-05-03T23:10:00Z",
+                "Prices": [
+                    {
+                        "Provider": "raileasy",
+                        "Price": 16,
+                        "Link": "https://new.raileasy.co.uk/results?FromStation=7015480&ToStation=7015550&OutboundDate=03/05/2024&OutboundTime=09:30&LeaveAfterOutbound=1&InboundDate=03/05/2024&InboundTime=22:30&LeaveAfterInbound=1&Adults=1&OpenReturn=false&adv:ob:MaxChanges=7&adv:ib:MaxChanges=7"
+                    },
+                    {
+                        "Provider": "trainpal",
+                        "Price": 16,
+                        "Link": "https://www.mytrainpal.com/train-tickets?fromStationDetail%5BCountryCode%5D=GB&fromStationDetail%5BTranslatedName%5D=St%20Albans%20City&fromStationDetail%5BLocationCode%5D=GB2385&fromStationDetail%5BLocationType%5D=1&fromStationDetail%5BEname%5D=St%20Albans%20City&toStationDetail%5BCountryCode%5D=GB&toStationDetail%5BTranslatedName%5D=London%20St%20Pancras%20International&toStationDetail%5BLocationCode%5D=GB3467&toStationDetail%5BLocationType%5D=1&toStationDetail%5BEname%5D=London%20St%20Pancras%20International&outwardDate=2024-05-03T08%3A25%3A00.000Z&outwardTimeType=0&inwardDate=2024-05-03T21%3A25%3A00.000Z&inwardTimeType=0&passengers%5BAdult%5D=1&passengers%5BChild%5D=0&passengers%5BBaby%5D=0&passengers%5BpassengerList%5D%5B0%5D%5BPassengerType%5D=2&passengers%5BpassengerList%5D%5B0%5D%5BAge%5D=-1&tripTab=train&tripType=return"
+                    },
+                    {
+                        "Provider": "traintickets",
+                        "Price": 16,
+                        "Link": "https://www.traintickets.com/search/?/results/154519/153617?departdate=2024-05-03T09:30:00&returndate=2024-05-03T22:30:00"
+                    }
+                ]
+            },
+            {
+                "DepartureTime": "2024-05-03T22:51:00Z",
+                "ArrivalTime": "2024-05-03T23:15:00Z",
+                "Prices": [
+                    {
+                        "Provider": "raileasy",
+                        "Price": 16,
+                        "Link": "https://new.raileasy.co.uk/results?FromStation=7015480&ToStation=7015550&OutboundDate=03/05/2024&OutboundTime=09:30&LeaveAfterOutbound=1&InboundDate=03/05/2024&InboundTime=22:30&LeaveAfterInbound=1&Adults=1&OpenReturn=false&adv:ob:MaxChanges=7&adv:ib:MaxChanges=7"
+                    },
+                    {
+                        "Provider": "trainpal",
+                        "Price": 16,
+                        "Link": "https://www.mytrainpal.com/train-tickets?fromStationDetail%5BCountryCode%5D=GB&fromStationDetail%5BTranslatedName%5D=St%20Albans%20City&fromStationDetail%5BLocationCode%5D=GB2385&fromStationDetail%5BLocationType%5D=1&fromStationDetail%5BEname%5D=St%20Albans%20City&toStationDetail%5BCountryCode%5D=GB&toStationDetail%5BTranslatedName%5D=London%20St%20Pancras%20International&toStationDetail%5BLocationCode%5D=GB3467&toStationDetail%5BLocationType%5D=1&toStationDetail%5BEname%5D=London%20St%20Pancras%20International&outwardDate=2024-05-03T08%3A25%3A00.000Z&outwardTimeType=0&inwardDate=2024-05-03T21%3A25%3A00.000Z&inwardTimeType=0&passengers%5BAdult%5D=1&passengers%5BChild%5D=0&passengers%5BBaby%5D=0&passengers%5BpassengerList%5D%5B0%5D%5BPassengerType%5D=2&passengers%5BpassengerList%5D%5B0%5D%5BAge%5D=-1&tripTab=train&tripType=return"
+                    },
+                    {
+                        "Provider": "traintickets",
+                        "Price": 16,
+                        "Link": "https://www.traintickets.com/search/?/results/154519/153617?departdate=2024-05-03T09:30:00&returndate=2024-05-03T22:30:00"
+                    }
+                ]
+            },
+            {
+                "DepartureTime": "2024-05-03T22:53:00Z",
+                "ArrivalTime": "2024-05-03T23:28:00Z",
+                "Prices": [
+                    {
+                        "Provider": "raileasy",
+                        "Price": 16,
+                        "Link": "https://new.raileasy.co.uk/results?FromStation=7015480&ToStation=7015550&OutboundDate=03/05/2024&OutboundTime=09:30&LeaveAfterOutbound=1&InboundDate=03/05/2024&InboundTime=22:30&LeaveAfterInbound=1&Adults=1&OpenReturn=false&adv:ob:MaxChanges=7&adv:ib:MaxChanges=7"
+                    },
+                    {
+                        "Provider": "trainpal",
+                        "Price": 16,
+                        "Link": "https://www.mytrainpal.com/train-tickets?fromStationDetail%5BCountryCode%5D=GB&fromStationDetail%5BTranslatedName%5D=St%20Albans%20City&fromStationDetail%5BLocationCode%5D=GB2385&fromStationDetail%5BLocationType%5D=1&fromStationDetail%5BEname%5D=St%20Albans%20City&toStationDetail%5BCountryCode%5D=GB&toStationDetail%5BTranslatedName%5D=London%20St%20Pancras%20International&toStationDetail%5BLocationCode%5D=GB3467&toStationDetail%5BLocationType%5D=1&toStationDetail%5BEname%5D=London%20St%20Pancras%20International&outwardDate=2024-05-03T08%3A25%3A00.000Z&outwardTimeType=0&inwardDate=2024-05-03T21%3A25%3A00.000Z&inwardTimeType=0&passengers%5BAdult%5D=1&passengers%5BChild%5D=0&passengers%5BBaby%5D=0&passengers%5BpassengerList%5D%5B0%5D%5BPassengerType%5D=2&passengers%5BpassengerList%5D%5B0%5D%5BAge%5D=-1&tripTab=train&tripType=return"
+                    },
+                    {
+                        "Provider": "traintickets",
+                        "Price": 16,
+                        "Link": "https://www.traintickets.com/search/?/results/154519/153617?departdate=2024-05-03T09:30:00&returndate=2024-05-03T22:30:00"
+                    }
+                ]
+            },
+            {
+                "DepartureTime": "2024-05-03T23:07:00Z",
+                "ArrivalTime": "2024-05-03T23:40:00Z",
+                "Prices": [
+                    {
+                        "Provider": "raileasy",
+                        "Price": 16,
+                        "Link": "https://new.raileasy.co.uk/results?FromStation=7015480&ToStation=7015550&OutboundDate=03/05/2024&OutboundTime=09:30&LeaveAfterOutbound=1&InboundDate=03/05/2024&InboundTime=22:30&LeaveAfterInbound=1&Adults=1&OpenReturn=false&adv:ob:MaxChanges=7&adv:ib:MaxChanges=7"
+                    },
+                    {
+                        "Provider": "trainpal",
+                        "Price": 16,
+                        "Link": "https://www.mytrainpal.com/train-tickets?fromStationDetail%5BCountryCode%5D=GB&fromStationDetail%5BTranslatedName%5D=St%20Albans%20City&fromStationDetail%5BLocationCode%5D=GB2385&fromStationDetail%5BLocationType%5D=1&fromStationDetail%5BEname%5D=St%20Albans%20City&toStationDetail%5BCountryCode%5D=GB&toStationDetail%5BTranslatedName%5D=London%20St%20Pancras%20International&toStationDetail%5BLocationCode%5D=GB3467&toStationDetail%5BLocationType%5D=1&toStationDetail%5BEname%5D=London%20St%20Pancras%20International&outwardDate=2024-05-03T08%3A25%3A00.000Z&outwardTimeType=0&inwardDate=2024-05-03T21%3A25%3A00.000Z&inwardTimeType=0&passengers%5BAdult%5D=1&passengers%5BChild%5D=0&passengers%5BBaby%5D=0&passengers%5BpassengerList%5D%5B0%5D%5BPassengerType%5D=2&passengers%5BpassengerList%5D%5B0%5D%5BAge%5D=-1&tripTab=train&tripType=return"
+                    },
+                    {
+                        "Provider": "traintickets",
+                        "Price": 16,
+                        "Link": "https://www.traintickets.com/search/?/results/154519/153617?departdate=2024-05-03T09:30:00&returndate=2024-05-03T22:30:00"
+                    }
+                ]
+            },
+            {
+                "DepartureTime": "2024-05-03T23:21:00Z",
+                "ArrivalTime": "2024-05-03T23:45:00Z",
+                "Prices": [
+                    {
+                        "Provider": "trainpal",
+                        "Price": 16,
+                        "Link": "https://www.mytrainpal.com/train-tickets?fromStationDetail%5BCountryCode%5D=GB&fromStationDetail%5BTranslatedName%5D=St%20Albans%20City&fromStationDetail%5BLocationCode%5D=GB2385&fromStationDetail%5BLocationType%5D=1&fromStationDetail%5BEname%5D=St%20Albans%20City&toStationDetail%5BCountryCode%5D=GB&toStationDetail%5BTranslatedName%5D=London%20St%20Pancras%20International&toStationDetail%5BLocationCode%5D=GB3467&toStationDetail%5BLocationType%5D=1&toStationDetail%5BEname%5D=London%20St%20Pancras%20International&outwardDate=2024-05-03T08%3A25%3A00.000Z&outwardTimeType=0&inwardDate=2024-05-03T21%3A25%3A00.000Z&inwardTimeType=0&passengers%5BAdult%5D=1&passengers%5BChild%5D=0&passengers%5BBaby%5D=0&passengers%5BpassengerList%5D%5B0%5D%5BPassengerType%5D=2&passengers%5BpassengerList%5D%5B0%5D%5BAge%5D=-1&tripTab=train&tripType=return"
+                    },
+                    {
+                        "Provider": "traintickets",
+                        "Price": 16,
+                        "Link": "https://www.traintickets.com/search/?/results/154519/153617?departdate=2024-05-03T09:30:00&returndate=2024-05-03T22:30:00"
+                    }
+                ]
+            },
+            {
+                "DepartureTime": "2024-05-03T23:23:00Z",
+                "ArrivalTime": "2024-05-03T23:58:00Z",
+                "Prices": [
+                    {
+                        "Provider": "trainpal",
+                        "Price": 16,
+                        "Link": "https://www.mytrainpal.com/train-tickets?fromStationDetail%5BCountryCode%5D=GB&fromStationDetail%5BTranslatedName%5D=St%20Albans%20City&fromStationDetail%5BLocationCode%5D=GB2385&fromStationDetail%5BLocationType%5D=1&fromStationDetail%5BEname%5D=St%20Albans%20City&toStationDetail%5BCountryCode%5D=GB&toStationDetail%5BTranslatedName%5D=London%20St%20Pancras%20International&toStationDetail%5BLocationCode%5D=GB3467&toStationDetail%5BLocationType%5D=1&toStationDetail%5BEname%5D=London%20St%20Pancras%20International&outwardDate=2024-05-03T08%3A25%3A00.000Z&outwardTimeType=0&inwardDate=2024-05-03T21%3A25%3A00.000Z&inwardTimeType=0&passengers%5BAdult%5D=1&passengers%5BChild%5D=0&passengers%5BBaby%5D=0&passengers%5BpassengerList%5D%5B0%5D%5BPassengerType%5D=2&passengers%5BpassengerList%5D%5B0%5D%5BAge%5D=-1&tripTab=train&tripType=return"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "DepartureTime": "2024-05-03T09:52:00Z",
+        "ArrivalTime": "2024-05-03T10:27:00Z",
+        "Prices": [
+            {
+                "DepartureTime": "2024-05-03T22:33:00Z",
+                "ArrivalTime": "2024-05-03T23:10:00Z",
+                "Prices": [
+                    {
+                        "Provider": "trainpal",
+                        "Price": 16,
+                        "Link": "https://www.mytrainpal.com/train-tickets?fromStationDetail%5BCountryCode%5D=GB&fromStationDetail%5BTranslatedName%5D=St%20Albans%20City&fromStationDetail%5BLocationCode%5D=GB2385&fromStationDetail%5BLocationType%5D=1&fromStationDetail%5BEname%5D=St%20Albans%20City&toStationDetail%5BCountryCode%5D=GB&toStationDetail%5BTranslatedName%5D=London%20St%20Pancras%20International&toStationDetail%5BLocationCode%5D=GB3467&toStationDetail%5BLocationType%5D=1&toStationDetail%5BEname%5D=London%20St%20Pancras%20International&outwardDate=2024-05-03T08%3A25%3A00.000Z&outwardTimeType=0&inwardDate=2024-05-03T21%3A25%3A00.000Z&inwardTimeType=0&passengers%5BAdult%5D=1&passengers%5BChild%5D=0&passengers%5BBaby%5D=0&passengers%5BpassengerList%5D%5B0%5D%5BPassengerType%5D=2&passengers%5BpassengerList%5D%5B0%5D%5BAge%5D=-1&tripTab=train&tripType=return"
+                    },
+                    {
+                        "Provider": "traintickets",
+                        "Price": 16,
+                        "Link": "https://www.traintickets.com/search/?/results/154519/153617?departdate=2024-05-03T09:30:00&returndate=2024-05-03T22:30:00"
+                    }
+                ]
+            },
+            {
+                "DepartureTime": "2024-05-03T22:51:00Z",
+                "ArrivalTime": "2024-05-03T23:15:00Z",
+                "Prices": [
+                    {
+                        "Provider": "trainpal",
+                        "Price": 16,
+                        "Link": "https://www.mytrainpal.com/train-tickets?fromStationDetail%5BCountryCode%5D=GB&fromStationDetail%5BTranslatedName%5D=St%20Albans%20City&fromStationDetail%5BLocationCode%5D=GB2385&fromStationDetail%5BLocationType%5D=1&fromStationDetail%5BEname%5D=St%20Albans%20City&toStationDetail%5BCountryCode%5D=GB&toStationDetail%5BTranslatedName%5D=London%20St%20Pancras%20International&toStationDetail%5BLocationCode%5D=GB3467&toStationDetail%5BLocationType%5D=1&toStationDetail%5BEname%5D=London%20St%20Pancras%20International&outwardDate=2024-05-03T08%3A25%3A00.000Z&outwardTimeType=0&inwardDate=2024-05-03T21%3A25%3A00.000Z&inwardTimeType=0&passengers%5BAdult%5D=1&passengers%5BChild%5D=0&passengers%5BBaby%5D=0&passengers%5BpassengerList%5D%5B0%5D%5BPassengerType%5D=2&passengers%5BpassengerList%5D%5B0%5D%5BAge%5D=-1&tripTab=train&tripType=return"
+                    },
+                    {
+                        "Provider": "traintickets",
+                        "Price": 16,
+                        "Link": "https://www.traintickets.com/search/?/results/154519/153617?departdate=2024-05-03T09:30:00&returndate=2024-05-03T22:30:00"
+                    }
+                ]
+            },
+            {
+                "DepartureTime": "2024-05-03T22:53:00Z",
+                "ArrivalTime": "2024-05-03T23:28:00Z",
+                "Prices": [
+                    {
+                        "Provider": "trainpal",
+                        "Price": 16,
+                        "Link": "https://www.mytrainpal.com/train-tickets?fromStationDetail%5BCountryCode%5D=GB&fromStationDetail%5BTranslatedName%5D=St%20Albans%20City&fromStationDetail%5BLocationCode%5D=GB2385&fromStationDetail%5BLocationType%5D=1&fromStationDetail%5BEname%5D=St%20Albans%20City&toStationDetail%5BCountryCode%5D=GB&toStationDetail%5BTranslatedName%5D=London%20St%20Pancras%20International&toStationDetail%5BLocationCode%5D=GB3467&toStationDetail%5BLocationType%5D=1&toStationDetail%5BEname%5D=London%20St%20Pancras%20International&outwardDate=2024-05-03T08%3A25%3A00.000Z&outwardTimeType=0&inwardDate=2024-05-03T21%3A25%3A00.000Z&inwardTimeType=0&passengers%5BAdult%5D=1&passengers%5BChild%5D=0&passengers%5BBaby%5D=0&passengers%5BpassengerList%5D%5B0%5D%5BPassengerType%5D=2&passengers%5BpassengerList%5D%5B0%5D%5BAge%5D=-1&tripTab=train&tripType=return"
+                    },
+                    {
+                        "Provider": "traintickets",
+                        "Price": 16,
+                        "Link": "https://www.traintickets.com/search/?/results/154519/153617?departdate=2024-05-03T09:30:00&returndate=2024-05-03T22:30:00"
+                    }
+                ]
+            },
+            {
+                "DepartureTime": "2024-05-03T23:07:00Z",
+                "ArrivalTime": "2024-05-03T23:40:00Z",
+                "Prices": [
+                    {
+                        "Provider": "trainpal",
+                        "Price": 16,
+                        "Link": "https://www.mytrainpal.com/train-tickets?fromStationDetail%5BCountryCode%5D=GB&fromStationDetail%5BTranslatedName%5D=St%20Albans%20City&fromStationDetail%5BLocationCode%5D=GB2385&fromStationDetail%5BLocationType%5D=1&fromStationDetail%5BEname%5D=St%20Albans%20City&toStationDetail%5BCountryCode%5D=GB&toStationDetail%5BTranslatedName%5D=London%20St%20Pancras%20International&toStationDetail%5BLocationCode%5D=GB3467&toStationDetail%5BLocationType%5D=1&toStationDetail%5BEname%5D=London%20St%20Pancras%20International&outwardDate=2024-05-03T08%3A25%3A00.000Z&outwardTimeType=0&inwardDate=2024-05-03T21%3A25%3A00.000Z&inwardTimeType=0&passengers%5BAdult%5D=1&passengers%5BChild%5D=0&passengers%5BBaby%5D=0&passengers%5BpassengerList%5D%5B0%5D%5BPassengerType%5D=2&passengers%5BpassengerList%5D%5B0%5D%5BAge%5D=-1&tripTab=train&tripType=return"
+                    },
+                    {
+                        "Provider": "traintickets",
+                        "Price": 16,
+                        "Link": "https://www.traintickets.com/search/?/results/154519/153617?departdate=2024-05-03T09:30:00&returndate=2024-05-03T22:30:00"
+                    }
+                ]
+            },
+            {
+                "DepartureTime": "2024-05-03T23:21:00Z",
+                "ArrivalTime": "2024-05-03T23:45:00Z",
+                "Prices": [
+                    {
+                        "Provider": "trainpal",
+                        "Price": 16,
+                        "Link": "https://www.mytrainpal.com/train-tickets?fromStationDetail%5BCountryCode%5D=GB&fromStationDetail%5BTranslatedName%5D=St%20Albans%20City&fromStationDetail%5BLocationCode%5D=GB2385&fromStationDetail%5BLocationType%5D=1&fromStationDetail%5BEname%5D=St%20Albans%20City&toStationDetail%5BCountryCode%5D=GB&toStationDetail%5BTranslatedName%5D=London%20St%20Pancras%20International&toStationDetail%5BLocationCode%5D=GB3467&toStationDetail%5BLocationType%5D=1&toStationDetail%5BEname%5D=London%20St%20Pancras%20International&outwardDate=2024-05-03T08%3A25%3A00.000Z&outwardTimeType=0&inwardDate=2024-05-03T21%3A25%3A00.000Z&inwardTimeType=0&passengers%5BAdult%5D=1&passengers%5BChild%5D=0&passengers%5BBaby%5D=0&passengers%5BpassengerList%5D%5B0%5D%5BPassengerType%5D=2&passengers%5BpassengerList%5D%5B0%5D%5BAge%5D=-1&tripTab=train&tripType=return"
+                    },
+                    {
+                        "Provider": "traintickets",
+                        "Price": 16,
+                        "Link": "https://www.traintickets.com/search/?/results/154519/153617?departdate=2024-05-03T09:30:00&returndate=2024-05-03T22:30:00"
+                    }
+                ]
+            },
+            {
+                "DepartureTime": "2024-05-03T23:23:00Z",
+                "ArrivalTime": "2024-05-03T23:58:00Z",
+                "Prices": [
+                    {
+                        "Provider": "trainpal",
+                        "Price": 16,
+                        "Link": "https://www.mytrainpal.com/train-tickets?fromStationDetail%5BCountryCode%5D=GB&fromStationDetail%5BTranslatedName%5D=St%20Albans%20City&fromStationDetail%5BLocationCode%5D=GB2385&fromStationDetail%5BLocationType%5D=1&fromStationDetail%5BEname%5D=St%20Albans%20City&toStationDetail%5BCountryCode%5D=GB&toStationDetail%5BTranslatedName%5D=London%20St%20Pancras%20International&toStationDetail%5BLocationCode%5D=GB3467&toStationDetail%5BLocationType%5D=1&toStationDetail%5BEname%5D=London%20St%20Pancras%20International&outwardDate=2024-05-03T08%3A25%3A00.000Z&outwardTimeType=0&inwardDate=2024-05-03T21%3A25%3A00.000Z&inwardTimeType=0&passengers%5BAdult%5D=1&passengers%5BChild%5D=0&passengers%5BBaby%5D=0&passengers%5BpassengerList%5D%5B0%5D%5BPassengerType%5D=2&passengers%5BpassengerList%5D%5B0%5D%5BAge%5D=-1&tripTab=train&tripType=return"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "DepartureTime": "2024-05-03T09:57:00Z",
+        "ArrivalTime": "2024-05-03T10:19:00Z",
+        "Prices": [
+            {
+                "DepartureTime": "2024-05-03T22:51:00Z",
+                "ArrivalTime": "2024-05-03T23:15:00Z",
+                "Prices": [
+                    {
+                        "Provider": "raileasy",
+                        "Price": 16,
+                        "Link": "https://new.raileasy.co.uk/results?FromStation=7015480&ToStation=7015550&OutboundDate=03/05/2024&OutboundTime=09:30&LeaveAfterOutbound=1&InboundDate=03/05/2024&InboundTime=22:30&LeaveAfterInbound=1&Adults=1&OpenReturn=false&adv:ob:MaxChanges=7&adv:ib:MaxChanges=7"
+                    }
+                ]
+            },
+            {
+                "DepartureTime": "2024-05-03T22:53:00Z",
+                "ArrivalTime": "2024-05-03T23:28:00Z",
+                "Prices": [
+                    {
+                        "Provider": "raileasy",
+                        "Price": 16,
+                        "Link": "https://new.raileasy.co.uk/results?FromStation=7015480&ToStation=7015550&OutboundDate=03/05/2024&OutboundTime=09:30&LeaveAfterOutbound=1&InboundDate=03/05/2024&InboundTime=22:30&LeaveAfterInbound=1&Adults=1&OpenReturn=false&adv:ob:MaxChanges=7&adv:ib:MaxChanges=7"
+                    }
+                ]
+            },
+            {
+                "DepartureTime": "2024-05-03T23:07:00Z",
+                "ArrivalTime": "2024-05-03T23:40:00Z",
+                "Prices": [
+                    {
+                        "Provider": "raileasy",
+                        "Price": 16,
+                        "Link": "https://new.raileasy.co.uk/results?FromStation=7015480&ToStation=7015550&OutboundDate=03/05/2024&OutboundTime=09:30&LeaveAfterOutbound=1&InboundDate=03/05/2024&InboundTime=22:30&LeaveAfterInbound=1&Adults=1&OpenReturn=false&adv:ob:MaxChanges=7&adv:ib:MaxChanges=7"
+                    }
+                ]
+            },
+            {
+                "DepartureTime": "2024-05-03T22:33:00Z",
+                "ArrivalTime": "2024-05-03T23:10:00Z",
+                "Prices": [
+                    {
+                        "Provider": "raileasy",
+                        "Price": 16,
+                        "Link": "https://new.raileasy.co.uk/results?FromStation=7015480&ToStation=7015550&OutboundDate=03/05/2024&OutboundTime=09:30&LeaveAfterOutbound=1&InboundDate=03/05/2024&InboundTime=22:30&LeaveAfterInbound=1&Adults=1&OpenReturn=false&adv:ob:MaxChanges=7&adv:ib:MaxChanges=7"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "DepartureTime": "2024-05-03T10:01:00Z",
+        "ArrivalTime": "2024-05-03T10:32:00Z",
+        "Prices": [
+            {
+                "DepartureTime": "2024-05-03T22:33:00Z",
+                "ArrivalTime": "2024-05-03T23:10:00Z",
+                "Prices": [
+                    {
+                        "Provider": "raileasy",
+                        "Price": 16,
+                        "Link": "https://new.raileasy.co.uk/results?FromStation=7015480&ToStation=7015550&OutboundDate=03/05/2024&OutboundTime=09:30&LeaveAfterOutbound=1&InboundDate=03/05/2024&InboundTime=22:30&LeaveAfterInbound=1&Adults=1&OpenReturn=false&adv:ob:MaxChanges=7&adv:ib:MaxChanges=7"
+                    }
+                ]
+            },
+            {
+                "DepartureTime": "2024-05-03T22:51:00Z",
+                "ArrivalTime": "2024-05-03T23:15:00Z",
+                "Prices": [
+                    {
+                        "Provider": "raileasy",
+                        "Price": 16,
+                        "Link": "https://new.raileasy.co.uk/results?FromStation=7015480&ToStation=7015550&OutboundDate=03/05/2024&OutboundTime=09:30&LeaveAfterOutbound=1&InboundDate=03/05/2024&InboundTime=22:30&LeaveAfterInbound=1&Adults=1&OpenReturn=false&adv:ob:MaxChanges=7&adv:ib:MaxChanges=7"
+                    }
+                ]
+            },
+            {
+                "DepartureTime": "2024-05-03T22:53:00Z",
+                "ArrivalTime": "2024-05-03T23:28:00Z",
+                "Prices": [
+                    {
+                        "Provider": "raileasy",
+                        "Price": 16,
+                        "Link": "https://new.raileasy.co.uk/results?FromStation=7015480&ToStation=7015550&OutboundDate=03/05/2024&OutboundTime=09:30&LeaveAfterOutbound=1&InboundDate=03/05/2024&InboundTime=22:30&LeaveAfterInbound=1&Adults=1&OpenReturn=false&adv:ob:MaxChanges=7&adv:ib:MaxChanges=7"
+                    }
+                ]
+            },
+            {
+                "DepartureTime": "2024-05-03T23:07:00Z",
+                "ArrivalTime": "2024-05-03T23:40:00Z",
+                "Prices": [
+                    {
+                        "Provider": "raileasy",
+                        "Price": 16,
+                        "Link": "https://new.raileasy.co.uk/results?FromStation=7015480&ToStation=7015550&OutboundDate=03/05/2024&OutboundTime=09:30&LeaveAfterOutbound=1&InboundDate=03/05/2024&InboundTime=22:30&LeaveAfterInbound=1&Adults=1&OpenReturn=false&adv:ob:MaxChanges=7&adv:ib:MaxChanges=7"
+                    }
+                ]
+            }
+        ]
+    }
+]

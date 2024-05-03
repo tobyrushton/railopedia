@@ -34,9 +34,17 @@ func ScrapeTraintickets(req Request) (ScrapeResultsConditional, error) {
 		}
 	}
 
+	// // confirm captcha
+	// frame := page.MustElement("iframe[title='reCAPTCHA']").MustFrame()
+	// frame.MustElement("#recaptcha-anchor").MustClick()
+	// page.MustWaitIdle()
+	// fmt.Println("captcha confirmed")
+
 	// submit form
 	page.MustElement("#searchButton").MustClick()
 	fmt.Println("searching")
+
+	// fmt.Println(page.MustInfo().URL)
 
 	// get outbound journeys
 	page.MustElementR("h3", "Choose") // waits for journeys to finish loading
@@ -170,10 +178,9 @@ func getTrainticketsJourneyPriceReturn(page *rod.Page, journey *rod.Element, out
 }
 
 func setTrainticketsStation(page *rod.Page, station string, selector string) {
-	wait := page.MustWaitRequestIdle()
 	page.MustElement(selector).MustClick()
 	for _, s := range station {
 		page.Keyboard.MustType(input.Key(s))
 	}
-	wait()
+	page.MustElementR("span", station).MustClick()
 }

@@ -1,0 +1,34 @@
+---
+import JourneyList from './JourneyList.astro'
+import JourneyContainer from './JourneyContainer.svelte'
+import JourneySummary from './JourneySummary.svelte'
+
+interface Props {
+    url: string
+    outboundStation: string
+    inboundStation: string
+    departure: string
+    returnDate: string
+}
+
+const { url, outboundStation, inboundStation, departure, returnDate } = Astro.props
+
+const journeys = await fetch(url)
+if(!journeys.ok) {
+    // TODO: handle error appriopriately
+    console.log('Error fetching data')
+}
+const data = await journeys.json()
+---
+
+<span class="flex flex-col md:flex-row p-2 gap-5">
+    <JourneyList outbound={outboundStation} inbound={inboundStation} day={departure} isOutbound>
+        <JourneyContainer client:load journeyListProp={JSON.stringify(data)} />
+    </JourneyList>  
+    {returnDate && (
+        <JourneyList outbound={outboundStation} inbound={inboundStation} day={returnDate}>
+            <JourneyContainer client:load returnJourney />
+        </JourneyList>
+    )}
+    <JourneySummary client:load />
+</span>
