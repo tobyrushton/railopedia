@@ -1,19 +1,13 @@
 <script lang="ts">
     import JourneyItem from './JourneyItem.svelte'
     import { inboundJourneys, outboundJourneys, selectedJourneyIndex } from '../stores/journey'
-    import { onDestroy, onMount} from 'svelte'
+    import { onDestroy, onMount } from 'svelte'
     import { isIJourney } from '../utils/types'
 
     export let journeyListProp = ""
 
     let journeyList: journey.IJourney[] | journey.IJourneyPrice[] = []
     export let returnJourney: boolean = false
-
-    $: {
-        if(journeyListProp !== "") {
-            journeyList = JSON.parse(journeyListProp)
-        }
-    }
 
     let selectedIndex:number = 0
 
@@ -38,6 +32,7 @@
     })
 
     onMount(() => {
+        if(journeyListProp) journeyList = JSON.parse(journeyListProp)
         if(!returnJourney && journeyList.length > 0 && isIJourney(journeyList)) {
             const outboundJourney = journeyList[0]
             inboundJourneys.set(outboundJourney.Prices)
