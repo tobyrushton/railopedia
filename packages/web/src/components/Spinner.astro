@@ -1,0 +1,13 @@
+---
+import { Loader2 } from 'lucide-astro'
+import { cn } from '../utils/tailwind'
+
+interface Props {
+    class?: string
+}
+
+const { class: className } = Astro.props
+---
+<div class={cn("flex items-center justify-center", className)}>
+    <Loader2 class="text-primary animate-spin size-16" />
+</div>

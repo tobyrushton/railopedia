@@ -2,6 +2,8 @@
 import Layout from '../layouts/Layout.astro'
 import SearchFallback from '../components/SearchFallback.astro'
 import JourneyWrapper from '../components/JourneyWrapper.astro'
+import JourneyList from '../components/JourneyList.astro'
+import Spinner from '../components/Spinner.astro'
 import { Suspense } from 'simple-stack-stream/components'
 import { getStationName } from '../utils/station'
 // import data from '../../../../data/test.json'
@@ -33,18 +35,30 @@ const url = `${API_URL}/search?origin=${origin}&destination=${destination}&depar
             <h1 class="text-xl font-bold">
                 Searching from {outboundStation} to {inboundStation}
             </h1>
-            <Suspense>
-                <JourneyWrapper 
-                    url={url} 
-                    outboundStation={outboundStation} 
-                    inboundStation={inboundStation}
-                    departure={departure}
-                    returnDate={returnDate}
-                />
-            </Suspense>
+            <span class="flex flex-col md:flex-row p-2 gap-5">
+                <Suspense>
+                    <JourneyWrapper 
+                        url={url} 
+                        outboundStation={outboundStation} 
+                        inboundStation={inboundStation}
+                        departure={departure}
+                        returnDate={returnDate}
+                    />
+                    <Fragment slot="fallback">
+                        <JourneyList outbound={outboundStation} inbound={inboundStation} day={departure} isOutbound>
+                            <Spinner class="h-96" />
+                        </JourneyList>
+                        {returnDate && (
+                            <JourneyList outbound={inboundStation} inbound={outboundStation} day={returnDate}>
+                                <Spinner class="h-96" />
+                            </JourneyList>
+                        )}
+                    </Fragment>
+                </Suspense>
+            </span>
         ) : (
             <SearchFallback />
         )
-    }
+    }   
     </main>
 </Layout>

@@ -17,7 +17,10 @@ const { day, outbound, isOutbound = false, inbound } = Astro.props
         </h3>
         <span class="flex">
             <p>
-                {dayjs(day).format("ddd DD MMM")} -&nbsp;
+                {dayjs(day).format("ddd DD MMM")}
+            </p>
+            <p>
+                &nbsp;-&nbsp;
             </p>
             <p class="font-semibold">
                 {isOutbound ? outbound : inbound} to {isOutbound ? inbound : outbound}
