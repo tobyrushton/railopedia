@@ -14,7 +14,7 @@
 
     $: {
         if (isIJourney(journeyList)) {
-            selectedJourneyList = journeyList[selectedIndex[1]].Prices
+            selectedJourneyList = journeyList[selectedIndex[0]].Prices
         } else {
             selectedJourneyList = journeyList
         }

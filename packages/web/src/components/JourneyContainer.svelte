@@ -48,8 +48,8 @@
     }
 
     const getPrice = (index: number): number => {
-        if(isIJourney(journeyList)) {
-            const journey = journeyList[index]
+        if(isIJourney(renderedJourneyList)) {
+            const journey = renderedJourneyList[index]
             let cheapest: number = Infinity
 
             for(let i = 0; i < journey.Prices.length; i++) {
@@ -64,9 +64,11 @@
         } else {
             let cheapest: number = Infinity
 
-            for(let i = 0; i < journeyList[index].Prices.length; i++) {
-                if(journeyList[index].Prices[i].Price < cheapest) {
-                    cheapest = journeyList[index].Prices[i].Price
+            console.log(index, journeyList[index])
+
+            for(let i = 0; i < renderedJourneyList[index].Prices.length; i++) {
+                if(renderedJourneyList[index].Prices[i].Price < cheapest) {
+                    cheapest = renderedJourneyList[index].Prices[i].Price
                 }
             }
 

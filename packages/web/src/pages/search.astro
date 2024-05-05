@@ -6,7 +6,6 @@ import JourneyList from '../components/JourneyList.astro'
 import Spinner from '../components/Spinner.astro'
 import { Suspense } from 'simple-stack-stream/components'
 import { getStationName } from '../utils/station'
-// import data from '../../../../data/test.json'
 
 export const prerender = false
 
@@ -24,7 +23,7 @@ if (inboundStation && outboundStation && departure) {
 }
 
 const API_URL = (import.meta as unknown as { env: { API_URL: string } }).env.API_URL
-const url = `${API_URL}/search?origin=${origin}&destination=${destination}&departure=${departure}`
+const url = `${API_URL}/search?origin=${origin}&destination=${destination}&departure=${departure}&return=${returnDate}`
 ---
 
 <Layout title="Search">
