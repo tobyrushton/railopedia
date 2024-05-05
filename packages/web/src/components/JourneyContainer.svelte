@@ -1,27 +1,22 @@
 <script lang="ts">
     import JourneyItem from './JourneyItem.svelte'
-    import { inboundJourneys, outboundJourneys, selectedJourneyIndex } from '../stores/journey'
+    import { journeys, selectedJourneyIndex } from '../stores/journey'
     import { onDestroy, onMount } from 'svelte'
     import { isIJourney } from '../utils/types'
 
-    export let journeyListProp = ""
-
-    let journeyList: journey.IJourney[] | journey.IJourneyPrice[] = []
+    export let journeyListProp: string = ""
     export let returnJourney: boolean = false
 
-    let selectedIndex:number = 0
+    let journeyList: journey.IJourney[] | journey.IJourneyPrice[] = []
+    let renderedJourneyList: journey.IJourney[] | journey.IJourneyPrice[] = []
 
-    let unsubscribeFromJourney = () => {}
+    let selectedIndexes: [number, number] = [0, 0]
 
-    if(!returnJourney) {
-        unsubscribeFromJourney = outboundJourneys.subscribe(value => {
-            journeyList = value
-        })
-    } else {
-        unsubscribeFromJourney = inboundJourneys.subscribe(value => {
-            journeyList = value
-        })
-    }
+    let selectedIndex: number = 0
+
+    let unsubscribeFromJourney = journeys.subscribe(value => {
+        journeyList = value
+    })
 
     const unsubcribedFromIndex = selectedJourneyIndex.subscribe(value => {
         if(returnJourney) {
@@ -29,13 +24,13 @@
         } else {
             selectedIndex = value[0]
         }
+        selectedIndexes = value
     })
 
     onMount(() => {
-        if(journeyListProp) journeyList = JSON.parse(journeyListProp)
-        if(!returnJourney && journeyList.length > 0 && isIJourney(journeyList)) {
-            const outboundJourney = journeyList[0]
-            inboundJourneys.set(outboundJourney.Prices)
+        if(journeyListProp) { 
+            journeyList = JSON.parse(journeyListProp)
+            journeys.set(journeyList)
         }
     })
 
@@ -43,6 +38,14 @@
         unsubscribeFromJourney()
         unsubcribedFromIndex()
     })
+
+    $: {
+        if(isIJourney(journeyList) && returnJourney && journeyList.length ) {
+            renderedJourneyList = journeyList[selectedIndexes[0]].Prices
+        } else {
+            renderedJourneyList = journeyList
+        }
+    }
 
     const getPrice = (index: number): number => {
         if(isIJourney(journeyList)) {
@@ -73,8 +76,8 @@
 
 </script>
 
-{#key journeyList}
-    {#each journeyList as journey, index}
+{#key renderedJourneyList}
+    {#each renderedJourneyList as journey, index}
         <JourneyItem
             departure={journey.DepartureTime}
             arrival={journey.ArrivalTime}
@@ -87,7 +90,6 @@
                 } else {
                     if(isIJourney(journeyList)) {
                         const outboundJourney = journeyList[index]
-                        inboundJourneys.set(outboundJourney.Prices)
                         let cheapeastReturnIdx = 0
                         let cheapestReturn = Infinity
                         for(let i = 0; i < outboundJourney.Prices.length; i++) {
@@ -98,11 +100,12 @@
                                 }
                             }
                         }
-                        selectedJourneyIndex.update(() => [index, cheapeastReturnIdx])
+                        selectedJourneyIndex.set([index, cheapeastReturnIdx])
+                    } else {
+                        selectedJourneyIndex.set([index, index])
                     }
                 }
             }}
         />
     {/each}
 {/key}
-
