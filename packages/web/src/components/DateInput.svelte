@@ -2,6 +2,7 @@
     import { DatePicker } from 'date-picker-svelte'
     import { clickoutside } from '@svelte-put/clickoutside'
     import { Calendar } from 'lucide-svelte'
+    import TimeInput from './TimeInput.svelte'
     import dayjs from 'dayjs'
 
     export let date = new Date()
@@ -10,11 +11,12 @@
 
     let formatedDate = ""
 
-    $: formatedDate = dayjs(date).format('HH:mm ddd D MMM')
+    $: formatedDate = dayjs(date).format('ddd D MMM')
 </script>
 
-<div
-    class="flex flex-col w-80"
+<div class="flex w-80 gap-2">
+    <div
+    class="flex flex-col grow"
     use:clickoutside
     on:clickoutside={() => inputSelected = false}
 >
@@ -30,7 +32,10 @@
     </label>
     {#if inputSelected}
         <div class="absolute z-10">
-            <DatePicker bind:value={date} min={new Date()} timePrecision="minute"/>        
+            <DatePicker bind:value={date} min={new Date()} max={dayjs().add(3, 'month').toDate()} />        
         </div>
     {/if}
+    </div>
+    <TimeInput bind:time={date} />
+    <TimeInput bind:time={date} hours={false} />   
 </div>
