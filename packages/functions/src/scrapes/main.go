@@ -59,7 +59,23 @@ var iso8601Layout string = "2006-01-02T15:04:05Z0700"
 // 	return "", errors.New("Station not found")
 // }
 
-func aggregateNonConditionalScrapeResults(results ScrapeResultNonConditional, journeys *map[string]JourneyWithPrices, provider string) {
+func aggregateNonConditionalScrapeResultsSingle(results ScrapeResultNonConditional, journeys *map[string]Journey, provider string) {
+	for _, result := range results.Outbound {
+		key := result.DepartureTime + "," + result.ArrivalTime
+		if journey, ok := (*journeys)[key]; ok {
+			journey.Prices = append(journey.Prices, Price{Provider: provider, Price: result.Price, Link: results.Link})
+			(*journeys)[key] = journey
+		} else {
+			(*journeys)[key] = Journey{
+				DepartureTime: result.DepartureTime,
+				ArrivalTime:   result.ArrivalTime,
+				Prices:        []Price{{Provider: provider, Price: result.Price, Link: results.Link}},
+			}
+		}
+	}
+}
+
+func aggregateNonConditionalScrapeResultsReturn(results ScrapeResultNonConditional, journeys *map[string]JourneyWithPrices, provider string) {
 	for _, result := range results.Outbound {
 		key := result.DepartureTime + "," + result.ArrivalTime
 		if journey, ok := (*journeys)[key]; ok {
@@ -112,6 +128,22 @@ func aggregateNonConditionalScrapeResults(results ScrapeResultNonConditional, jo
 
 			journey.Prices = price
 			(*journeys)[key] = journey
+		}
+	}
+}
+
+func aggregateConditionalScrapeResultsSingle(results ScrapeResultsConditional, journeys *map[string]Journey, provider string) {
+	for _, result := range results {
+		key := result.DepartureTime + "," + result.ArrivalTime
+		if journey, ok := (*journeys)[key]; ok {
+			journey.Prices = append(journey.Prices, Price{Provider: provider, Price: result.Price[key], Link: result.Link})
+			(*journeys)[key] = journey
+		} else {
+			(*journeys)[key] = Journey{
+				DepartureTime: result.DepartureTime,
+				ArrivalTime:   result.ArrivalTime,
+				Prices:        []Price{{Provider: provider, Price: result.Price[key], Link: result.Link}},
+			}
 		}
 	}
 }

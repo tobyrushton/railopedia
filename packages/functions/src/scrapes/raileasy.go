@@ -64,8 +64,8 @@ func ScrapeRaileasy(req Request) (ScrapeResultsConditional, error) {
 			arrivalTimeISO := utils.HourStringToISO(arrivalTime, out)
 			key := departTimeISO + "," + arrivalTimeISO
 			results = append(results, ScrapeResultConditional{
-				DepartureTime: departTime,
-				ArrivalTime:   arrivalTime,
+				DepartureTime: departTimeISO,
+				ArrivalTime:   arrivalTimeISO,
 				Link:          page.MustInfo().URL,
 				Price:         map[string]float32{key: price},
 			})
