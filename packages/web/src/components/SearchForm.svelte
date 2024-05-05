@@ -18,8 +18,8 @@
 
     const form: IForm = {
         journey: 'single',
-        outboundDate: new Date(),
-        returnDate: dayjs(new Date()).add(1, 'hour').toDate(),
+        outboundDate: dayjs().set('second', 0).set('millisecond', 0).toDate(),
+        returnDate: dayjs(new Date()).add(1, 'hour').set('second', 0).set('millisecond', 0).toDate(),
         destination: { name: '', code: '' },
         origin: { name: '', code: '' }
     }

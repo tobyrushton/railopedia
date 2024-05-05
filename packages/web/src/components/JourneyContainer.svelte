@@ -64,8 +64,6 @@
         } else {
             let cheapest: number = Infinity
 
-            console.log(index, journeyList[index])
-
             for(let i = 0; i < renderedJourneyList[index].Prices.length; i++) {
                 if(renderedJourneyList[index].Prices[i].Price < cheapest) {
                     cheapest = renderedJourneyList[index].Prices[i].Price

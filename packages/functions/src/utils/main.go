@@ -43,7 +43,8 @@ func SplitString(str string, key string) (string, string) {
 }
 
 func ParseTime(journeyTime time.Time, requestedTime time.Time) time.Time {
-	if journeyTime.Before(requestedTime) {
+	difference := journeyTime.Sub(requestedTime)
+	if journeyTime.Before(requestedTime) && difference.Hours() > 1 {
 		return journeyTime.AddDate(0, 0, 1)
 	}
 	return journeyTime

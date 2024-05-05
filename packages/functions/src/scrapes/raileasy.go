@@ -19,7 +19,9 @@ func ScrapeRaileasy(req Request) (ScrapeResultsConditional, error) {
 
 	// input stations
 	page.MustElement("#station-autocomplete-from").MustInput(req.Origin)
+	page.MustElementR("li", req.Origin).MustClick()
 	page.MustElement("#station-autocomplete-to").MustInput(req.Destination)
+	page.MustElementR("li", req.Destination).MustClick()
 
 	//enter outbound date and time
 	out, err := utils.GetTime(req.Departure)

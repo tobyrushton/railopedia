@@ -29,7 +29,7 @@
     let selected: number
 
     $: {
-        const date = dayjs(time)
+        const date = dayjs(time).set('millisecond', 0).set('second', 0)
         if(time && selected){
             if(hours) {
                 time = date.hour(selected).toDate()

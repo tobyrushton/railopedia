@@ -148,7 +148,7 @@ func aggregateConditionalScrapeResultsSingle(results ScrapeResultsConditional, j
 	}
 }
 
-func aggregateConditionalScrapeResults(results ScrapeResultsConditional, journeys *map[string]JourneyWithPrices, provider string) {
+func aggregateConditionalScrapeResultsReturn(results ScrapeResultsConditional, journeys *map[string]JourneyWithPrices, provider string) {
 	for _, result := range results {
 		key := result.DepartureTime + "," + result.ArrivalTime
 		if journey, ok := (*journeys)[key]; ok {
