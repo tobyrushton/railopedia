@@ -3,6 +3,7 @@ import JourneyList from './JourneyList.astro'
 import JourneyContainer from './JourneyContainer.svelte'
 import JourneySummary from './JourneySummary.svelte'
 import SearchFallback from './SearchFallback.astro'
+import fs from 'fs'
 
 interface Props {
     url: string
@@ -32,6 +33,6 @@ if(journeys.ok) data = await journeys.json()
         </>
         <JourneySummary client:load />
     ): (
-        <SearchFallback client:load/>
+        <SearchFallback />
     )
 }

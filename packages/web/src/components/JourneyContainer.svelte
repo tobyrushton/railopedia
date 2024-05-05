@@ -85,10 +85,20 @@
                 if(returnJourney) {
                     selectedJourneyIndex.update(value => [value[0], index])
                 } else {
-                    selectedJourneyIndex.update(value => [index, value[1]])
                     if(isIJourney(journeyList)) {
                         const outboundJourney = journeyList[index]
                         inboundJourneys.set(outboundJourney.Prices)
+                        let cheapeastReturnIdx = 0
+                        let cheapestReturn = Infinity
+                        for(let i = 0; i < outboundJourney.Prices.length; i++) {
+                            for(let j = 0; j < outboundJourney.Prices[i].Prices.length; j++) {
+                                if(outboundJourney.Prices[i].Prices[j].Price < cheapestReturn) {
+                                    cheapestReturn = outboundJourney.Prices[i].Prices[j].Price
+                                    cheapeastReturnIdx = i
+                                }
+                            }
+                        }
+                        selectedJourneyIndex.update(() => [index, cheapeastReturnIdx])
                     }
                 }
             }}
