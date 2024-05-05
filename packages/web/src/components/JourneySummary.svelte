@@ -23,7 +23,6 @@
     $: {
         if(inboundJourneysList.length !== 0){
             const journey = inboundJourneysList[selectedIndex[1]]
-            console.log(journey)
 
             let cheapest: journey.IPrice = journey.Prices[0]
             for (let i = 1; i < journey.Prices.length; i++) {

@@ -1,0 +1,37 @@
+---
+import JourneyList from './JourneyList.astro'
+import JourneyContainer from './JourneyContainer.svelte'
+import JourneySummary from './JourneySummary.svelte'
+import SearchFallback from './SearchFallback.astro'
+
+interface Props {
+    url: string
+    outboundStation: string
+    inboundStation: string
+    departure: string
+    returnDate: string
+}
+
+const { url, outboundStation, inboundStation, departure, returnDate } = Astro.props
+
+const journeys = await fetch(url)
+let data = []
+if(journeys.ok) data = await journeys.json()
+---
+{
+    journeys.ok ? (
+        <JourneyList outbound={outboundStation} inbound={inboundStation} day={departure} isOutbound>
+            <JourneyContainer client:load journeyListProp={JSON.stringify(data)} />
+        </JourneyList>
+        <>
+        { returnDate && (
+            <JourneyList outbound={outboundStation} inbound={inboundStation} day={returnDate}>
+                <JourneyContainer client:load returnJourney />
+            </JourneyList>
+        )}
+        </>
+        <JourneySummary client:load />
+    ): (
+        <SearchFallback />
+    )
+}

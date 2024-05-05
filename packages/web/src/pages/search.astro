@@ -1,43 +1,63 @@
 ---
 import Layout from '../layouts/Layout.astro'
+import SearchFallback from '../components/SearchFallback.astro'
+import JourneyWrapper from '../components/JourneyWrapper.astro'
 import JourneyList from '../components/JourneyList.astro'
-import JourneyContainer from '../components/JourneyContainer.svelte'
-import JourneySummary from '../components/JourneySummary.svelte'
+import Spinner from '../components/Spinner.astro'
+import { Suspense } from 'simple-stack-stream/components'
 import { getStationName } from '../utils/station'
 // import data from '../../../../data/test.json'
 
 export const prerender = false
 
-// todo: error handle if no query params
 const destination = Astro.url.searchParams.get('destination')
 const origin = Astro.url.searchParams.get('origin')
 const departure = Astro.url.searchParams.get('departure')
 const returnDate = Astro.url.searchParams.get('return')
 
-const API_URL = (import.meta as unknown as { env: { API_URL: string } }).env.API_URL
-
 const outboundStation = getStationName(origin)
 const inboundStation = getStationName(destination)
 
-const journeys = await fetch(`${API_URL}/search?origin=${origin}&destination=${destination}&departure=${departure}&return=${returnDate}`)
-const data = await journeys.json()
+let validArgs = false
+if (inboundStation && outboundStation && departure) {
+    validArgs = true
+}
+
+const API_URL = (import.meta as unknown as { env: { API_URL: string } }).env.API_URL
+const url = `${API_URL}/search?origin=${origin}&destination=${destination}&departure=${departure}`
 ---
 
 <Layout title="Search">
     <main class="flex flex-col px-5 md:px-10 py-5 grow">
-        <h1 class="text-xl font-bold">
-            Searching from {outboundStation} to {inboundStation}
-        </h1>
-        <span class="flex flex-col md:flex-row p-2 gap-5">
-            <JourneyList outbound={outboundStation} inbound={inboundStation} day={departure} isOutbound>
-                <JourneyContainer client:load journeyListProp={JSON.stringify(data)} />
-            </JourneyList>  
-            {returnDate && (
-                <JourneyList outbound={outboundStation} inbound={inboundStation} day={returnDate}>
-                    <JourneyContainer client:load returnJourney />
-                </JourneyList>
-            )}
-            <JourneySummary client:load />
-        </span>
+    {
+        validArgs ? (
+            <h1 class="text-xl font-bold">
+                Searching from {outboundStation} to {inboundStation}
+            </h1>
+            <span class="flex flex-col md:flex-row p-2 gap-5">
+                <Suspense>
+                    <JourneyWrapper 
+                        url={url} 
+                        outboundStation={outboundStation} 
+                        inboundStation={inboundStation}
+                        departure={departure}
+                        returnDate={returnDate}
+                    />
+                    <Fragment slot="fallback">
+                        <JourneyList outbound={outboundStation} inbound={inboundStation} day={departure} isOutbound>
+                            <Spinner class="h-96" />
+                        </JourneyList>
+                        {returnDate && (
+                            <JourneyList outbound={inboundStation} inbound={outboundStation} day={returnDate}>
+                                <Spinner class="h-96" />
+                            </JourneyList>
+                        )}
+                    </Fragment>
+                </Suspense>
+            </span>
+        ) : (
+            <SearchFallback />
+        )
+    }   
     </main>
 </Layout>

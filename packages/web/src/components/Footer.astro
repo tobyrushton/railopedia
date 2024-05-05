@@ -1,21 +1,38 @@
+---
+const links = [
+    {
+        title: 'About',
+        url: '/about'
+    },
+    {
+        title: 'How we make money',
+        url: '/how-we-make-money'
+    },
+    {
+        title: 'Github',
+        url: 'https://github.com/tobyrushton/railopedia'
+    },
+    {
+        title: 'Report an issue',
+        url: 'https://github.com/tobyrushton/railopedia/issues'
+    },
+    {
+        title: 'Suggest a feature',
+        url: 'https://github.com/tobyrushton/railopedia/issues'
+    }
+]
+---
 <footer class="flex flex-col bg-primary text-white p-10 w-full">
     <span class="flex text-small grow">
-        <ul>
-            <li>
-                <a href="/about">About</a>
-            </li>
-            <li>
-                <a href="/how-we-make-money">How we make money</a>
-            </li>
-            <li>
-                <a href="https://github.com/tobyrushton/railopedia">Github</a>
-            </li>
-            <li>
-                <a href="https://github.com/tobyrushton/railopedia/issues">Report an issue</a>
-            </li>
-            <li>
-                <a href="https://github.com/tobyrushton/railopedia/issues">Suggest a feature</a>
-            </li>
+        <ul class="flex flex-wrap gap-1">
+            {
+                links.map((link, idx) => (
+                    <li>
+                        <a href={link.url}>{link.title}</a>
+                        {idx!==links.length-1 && <span class="mx-1">|</span>}
+                    </li>
+                ))
+            }
         </ul>
     </span>
     <span class="pt-2">

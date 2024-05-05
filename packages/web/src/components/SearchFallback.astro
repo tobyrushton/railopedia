@@ -1,0 +1,10 @@
+---
+import ErrorMessage from "./ErrorMessage.svelte"
+import SearchForm from "./SearchForm.svelte"
+---
+<div class="flex flex-col items-center">
+    <ErrorMessage>
+        There has been a problem with your search, please try again.
+    </ErrorMessage>
+    <SearchForm client:load />
+</div>
