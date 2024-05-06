@@ -1,28 +1,39 @@
 <script lang="ts">
     import { onDestroy } from 'svelte'
     import { ChevronRight } from 'lucide-svelte'
-    import { inboundJourneys, selectedJourneyIndex } from '../stores/journey'
+    import { selectedJourneyIndex, journeys } from '../stores/journey'
+    import { isIJourney } from '../utils/types'
 
     let selectedIndex:[number, number] = [0, 0]
-    let inboundJourneysList: journey.IJourneyPrice[] = []
+    let journeyList: journey.IJourneyPrice[] | journey.IJourney[] = []
+    let selectedJourneyList: journey.IJourneyPrice[] = []
 
-    const unsubcribedFromIndex = selectedJourneyIndex.subscribe(value => {
+    const unsubcribeFromIndex = selectedJourneyIndex.subscribe(value => {
         selectedIndex = value
     })
-    const unsubscribeFromInboundJourneys = inboundJourneys.subscribe(value => {
-        inboundJourneysList = value
+
+    $: {
+        if (isIJourney(journeyList)) {
+            selectedJourneyList = journeyList[selectedIndex[0]].Prices
+        } else {
+            selectedJourneyList = journeyList
+        }
+    }
+
+    const unsubscribeFromJourneys = journeys.subscribe(value => {
+        journeyList = value
     })
 
     onDestroy(() => {
-        unsubcribedFromIndex()
-        unsubscribeFromInboundJourneys()
+        unsubcribeFromIndex()
+        unsubscribeFromJourneys()
     })
 
     let cheapestJourney: journey.IPrice
     
     $: {
-        if(inboundJourneysList.length !== 0){
-            const journey = inboundJourneysList[selectedIndex[1]]
+        if (journeyList.length !== 0){
+            const journey = selectedJourneyList[selectedIndex[1]]
 
             let cheapest: journey.IPrice = journey.Prices[0]
             for (let i = 1; i < journey.Prices.length; i++) {
@@ -42,8 +53,8 @@
         TOTAL <span>£{cheapestJourney?.Price.toFixed(2)}</span>
     </h3>
     <ul>
-        {#if inboundJourneysList.length !== 0}
-            {#each inboundJourneysList[selectedIndex[1]].Prices as price}
+        {#if journeyList.length !== 0}
+            {#each selectedJourneyList[selectedIndex[1]].Prices as price}
                 <li class="flex justify-between">
                     <span>{price.Provider}</span>
                     <span>£{price.Price.toFixed(2)}</span>
@@ -52,7 +63,7 @@
         {/if}
     </ul>
     <a 
-        class="bg-primary rounded text-white p-2 text-center font-semibold text-xl mt-2 cursor-pointer flex"
+        class="bg-primary rounded text-white p-2 justify-center font-semibold text-xl mt-2 cursor-pointer flex"
         href={cheapestJourney?.Link}
         target="_blank"
     >

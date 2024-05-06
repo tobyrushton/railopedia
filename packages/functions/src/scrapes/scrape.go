@@ -23,7 +23,7 @@ type JourneyWithPrices struct {
 	Prices        []Journey
 }
 
-func Scrape(req Request) ([]JourneyWithPrices, error) {
+func Scrape(req Request) ([]JourneyWithPrices, []Journey, error) {
 	trainlineChannel := make(chan ScrapeResultNonConditional)
 	trainpalChannel := make(chan ScrapeResultNonConditional)
 	trainticketsChannel := make(chan ScrapeResultsConditional)
@@ -64,7 +64,6 @@ func Scrape(req Request) ([]JourneyWithPrices, error) {
 	go func() {
 		defer catchPanic("tt")
 		val, err := ScrapeTraintickets(req)
-		trainticketsChannel <- val
 		if err != nil {
 			errChannel <- err
 		} else {
@@ -74,7 +73,6 @@ func Scrape(req Request) ([]JourneyWithPrices, error) {
 
 	go func() {
 		defer catchPanic("re")
-		fmt.Println("test")
 		val, err := ScrapeRaileasy(req)
 		if err != nil {
 			errChannel <- err
@@ -84,36 +82,63 @@ func Scrape(req Request) ([]JourneyWithPrices, error) {
 	}()
 
 	// key for map should be [depart iso],[arrive iso]
-	journeys := make(map[string]JourneyWithPrices)
+	journeysReturn := make(map[string]JourneyWithPrices)
+	journeysSingle := make(map[string]Journey)
+
+	isReturn := req.Return != ""
 
 	// wait for all channels to return
 	for i := 0; i < 4; i++ {
 		select {
 		case trainline := <-trainlineChannel:
-			aggregateNonConditionalScrapeResults(trainline, &journeys, "trainline")
+			if isReturn {
+				aggregateNonConditionalScrapeResultsReturn(trainline, &journeysReturn, "Trainline")
+			} else {
+				aggregateNonConditionalScrapeResultsSingle(trainline, &journeysSingle, "Trainline")
+			}
 		case trainpal := <-trainpalChannel:
-			aggregateNonConditionalScrapeResults(trainpal, &journeys, "trainpal")
+			if isReturn {
+				aggregateNonConditionalScrapeResultsReturn(trainpal, &journeysReturn, "Trainpal")
+			} else {
+				aggregateNonConditionalScrapeResultsSingle(trainpal, &journeysSingle, "Trainpal")
+			}
 		case traintickets := <-trainticketsChannel:
-			aggregateConditionalScrapeResults(traintickets, &journeys, "traintickets")
+			if isReturn {
+				fmt.Println("traintickets")
+				aggregateConditionalScrapeResultsReturn(traintickets, &journeysReturn, "Traintickets")
+			} else {
+				aggregateConditionalScrapeResultsSingle(traintickets, &journeysSingle, "Traintickets")
+			}
 		case raileasy := <-raileasyChannel:
-			fmt.Println("raileasy")
-			aggregateConditionalScrapeResults(raileasy, &journeys, "raileasy")
+			if isReturn {
+				aggregateConditionalScrapeResultsReturn(raileasy, &journeysReturn, "Raileasy")
+			} else {
+				aggregateConditionalScrapeResultsSingle(raileasy, &journeysSingle, "Raileasy")
+			}
 		case <-errChannel:
 			continue
 		}
 	}
 
 	// convert map to slice
-	journeySlice := make([]JourneyWithPrices, 0, len(journeys))
+	journeyReturnSlice := make([]JourneyWithPrices, 0, len(journeysReturn))
+	journeySingleSlice := make([]Journey, 0, len(journeysSingle))
 
-	for _, journey := range journeys {
-		journeySlice = append(journeySlice, journey)
+	for _, journey := range journeysReturn {
+		journeyReturnSlice = append(journeyReturnSlice, journey)
+	}
+
+	for _, journey := range journeysSingle {
+		journeySingleSlice = append(journeySingleSlice, journey)
 	}
 
 	// sort by departure time
-	sort.Slice(journeySlice, func(i, j int) bool {
-		return journeySlice[i].DepartureTime < journeySlice[j].DepartureTime
+	sort.Slice(journeyReturnSlice, func(i, j int) bool {
+		return journeyReturnSlice[i].DepartureTime < journeyReturnSlice[j].DepartureTime
+	})
+	sort.Slice(journeySingleSlice, func(i, j int) bool {
+		return journeySingleSlice[i].DepartureTime < journeySingleSlice[j].DepartureTime
 	})
 
-	return journeySlice, nil
+	return journeyReturnSlice, journeySingleSlice, nil
 }

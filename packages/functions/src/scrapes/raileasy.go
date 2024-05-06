@@ -19,7 +19,9 @@ func ScrapeRaileasy(req Request) (ScrapeResultsConditional, error) {
 
 	// input stations
 	page.MustElement("#station-autocomplete-from").MustInput(req.Origin)
+	page.MustElementR("li", req.Origin).MustClick()
 	page.MustElement("#station-autocomplete-to").MustInput(req.Destination)
+	page.MustElementR("li", req.Destination).MustClick()
 
 	//enter outbound date and time
 	out, err := utils.GetTime(req.Departure)
@@ -64,8 +66,8 @@ func ScrapeRaileasy(req Request) (ScrapeResultsConditional, error) {
 			arrivalTimeISO := utils.HourStringToISO(arrivalTime, out)
 			key := departTimeISO + "," + arrivalTimeISO
 			results = append(results, ScrapeResultConditional{
-				DepartureTime: departTime,
-				ArrivalTime:   arrivalTime,
+				DepartureTime: departTimeISO,
+				ArrivalTime:   arrivalTimeISO,
 				Link:          page.MustInfo().URL,
 				Price:         map[string]float32{key: price},
 			})

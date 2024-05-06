@@ -9,7 +9,7 @@ import (
 	"github.com/tobyrushton/railopedia/packages/functions/src/utils"
 )
 
-var now = time.Now().Add(23 * time.Hour)
+var now = time.Now().Add(100 * time.Hour)
 var threeHoursLater = now.Add(3 * time.Hour)
 
 var TestRequest = Request{
@@ -27,7 +27,7 @@ var TestRequestReturn = Request{
 }
 
 var timeRegexString = "(?i)[0-9]+:[0-9]+"
-var isoRegexString = "(?i)[0-9]+-[0-9]+-[0-9]+T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]{1,3})?Z"
+var isoRegexString = "(?i)[0-9]+-[0-9]+-[0-9]+T[0-9]+:[0-9]+:[0-9]+"
 
 var timeRegex = regexp.MustCompile(timeRegexString)
 var isoRegex = regexp.MustCompile(isoRegexString)

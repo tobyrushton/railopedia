@@ -14,7 +14,7 @@ import (
 var trainpalUrl string = "https://www.mytrainpal.com/"
 
 func ScrapeTrainpal(req Request) (ScrapeResultNonConditional, error) {
-	out, err := time.Parse(iso8601Layout, req.Departure)
+	out, err := utils.GetTime(req.Departure)
 	if err != nil {
 		return ScrapeResultNonConditional{}, errors.New("invalid date")
 	}
@@ -33,7 +33,7 @@ func ScrapeTrainpal(req Request) (ScrapeResultNonConditional, error) {
 	// select the dates
 	selectTrainpalDate(page, out, true)
 	if req.Return != "" {
-		in, err := time.Parse(iso8601Layout, req.Return)
+		in, err := utils.GetTime(req.Return)
 		if err != nil {
 			return ScrapeResultNonConditional{}, errors.New("invalid date")
 		}
@@ -65,7 +65,7 @@ func ScrapeTrainpal(req Request) (ScrapeResultNonConditional, error) {
 		outbound = append(outbound, getTrainpalJourneyDetails(journey, out))
 	}
 	if len(inboundJourneys) > 0 {
-		in, err := time.Parse(iso8601Layout, req.Return)
+		in, err := utils.GetTime(req.Return)
 		if err != nil {
 			return ScrapeResultNonConditional{}, errors.New("invalid date")
 		}

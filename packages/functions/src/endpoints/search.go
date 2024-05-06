@@ -23,7 +23,7 @@ func Handler(request events.APIGatewayV2HTTPRequest) (events.APIGatewayProxyResp
 		}, nil
 	}
 
-	results, err := scrapes.Scrape(req)
+	resultsReturn, resultsSingle, err := scrapes.Scrape(req)
 
 	if err != nil {
 		return events.APIGatewayProxyResponse{
@@ -32,7 +32,12 @@ func Handler(request events.APIGatewayV2HTTPRequest) (events.APIGatewayProxyResp
 		}, err
 	}
 
-	jsonReq, _ := json.Marshal(results)
+	var jsonReq []byte
+	if req.Return == "" {
+		jsonReq, _ = json.Marshal(resultsSingle)
+	} else {
+		jsonReq, _ = json.Marshal(resultsReturn)
+	}
 
 	return events.APIGatewayProxyResponse{
 		Body:       string(jsonReq),

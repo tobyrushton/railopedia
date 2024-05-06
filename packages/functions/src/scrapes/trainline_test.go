@@ -14,6 +14,9 @@ func TestTrainlineReturn(t *testing.T) {
 	if len(res.Outbound) == 0 {
 		t.Error("No results")
 	}
+	if len(res.Return) == 0 {
+		t.Error("No results")
+	}
 
 	vals := make(ScrapeResults, 0)
 	vals = append(vals, res.Outbound...)
