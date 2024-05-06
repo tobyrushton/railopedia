@@ -9,7 +9,7 @@ import (
 	"github.com/tobyrushton/railopedia/packages/functions/src/utils"
 )
 
-var now = time.Now().Add(23 * time.Hour)
+var now = time.Now().Add(100 * time.Hour)
 var threeHoursLater = now.Add(3 * time.Hour)
 
 var TestRequest = Request{

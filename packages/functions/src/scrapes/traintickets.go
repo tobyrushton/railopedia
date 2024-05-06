@@ -51,7 +51,7 @@ func ScrapeTraintickets(req Request) (ScrapeResultsConditional, error) {
 	fmt.Println("search complete")
 	outboundJourneys := page.MustWaitLoad().MustElement("#outbound").MustElements("li.journey")
 	res := make(ScrapeResultsConditional, 0)
-	out, _ := time.Parse(iso8601Layout, req.Departure)
+	out, _ := utils.GetTime(req.Departure)
 
 	if req.Return == "" {
 		for _, journey := range outboundJourneys {
@@ -69,7 +69,7 @@ func ScrapeTraintickets(req Request) (ScrapeResultsConditional, error) {
 
 		}
 	} else {
-		in, _ := time.Parse(iso8601Layout, req.Return)
+		in, _ := utils.GetTime(req.Return)
 		for _, journey := range outboundJourneys {
 			res = append(res, getTrainticketsJourneyPriceReturn(page, journey, out, in))
 		}
@@ -80,7 +80,7 @@ func ScrapeTraintickets(req Request) (ScrapeResultsConditional, error) {
 
 func setTrainticketsDate(page *rod.Page, date string, outbound bool) error {
 	// format date
-	dayOfJourney, err := time.Parse(iso8601Layout, date)
+	dayOfJourney, err := utils.GetTime(date)
 	if err != nil {
 		return errors.New("invalid date")
 	}

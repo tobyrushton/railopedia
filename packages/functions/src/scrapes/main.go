@@ -33,7 +33,7 @@ type Request struct {
 	Return      string // ISO
 }
 
-var iso8601Layout string = "2006-01-02T15:04:05Z0700"
+var iso8601Layout string = "2006-01-02T15:04:05"
 
 // func getStationByCode(code string) (string, error) {
 // 	jsonFile, err := os.Open("../../../../data/station-list.json")

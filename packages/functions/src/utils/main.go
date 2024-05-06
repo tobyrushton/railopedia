@@ -7,7 +7,7 @@ import (
 	"time"
 )
 
-var ISO8601Layout = "2006-01-02T15:04:05Z0700"
+var ISO8601Layout = "2006-01-02T15:04:05"
 
 func RoundToNextFive(num int) int {
 	for num%5 != 0 {
@@ -27,7 +27,7 @@ func SanitisePrice(price string) string {
 }
 
 func GetTime(timeString string) (time.Time, error) {
-	return time.Parse("2006-01-02T15:04:05Z0700", timeString)
+	return time.Parse("2006-01-02T15:04:05", timeString)
 }
 
 func RoundToNextFifteen(num int) int {

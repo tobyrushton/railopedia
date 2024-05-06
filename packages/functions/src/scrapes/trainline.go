@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"time"
 
 	"github.com/gocolly/colly/v2"
 	"github.com/tobyrushton/railopedia/packages/functions/src/utils"
@@ -31,7 +30,7 @@ type scrapedJson struct {
 }
 
 func ScrapeTrainline(req Request) (ScrapeResultNonConditional, error) {
-	out, err := time.Parse(iso8601Layout, req.Departure)
+	out, err := utils.GetTime(req.Departure)
 	if err != nil {
 		fmt.Print(err)
 		return ScrapeResultNonConditional{}, errors.New("invalid date")
@@ -61,7 +60,7 @@ func ScrapeTrainline(req Request) (ScrapeResultNonConditional, error) {
 	}
 
 	if req.Return != "" {
-		in, err := time.Parse(iso8601Layout, req.Return)
+		in, err := utils.GetTime(req.Return)
 		if err != nil {
 			return ScrapeResultNonConditional{}, errors.New("invalid date")
 		}
@@ -142,7 +141,7 @@ func getTrainlinePrices(data scrapedJson, outbound bool) ScrapeResults {
 // 2006-01-02 15:04:05
 
 func formatTrainlineDate(date string) string {
-	t, err := time.Parse("2006-01-02T15:04:05", date)
+	t, err := utils.GetTime(date)
 	if err != nil {
 		return ""
 	}

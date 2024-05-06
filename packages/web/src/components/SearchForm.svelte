@@ -52,12 +52,14 @@
 
     let errorMessages = {}
 
+    const formatDate = (date: Date): string => dayjs(date).format('YYYY-MM-DDTHH:mm:ss')
+
     const handleSubmit = (): void => {
         const res = formSchema.safeParse(form)
         errorMessages = {}
         if(res.success) {
             window.location.href = 
-                `/search?origin=${form.origin.code}&destination=${form.destination.code}&departure=${form.outboundDate.toISOString()}&return=${form.journey === 'return' ? form.returnDate.toISOString() : ''}`
+                `/search?origin=${form.origin.code}&destination=${form.destination.code}&departure=${formatDate(form.outboundDate)}&return=${form.journey === 'return' ? formatDate(form.returnDate) : ''}`
         } else {
             res.error.errors.map(({ path, message }) => {
                 errorMessages[path[0]] = message
