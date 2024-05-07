@@ -4,7 +4,7 @@ go 1.22.1
 
 require (
 	github.com/aws/aws-lambda-go v1.47.0
-	github.com/go-rod/rod v0.115.0
+	github.com/go-rod/rod v0.116.0
 	github.com/gocolly/colly/v2 v2.1.0
 )
 
