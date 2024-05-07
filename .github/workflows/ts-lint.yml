@@ -7,12 +7,15 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v2
+            - uses: pnpm/action-setup@v3
+              with:
+                  version: 9
             - uses: actions/setup-node@v4
               with:
                   node-version: 21.x
             - name: Install dependencies
-              run: npm install
+              run: pnpm install
             - name: Lint
               run: |
                cd packages/web
-               npm run lint
+               pnpm run lint
