@@ -2,6 +2,7 @@ import { StackContext, Api } from "sst/constructs";
 
 export function API({ stack }: StackContext) {
   const api = new Api(stack, "api", {
+    customDomain: stack.stage === "prod" ? "api.railopedia.com": undefined,
     routes: {
       "GET /search": {
         function: {
@@ -15,7 +16,7 @@ export function API({ stack }: StackContext) {
   })
 
   stack.addOutputs({
-    ApiEndpoint: api.url,
+    ApiEndpoint: api.customDomainUrl || api.url,
   })
 
   return api

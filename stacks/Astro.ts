@@ -6,12 +6,13 @@ export function Astro({ stack }: StackContext) {
 
     const site = new AstroSite(stack, 'AstroSite', {
         path: 'packages/web',
+        customDomain: stack.stage === 'prod' ? 'railopedia.com' : undefined, 
         environment: {
             API_URL: api.url
         }
     })
 
     stack.addOutputs({
-        SiteUrl: site.url,
+        SiteUrl: site.customDomainUrl || site.url,
     })
 }
