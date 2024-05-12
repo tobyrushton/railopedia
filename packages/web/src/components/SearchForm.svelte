@@ -73,7 +73,7 @@
     
 </script>
 
-<form class="flex flex-col gap-4 w-fit">
+<form class="bg-white shadow-md rounded-lg p-6 md:p-8 lg:p-10 space-y-4">
     <JourneyRadio bind:journey={form.journey} />
     <span class="flex flex-col gap-4 sm:flex-row">
         <span class="flex flex-col gap-2">

@@ -20,7 +20,7 @@
     use:clickoutside
     on:clickoutside={() => inputSelected = false}
 >
-    <label class="flex relative bg-ternary rounded focus:outline-none p-2 gap-2">
+    <label class="flex relative rounded focus:outline-none p-2 gap-2 border border-solid">
         <Calendar class="pointer-events-none size-6" />
         <input 
             class="focus:outline-none w-full bg-inherit"

@@ -4,7 +4,7 @@
 </script> 
 
 <button 
-    class="flex gap-2 p-2 bg-ternary rounded hover:cursor-pointer" 
+    class="flex gap-2 p-2 border border-solid rounded hover:cursor-pointer" 
     tabindex="0"
     on:click|preventDefault={() =>  journey = 'return'}
 >
