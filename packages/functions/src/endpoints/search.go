@@ -14,6 +14,7 @@ func Handler(request events.APIGatewayV2HTTPRequest) (events.APIGatewayProxyResp
 		Origin:      request.QueryStringParameters["origin"],
 		Departure:   request.QueryStringParameters["departure"],
 		Return:      request.QueryStringParameters["return"],
+		Railcard:    request.QueryStringParameters["railcard"],
 	}
 
 	if req.Destination == "" || req.Origin == "" || req.Departure == "" {
