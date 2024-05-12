@@ -40,6 +40,12 @@ func ScrapeRaileasy(req Request) (ScrapeResultsConditional, error) {
 		selectRaileasyDate(page, in, false)
 	}
 
+	// select railcard
+	railcard := railcardsString[req.Railcard]
+	if railcard != "" {
+		setRaileasyRailcard(page, railcard)
+	}
+
 	wait := page.MustWaitRequestIdle()
 	// submit form and wait for the results
 	page.MustElement("#cookie-banner-accept").MustClick()
@@ -197,4 +203,8 @@ func getRaileasyPrice(page *rod.Page, journey *rod.Element, out time.Time, in ti
 // removes the later and earlier buttons from list of journeys
 func removeLaterAndEarlier(list *rod.Elements) {
 	*list = (*list)[1 : len(*list)-1]
+}
+
+func setRaileasyRailcard(page *rod.Page, railcard string) {
+	page.MustElement("#railcard-select").MustSelect(railcard)
 }

@@ -2,11 +2,13 @@
     import StationInput from './StationInput.svelte'
     import DateInput from './DateInput.svelte'
     import JourneyRadio from './JourneyRadio.svelte'
+    import RailcardInput from './RailcardInput.svelte'
     import AddReturn from './AddReturn.svelte'
     import ErrorMessage from './ErrorMessage.svelte'
     import dayjs from 'dayjs'
     import z from 'zod'
     import { stationIsValid } from '../utils/station'
+    import { type Railcard } from '../utils/railcard'
 
     interface IForm {
         journey: 'single' | 'return'
@@ -14,6 +16,7 @@
         returnDate: Date
         destination: journey.IStation
         origin: journey.IStation
+        railcard: Railcard
     }
 
     const form: IForm = {
@@ -21,7 +24,8 @@
         outboundDate: dayjs().set('second', 0).set('millisecond', 0).toDate(),
         returnDate: dayjs(new Date()).add(1, 'hour').set('second', 0).set('millisecond', 0).toDate(),
         destination: { name: '', code: '' },
-        origin: { name: '', code: '' }
+        origin: { name: '', code: '' },
+        railcard: 'N'
     }
 
     const formSchema = z.object({
@@ -59,7 +63,7 @@
         errorMessages = {}
         if(res.success) {
             window.location.href = 
-                `/search?origin=${form.origin.code}&destination=${form.destination.code}&departure=${formatDate(form.outboundDate)}&return=${form.journey === 'return' ? formatDate(form.returnDate) : ''}`
+                `/search?origin=${form.origin.code}&destination=${form.destination.code}&departure=${formatDate(form.outboundDate)}&return=${form.journey === 'return' ? formatDate(form.returnDate) : ''}&railcard=${form.railcard}`
         } else {
             res.error.errors.map(({ path, message }) => {
                 errorMessages[path[0]] = message
@@ -97,10 +101,13 @@
             {/if}
         </span>
     </span>
-    <button 
-        class="w-full self-end bg-primary text-white font-bold p-2 rounded sm:w-fit"
-        on:click|preventDefault={handleSubmit}
-    >
-        Find tickets
-    </button>
+    <span class="flex flex-col gap-3 w-full sm:justify-between sm:flex-row">
+        <RailcardInput bind:value={form.railcard} />
+        <button 
+            class="w-80 bg-primary text-white font-bold p-2 rounded"
+            on:click|preventDefault={handleSubmit}
+        >
+            Find tickets
+        </button>
+    </span>
 </form>

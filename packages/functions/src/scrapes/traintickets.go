@@ -34,7 +34,13 @@ func ScrapeTraintickets(req Request) (ScrapeResultsConditional, error) {
 		}
 	}
 
-	// // confirm captcha
+	// select railcard
+	railcard := railcardsString[req.Railcard]
+	if railcard != "" {
+		setTrainticketsRailcard(page, railcard)
+	}
+
+	// confirm captcha
 	// frame := page.MustElement("iframe[title='reCAPTCHA']").MustFrame()
 	// frame.MustElement("#recaptcha-anchor").MustClick()
 	// page.MustWaitIdle()
@@ -43,6 +49,11 @@ func ScrapeTraintickets(req Request) (ScrapeResultsConditional, error) {
 	// submit form
 	page.MustElement("#searchButton").MustClick()
 	fmt.Println("searching")
+
+	// check if error
+	if page.MustHas("div.alert-error") {
+		return nil, errors.New("detected as bot")
+	}
 
 	// fmt.Println(page.MustInfo().URL)
 
@@ -183,4 +194,15 @@ func setTrainticketsStation(page *rod.Page, station string, selector string) {
 		page.Keyboard.MustType(input.Key(s))
 	}
 	page.MustElementR("span", station).MustClick()
+}
+
+func setTrainticketsRailcard(page *rod.Page, railcard string) {
+	// activate railcard selection
+	page.MustElement("button[value='railcards']").MustClick()
+
+	// select value
+	page.MustElement("select[name='railcards']").MustSelect(railcard)
+
+	// save
+	page.MustElementR("button", "Close").MustClick()
 }

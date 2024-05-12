@@ -13,6 +13,7 @@ const destination = Astro.url.searchParams.get('destination')
 const origin = Astro.url.searchParams.get('origin')
 const departure = Astro.url.searchParams.get('departure')
 const returnDate = Astro.url.searchParams.get('return')
+const railcard = Astro.url.searchParams.get('railcard')
 
 const outboundStation = getStationName(origin)
 const inboundStation = getStationName(destination)
@@ -23,7 +24,7 @@ if (inboundStation && outboundStation && departure) {
 }
 
 const API_URL = (import.meta as unknown as { env: { API_URL: string } }).env.API_URL
-const url = `${API_URL}/search?origin=${origin}&destination=${destination}&departure=${departure}&return=${returnDate}`
+const url = `${API_URL}/search?origin=${origin}&destination=${destination}&departure=${departure}&return=${returnDate}&railcard=${railcard}`
 ---
 
 <Layout title="Search">

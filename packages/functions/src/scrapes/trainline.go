@@ -41,6 +41,14 @@ func ScrapeTrainline(req Request) (ScrapeResultNonConditional, error) {
 	outHour := out.Hour()
 	outMin := out.Minute()
 
+	railcard := railcards[req.Railcard]
+	railcardNumber := ""
+	if railcard != "" {
+		railcardNumber = "1"
+	}
+
+	fmt.Println(railcard, railcardNumber)
+
 	form := map[string]string{
 		"OriginStation":             req.Origin,
 		"DestinationStation":        req.Destination,
@@ -57,6 +65,8 @@ func ScrapeTrainline(req Request) (ScrapeResultNonConditional, error) {
 		"AdultsTravelling":          "1",
 		"ChildrenTravelling":        "0",
 		"ExtendedSearch":            "Get times & tickets",
+		"railCardsType_0":           railcard,
+		"railCardNumber_0":          railcardNumber,
 	}
 
 	if req.Return != "" {
@@ -82,6 +92,7 @@ func ScrapeTrainline(req Request) (ScrapeResultNonConditional, error) {
 	c.OnHTML("body", func(e *colly.HTMLElement) {
 		data := e.ChildAttr("form", "data-defaults")
 
+		// for debugging response
 		// fmt.Println(e.DOM.Text())
 		var results scrapedJson
 		json.Unmarshal([]byte(data), &results)
