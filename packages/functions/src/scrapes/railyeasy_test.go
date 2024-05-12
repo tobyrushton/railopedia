@@ -17,6 +17,7 @@ var TestRequest = Request{
 	Destination: "STP",
 	Departure:   now.Format(iso8601Layout),
 	Return:      "",
+	Railcard:    "16-25",
 }
 
 var TestRequestReturn = Request{
@@ -24,6 +25,7 @@ var TestRequestReturn = Request{
 	Destination: "STP",
 	Departure:   now.Format(iso8601Layout),
 	Return:      threeHoursLater.Format(iso8601Layout),
+	Railcard:    "16-25",
 }
 
 var timeRegexString = "(?i)[0-9]+:[0-9]+"

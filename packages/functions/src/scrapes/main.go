@@ -31,6 +31,7 @@ type Request struct {
 	Destination string
 	Departure   string // ISO
 	Return      string // ISO
+	Railcard    string
 }
 
 var iso8601Layout string = "2006-01-02T15:04:05"

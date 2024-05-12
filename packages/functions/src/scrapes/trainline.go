@@ -29,6 +29,18 @@ type scrapedJson struct {
 	FullJourneys []StandardTickets `json:"fullJourneys"`
 }
 
+var trainlineRailcard = map[string]string{
+	"16-25":    "YNG",
+	"26-30":    "TST",
+	"16-17":    "TSU",
+	"Senior":   "SRN",
+	"Disabled": "DIS",
+	"F&F":      "FAM",
+	"TT":       "2TR",
+	"Veteran":  "VET",
+	"N":        "",
+}
+
 func ScrapeTrainline(req Request) (ScrapeResultNonConditional, error) {
 	out, err := utils.GetTime(req.Departure)
 	if err != nil {
@@ -40,6 +52,14 @@ func ScrapeTrainline(req Request) (ScrapeResultNonConditional, error) {
 	outYear := out.Year()
 	outHour := out.Hour()
 	outMin := out.Minute()
+
+	railcard := trainlineRailcard[req.Railcard]
+	railcardNumber := ""
+	if railcard != "" {
+		railcardNumber = "1"
+	}
+
+	fmt.Println(railcard, railcardNumber)
 
 	form := map[string]string{
 		"OriginStation":             req.Origin,
@@ -57,6 +77,8 @@ func ScrapeTrainline(req Request) (ScrapeResultNonConditional, error) {
 		"AdultsTravelling":          "1",
 		"ChildrenTravelling":        "0",
 		"ExtendedSearch":            "Get times & tickets",
+		"railCardsType_0":           railcard,
+		"railCardNumber_0":          railcardNumber,
 	}
 
 	if req.Return != "" {
@@ -82,6 +104,7 @@ func ScrapeTrainline(req Request) (ScrapeResultNonConditional, error) {
 	c.OnHTML("body", func(e *colly.HTMLElement) {
 		data := e.ChildAttr("form", "data-defaults")
 
+		// for debugging response
 		// fmt.Println(e.DOM.Text())
 		var results scrapedJson
 		json.Unmarshal([]byte(data), &results)
