@@ -4,7 +4,7 @@ export type Railcard =
     | 'Senior'
     | 'Disabled'
     | 'F&F'
-    | 'TT'
+    // | 'TT'
     | '16-17'
     | 'Veteran'
     | 'N'
@@ -15,7 +15,7 @@ export const railcards: Record<Railcard, string> = {
     Senior: 'Senior Railcard',
     Disabled: 'Disabled Railcard',
     'F&F': 'Family & Friends Railcard',
-    TT: 'Two Together Railcard',
+    // TT: 'Two Together Railcard',
     '16-17': '16-17 Saver',
     Veteran: 'Veteran Railcard',
     N: 'No Railcard',

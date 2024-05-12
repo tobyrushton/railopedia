@@ -41,9 +41,9 @@ var railcards = map[string]string{
 	"Senior":   "SRN",
 	"Disabled": "DIS",
 	"F&F":      "FAM",
-	"TT":       "2TR",
-	"Veteran":  "VET",
-	"N":        "",
+	// "TT":       "2TR",
+	"Veteran": "VET",
+	"N":       "",
 }
 
 var railcardsString = map[string]string{
@@ -52,10 +52,10 @@ var railcardsString = map[string]string{
 	"Senior":   "Senior Railcard",
 	"Disabled": "Disabled Railcard",
 	"F&F":      "Family & Friends Railcard",
-	"TT":       "Two Together Railcard",
-	"16-17":    "16-17 Saver",
-	"Veteran":  "Veteran Railcard",
-	"N":        "No Railcard",
+	// "TT":       "Two Together Railcard",
+	"16-17":   "16-17 Saver",
+	"Veteran": "Veteran Railcard",
+	"N":       "No Railcard",
 }
 
 var iso8601Layout string = "2006-01-02T15:04:05"
