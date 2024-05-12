@@ -40,6 +40,12 @@ func ScrapeTrainpal(req Request) (ScrapeResultNonConditional, error) {
 		selectTrainpalDate(page, in, false)
 	}
 
+	// select railcard
+	railcard := railcardsString[req.Railcard]
+	if railcard != "" {
+		setTrainpailrailcard(*page, railcard)
+	}
+
 	//submit form
 	page.MustElement("button.search-btn_db7b7").MustClick()
 
@@ -154,4 +160,19 @@ func getTrainpalJourneyDetails(journey *rod.Element, day time.Time) ScrapeResult
 		ArrivalTime:   arrivalISO,
 		Price:         utils.PriceToFloat(utils.SanitisePrice(price)),
 	}
+}
+
+func setTrainpailrailcard(page rod.Page, railcard string) {
+	// click for railcard
+	page.MustElementR("span", "Railcard").MustClick()
+
+	// activate selector
+	page.MustElement("div.add-card_a2036").MustClick()
+
+	// select
+	page.MustElement("input.select-show_ca1eb").MustClick()
+	page.MustElement("ul.hour-wrap_e888b").MustElementR("li", railcard).MustClick()
+
+	// save
+	page.MustElement("button.done-btn_bd825").MustClick()
 }

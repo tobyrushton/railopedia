@@ -29,18 +29,6 @@ type scrapedJson struct {
 	FullJourneys []StandardTickets `json:"fullJourneys"`
 }
 
-var trainlineRailcard = map[string]string{
-	"16-25":    "YNG",
-	"26-30":    "TST",
-	"16-17":    "TSU",
-	"Senior":   "SRN",
-	"Disabled": "DIS",
-	"F&F":      "FAM",
-	"TT":       "2TR",
-	"Veteran":  "VET",
-	"N":        "",
-}
-
 func ScrapeTrainline(req Request) (ScrapeResultNonConditional, error) {
 	out, err := utils.GetTime(req.Departure)
 	if err != nil {
@@ -53,7 +41,7 @@ func ScrapeTrainline(req Request) (ScrapeResultNonConditional, error) {
 	outHour := out.Hour()
 	outMin := out.Minute()
 
-	railcard := trainlineRailcard[req.Railcard]
+	railcard := railcards[req.Railcard]
 	railcardNumber := ""
 	if railcard != "" {
 		railcardNumber = "1"

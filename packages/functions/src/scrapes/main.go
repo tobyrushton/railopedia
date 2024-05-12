@@ -34,6 +34,30 @@ type Request struct {
 	Railcard    string
 }
 
+var railcards = map[string]string{
+	"16-25":    "YNG",
+	"26-30":    "TST",
+	"16-17":    "TSU",
+	"Senior":   "SRN",
+	"Disabled": "DIS",
+	"F&F":      "FAM",
+	"TT":       "2TR",
+	"Veteran":  "VET",
+	"N":        "",
+}
+
+var railcardsString = map[string]string{
+	"16-25":    "16-25 Railcard",
+	"26-30":    "26-30 Railcard",
+	"Senior":   "Senior Railcard",
+	"Disabled": "Disabled Railcard",
+	"F&F":      "Family & Friends Railcard",
+	"TT":       "Two Together Railcard",
+	"16-17":    "16-17 Saver",
+	"Veteran":  "Veteran Railcard",
+	"N":        "No Railcard",
+}
+
 var iso8601Layout string = "2006-01-02T15:04:05"
 
 // func getStationByCode(code string) (string, error) {
