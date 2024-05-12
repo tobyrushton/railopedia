@@ -1,0 +1,90 @@
+---
+import Layout from '../layouts/Layout.astro'
+import Card from '../components/Card.astro'
+import Link from '../components/Link.astro'
+import { 
+    Target, 
+    Users, 
+    Github, 
+    Building, 
+    Scale,
+    Settings 
+} from 'lucide-astro'
+---
+<Layout title="About">
+    <main class="flex flex-col w-full px-6 md:px-8 lg:px-10 py-12 md:py-16 lg:py-20">
+        <div class="max-w-3xl mx-auto text-center">
+            <h1 class="text-3xl font-bold text-gray-900 mb-4 md:text-4xl lg:text-5xl">
+                About Railopedia
+            </h1>
+            <p class="text-gray-600 mb-8 md:text-lg lg:text-xl">
+              Learn more about our mission, team, and how we're revolutionizing the rail travel industry.
+            </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <Card>
+                <Fragment slot="title">
+                    <Target class="w-8 h-8 text-gray-500" />
+                    Our Mission
+                </Fragment>
+                Our mission is to try and make rail travel more accessible and affordable for everyone.
+                We believe that consumers should always have access to the best deals and information when it comes to booking train tickets.
+            </Card>
+            <Card>
+                <Fragment slot="title">
+                    <Users class="w-8 h-8 text-gray-500" />
+                    People
+                </Fragment>
+                Railopedia is currently solely maintained by 
+                    <Link href="https://tobyrushton.com">
+                        Toby Rushton
+                    </Link>, 
+                a computer science student at the University of Leeds.
+                However, I'm always looking for contributors to help out with the project.
+            </Card>
+            <Card>
+                <Fragment slot="title">
+                    <Github class="w-8 h-8 text-gray-500" />
+                    Open Source
+                </Fragment>
+                Railopedia is entirely open source project, available 
+                    <Link href="https://github.com/tobyrushton/railopedia">
+                        on GitHub
+                    </Link>.
+                If you'd like to contribute, feel free to submit open an issue with your idea or submit a pull request.
+            </Card>
+            <Card>
+                <Fragment slot="title">
+                    <Building class="w-8 h-8 text-gray-500" />
+                    Providers
+                </Fragment>
+                We currently search and display results from: 
+                <Link href="https://www.thetrainline.com">Trainline</Link>,
+                <Link href="https://www.mytrainpal.com">Trainpal</Link>,
+                <Link href="https://www.traintickets.com">Traintickets</Link>,
+                <Link href="https://www.raileasy.co.uk">Raileasy</Link>.
+                However, we're always looking to add more providers to our search.
+            </Card>
+            <Card>
+                <Fragment slot="title">
+                    <Scale class="w-8 h-8 text-gray-500" />
+                    Disclaimer
+                </Fragment>
+                Railopedia is not affiliated with any of the train providers we search. We simply provide a search engine to help you find the best deals.
+                We're not responsible for any issues you may have after you leave our site.
+            </Card>
+            <Card>
+                <Fragment slot="title">
+                    <Settings class="w-8 h-8 text-gray-500" />
+                    Support
+                </Fragment>
+                As Railopedia is currently in beta, you may experience some bugs or issues.
+                If you do, please feel free to 
+                    <Link href="https://github.com/tobyrushton/railopedia/issues">
+                        open an issue
+                    </Link>
+                on our GitHub repository.
+            </Card>
+        </div>
+    </main>
+</Layout>
