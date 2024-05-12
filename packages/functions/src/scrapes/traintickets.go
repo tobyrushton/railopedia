@@ -40,7 +40,7 @@ func ScrapeTraintickets(req Request) (ScrapeResultsConditional, error) {
 		setTrainticketsRailcard(page, railcard)
 	}
 
-	// // confirm captcha
+	// confirm captcha
 	// frame := page.MustElement("iframe[title='reCAPTCHA']").MustFrame()
 	// frame.MustElement("#recaptcha-anchor").MustClick()
 	// page.MustWaitIdle()
@@ -49,6 +49,11 @@ func ScrapeTraintickets(req Request) (ScrapeResultsConditional, error) {
 	// submit form
 	page.MustElement("#searchButton").MustClick()
 	fmt.Println("searching")
+
+	// check if error
+	if page.MustHas("div.alert-error") {
+		return nil, errors.New("detected as bot")
+	}
 
 	// fmt.Println(page.MustInfo().URL)
 
