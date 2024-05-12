@@ -28,7 +28,7 @@
 
 <div class="w-80">
     <input 
-        class="bg-ternary p-2 rounded placeholder:text-black w-full" 
+        class="border border-solid p-2 rounded placeholder:text-black w-full" 
         type="text"
         placeholder={placeholder}
         bind:value={inputValue}

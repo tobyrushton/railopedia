@@ -1,23 +1,54 @@
 ---
 import Layout from '../layouts/Layout.astro'
 import SearchForm from '../components/SearchForm.svelte'
+import Card from '../components/Card.astro'
+import { Search, Disc, Clock } from 'lucide-astro'
 ---
 <Layout title="Railopedia">
     <main class="flex flex-col p-2 gap-2 grow">
-        <span class="flex flex-col items-center md:items-start md:flex-row-reverse">
-            <span class="flex flex-col md:self-center md:p-5">
-                <h2 class="text-2xl font-bold p-3 grow md:text-center md:text-4xl">
-                    Countless Savings. One Simple Search.
-                </h2>
-                <p class="hidden md:block text-large">
-                    Railopedia is the best place to find the cheapest train tickets. 
-                    We compare prices from all the top ticketting sites, to garauntee
-                    you get the best deal.
+        <section class="flex flex-col items-center md:items-start">
+            <span class="flex flex-col md:p-5 mx-auto text-center mt-6">
+                <h1 class="text-3xl font-bold text-gray-900 mb-4 md:text-4xl lg:text-5xl">
+                    Find the Best Rail Tickets
+                </h1>
+                <p class="text-gray-600 mb-4 md:text-lg lg:text-xl">
+                    Compare prices and schedules across different rail providers to get the best deal.
                 </p>
             </span>
-            <div class="md:p-10">
+            <div class="self-center">
                 <SearchForm client:load />
             </div>
-        </span>
+        </section>
+        <section class="py-12 md:py-16 lg:py-20 mx-auto text-center max-w-7xl">
+            <h2 class="text-2xl font-bold text-gray-900 mb-4 md:text-3xl lg:text-4xl">
+                Why Choose Railopedia?
+            </h2>
+            <p class="text-gray-600 mb-8 md:text-lg lg:text-xl">
+                Our platform makes it easy to find the best rail tickets for your travel needs.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <Card>
+                    <Fragment slot="title">
+                        <Search class="w-8 h-8 text-gray-500" />
+                        Easy Search
+                    </Fragment>
+                    Our intuitive search form makes it simple to find the perfect rail ticket.
+                </Card>
+                <Card>
+                    <Fragment slot="title">
+                        <Disc class="w-8 h-8 text-gray-500" />
+                        Discounts
+                    </Fragment>
+                    As we search multiple providers at once, we're often able to find discounts that you normally wouldn't.
+                </Card>
+                <Card>
+                    <Fragment slot="title">
+                        <Clock class="w-8 h-8 text-gray-500" />
+                        Save Time & Money
+                    </Fragment>
+                    Our platform saves you time by searching all the providers at once, and saves you money by finding the best deals.
+                </Card>
+            </div>
+        </section>
     </main>
 </Layout>

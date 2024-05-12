@@ -5,10 +5,6 @@ const links = [
         url: '/about'
     },
     {
-        title: 'How we make money',
-        url: '/how-we-make-money'
-    },
-    {
         title: 'Github',
         url: 'https://github.com/tobyrushton/railopedia'
     },
@@ -22,9 +18,9 @@ const links = [
     }
 ]
 ---
-<footer class="flex flex-col bg-primary text-white p-10 w-full">
+<footer class="flex flex-col md:flex-row bg-primary text-white p-10 w-full">
     <span class="flex text-small grow">
-        <ul class="flex flex-wrap gap-1">
+        <ul class="flex flex-wrap gap-1 justify-center">
             {
                 links.map((link, idx) => (
                     <li>
@@ -35,7 +31,7 @@ const links = [
             }
         </ul>
     </span>
-    <span class="pt-2">
+    <span class="pt-2 text-center md:text-left">
         <p>© 2024 Toby Rushton</p>
     </span>
 </footer>

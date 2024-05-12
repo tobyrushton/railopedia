@@ -3,6 +3,7 @@ import JourneyList from './JourneyList.astro'
 import JourneyContainer from './JourneyContainer.svelte'
 import JourneySummary from './JourneySummary.svelte'
 import SearchFallback from './SearchFallback.astro'
+// import data from '../../../../data/test.json'
 
 interface Props {
     url: string
@@ -14,6 +15,7 @@ interface Props {
 
 const { url, outboundStation, inboundStation, departure, returnDate } = Astro.props
 
+// const journeys = { ok: true }
 const journeys = await fetch(url)
 let data = []
 if(journeys.ok) data = await journeys.json()

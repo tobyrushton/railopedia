@@ -5,7 +5,7 @@
 </script>
 
 <select 
-    class="w-80 rounded bg-ternary p-2"
+    class="w-80 rounded border border-solid p-2"
     bind:value={value}
 >
     {#each Object.entries(railcards) as [code, name]}

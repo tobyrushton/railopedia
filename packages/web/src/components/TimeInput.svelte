@@ -49,7 +49,7 @@
 
 <div>
     <select
-        class="flex h-full bg-ternary p-2 rounded"
+        class="flex h-full p-2 rounded border border-solid"
         name={hours ? "hours" : "minutes"}
         bind:value={selected}
     >

@@ -48,7 +48,7 @@
     }
 </script>
 
-<div class="flex flex-col rounded shadow h-fit p-3">
+<div class="flex flex-col rounded shadow-md h-fit p-3 bg-white">
     <h3 class="text-xl font-semibold flex justify-between">
         TOTAL <span>£{cheapestJourney?.Price.toFixed(2)}</span>
     </h3>
