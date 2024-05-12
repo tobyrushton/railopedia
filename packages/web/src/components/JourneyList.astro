@@ -10,7 +10,7 @@ interface Props {
 
 const { day, outbound, isOutbound = false, inbound } = Astro.props
 ---
-<div class="rounded h-fit shadow grow">
+<div class="rounded h-fit shadow-md grow bg-white">
     <div class="border-solid border-b-2 border-ternary p-3">
         <h3 class="font-bold">
             {isOutbound ? "OUT" : "RETURN"}
