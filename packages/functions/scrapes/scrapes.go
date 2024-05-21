@@ -1,7 +1,12 @@
 package scrapes
 
 import (
-	"github.com/tobyrushton/railopedia/packages/functions/src/utils"
+	"fmt"
+	"os"
+
+	"github.com/go-rod/rod"
+	"github.com/go-rod/rod/lib/launcher"
+	"github.com/tobyrushton/railopedia/packages/functions/utils"
 )
 
 type ScrapeResult struct {
@@ -59,6 +64,33 @@ var railcardsString = map[string]string{
 }
 
 var iso8601Layout string = "2006-01-02T15:04:05"
+
+func launchRod(url string) *rod.Page {
+	sst := os.Getenv("SST_STAGE") != ""
+
+	var page *rod.Page
+
+	if sst {
+		fmt.Println("running in sst")
+		u := launcher.New().
+			// where lambda runtime stores chromium
+			Bin("/opt/chromium").
+			Set("--no-sandbox").
+			Set("--disable-dev-shm-usage").
+			Set("--single-process").
+			Set("--headless").
+			Set("--disable-gpu").
+			MustLaunch()
+
+		page = rod.New().ControlURL(u).MustConnect().MustPage(url)
+		fmt.Println("launched page")
+
+	} else {
+		page = rod.New().MustConnect().MustPage(url)
+	}
+
+	return page
+}
 
 // func getStationByCode(code string) (string, error) {
 // 	jsonFile, err := os.Open("../../../../data/station-list.json")

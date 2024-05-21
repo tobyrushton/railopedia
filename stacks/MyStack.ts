@@ -6,10 +6,10 @@ export function API({ stack }: StackContext) {
     routes: {
       "GET /search": {
         function: {
-          runtime: "go",
-          timeout: 20,
-          memorySize: 256,
-          handler: "packages/functions/src/endpoints/search.go",
+          runtime: "container",
+          timeout: 60,
+          memorySize: '1 GB',
+          handler: "packages/functions",
         }
       },
     },

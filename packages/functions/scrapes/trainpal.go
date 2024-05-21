@@ -8,7 +8,7 @@ import (
 	"time"
 
 	"github.com/go-rod/rod"
-	"github.com/tobyrushton/railopedia/packages/functions/src/utils"
+	"github.com/tobyrushton/railopedia/packages/functions/utils"
 )
 
 var trainpalUrl string = "https://www.mytrainpal.com/"
@@ -20,7 +20,8 @@ func ScrapeTrainpal(req Request) (ScrapeResultNonConditional, error) {
 	}
 
 	// open browser
-	page := rod.New().MustConnect().MustPage(trainpalUrl)
+	page := launchRod(trainpalUrl)
+	fmt.Println("browser launched")
 	defer page.MustClose()
 
 	// input stations
@@ -29,6 +30,8 @@ func ScrapeTrainpal(req Request) (ScrapeResultNonConditional, error) {
 	page.MustElement("#toStation").MustInput(req.Destination)
 	time.Sleep(time.Second) // delay to allow dropdown to update
 	page.MustElement("div.el-station_cdf6f").MustClick()
+
+	fmt.Println("tp stations set")
 
 	// select the dates
 	selectTrainpalDate(page, out, true)
@@ -40,14 +43,20 @@ func ScrapeTrainpal(req Request) (ScrapeResultNonConditional, error) {
 		selectTrainpalDate(page, in, false)
 	}
 
+	fmt.Println("tp dates set")
+
 	// select railcard
 	railcard := railcardsString[req.Railcard]
 	if railcard != "" {
 		setTrainpailrailcard(*page, railcard)
 	}
 
+	fmt.Println("tp railcard set")
+
 	//submit form
 	page.MustElement("button.search-btn_db7b7").MustClick()
+
+	fmt.Println("tp searching")
 
 	// accept split tickets popup
 	page.MustElementR("button", "Got It").MustClick()

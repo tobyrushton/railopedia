@@ -5,7 +5,7 @@ import (
 
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
-	"github.com/tobyrushton/railopedia/packages/functions/src/scrapes"
+	"github.com/tobyrushton/railopedia/packages/functions/scrapes"
 )
 
 func Handler(request events.APIGatewayV2HTTPRequest) (events.APIGatewayProxyResponse, error) {

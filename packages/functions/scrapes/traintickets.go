@@ -7,14 +7,14 @@ import (
 
 	"github.com/go-rod/rod"
 	"github.com/go-rod/rod/lib/input"
-	"github.com/tobyrushton/railopedia/packages/functions/src/utils"
+	"github.com/tobyrushton/railopedia/packages/functions/utils"
 )
 
 var trainticketsUrl = "https://www.traintickets.com/?/"
 
 func ScrapeTraintickets(req Request) (ScrapeResultsConditional, error) {
 	//open browser
-	page := rod.New().MustConnect().MustPage(trainticketsUrl).MustSetViewport(1920, 2000, 1, false)
+	page := launchRod(trainticketsUrl).MustSetViewport(1920, 2000, 1, false)
 	defer page.MustClose()
 
 	// input stations

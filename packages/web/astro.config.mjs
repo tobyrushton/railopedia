@@ -9,5 +9,7 @@ import simpleStackStream from 'simple-stack-stream'
 export default defineConfig({
     integrations: [tailwind(), svelte(), simpleStackStream()],
     output: 'hybrid',
-    adapter: aws(),
+    adapter: aws({
+        responseMode: 'stream',
+    }),
 })

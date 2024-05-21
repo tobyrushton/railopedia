@@ -6,7 +6,7 @@ import (
 	"fmt"
 
 	"github.com/gocolly/colly/v2"
-	"github.com/tobyrushton/railopedia/packages/functions/src/utils"
+	"github.com/tobyrushton/railopedia/packages/functions/utils"
 )
 
 var trainlineUrl string = "https://www.thetrainline.com/buytickets/"

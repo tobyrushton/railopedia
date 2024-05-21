@@ -7,14 +7,14 @@ import (
 	"time"
 
 	"github.com/go-rod/rod"
-	"github.com/tobyrushton/railopedia/packages/functions/src/utils"
+	"github.com/tobyrushton/railopedia/packages/functions/utils"
 )
 
 var raileasyUrl string = "https://new.raileasy.co.uk/"
 
 func ScrapeRaileasy(req Request) (ScrapeResultsConditional, error) {
 	// open browser
-	page := rod.New().MustConnect().MustPage(raileasyUrl)
+	page := launchRod(raileasyUrl)
 	defer page.MustClose()
 
 	// input stations
@@ -22,6 +22,8 @@ func ScrapeRaileasy(req Request) (ScrapeResultsConditional, error) {
 	page.MustElementR("li", req.Origin).MustClick()
 	page.MustElement("#station-autocomplete-to").MustInput(req.Destination)
 	page.MustElementR("li", req.Destination).MustClick()
+
+	fmt.Println("re stations set")
 
 	//enter outbound date and time
 	out, err := utils.GetTime(req.Departure)
@@ -40,17 +42,22 @@ func ScrapeRaileasy(req Request) (ScrapeResultsConditional, error) {
 		selectRaileasyDate(page, in, false)
 	}
 
+	fmt.Println("re dates set")
+
 	// select railcard
 	railcard := railcardsString[req.Railcard]
 	if railcard != "" {
 		setRaileasyRailcard(page, railcard)
 	}
 
+	fmt.Println("re railcard set")
+
 	wait := page.MustWaitRequestIdle()
 	// submit form and wait for the results
 	page.MustElement("#cookie-banner-accept").MustClick()
 	page.MustElement("#search-button").MustClick()
 	wait()
+	fmt.Println("re searching")
 
 	// get outbound journeys
 	outboundJourneys := page.MustElement("div.grid").MustElement("div.grid").MustElements("div")[0].MustElements(`div[tabindex="0"]`)

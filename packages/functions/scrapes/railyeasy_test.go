@@ -6,7 +6,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/tobyrushton/railopedia/packages/functions/src/utils"
+	"github.com/tobyrushton/railopedia/packages/functions/utils"
 )
 
 var now = time.Now().Add(100 * time.Hour)
