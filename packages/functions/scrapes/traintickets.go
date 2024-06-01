@@ -14,13 +14,15 @@ var trainticketsUrl = "https://www.traintickets.com/?/"
 
 func ScrapeTraintickets(req Request) (ScrapeResultsConditional, error) {
 	//open browser
-	page := launchRod(trainticketsUrl).MustSetViewport(1920, 2000, 1, false)
+	page := launchRod(trainticketsUrl)
 	defer page.MustClose()
+
+	fmt.Println("tt browser open")
 
 	// input stations
 	setTrainticketsStation(page, req.Origin, "#origin")
 	setTrainticketsStation(page, req.Destination, "#destination")
-	fmt.Println("stations set")
+	fmt.Println("tt stations set")
 
 	// select the dates
 	err := setTrainticketsDate(page, req.Departure, true)
@@ -34,11 +36,15 @@ func ScrapeTraintickets(req Request) (ScrapeResultsConditional, error) {
 		}
 	}
 
+	fmt.Println("tt dates set")
+
 	// select railcard
 	railcard := railcardsString[req.Railcard]
 	if railcard != "" {
 		setTrainticketsRailcard(page, railcard)
 	}
+
+	fmt.Println("tt railcards set")
 
 	// confirm captcha
 	// frame := page.MustElement("iframe[title='reCAPTCHA']").MustFrame()

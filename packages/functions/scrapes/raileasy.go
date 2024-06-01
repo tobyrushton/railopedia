@@ -17,10 +17,12 @@ func ScrapeRaileasy(req Request) (ScrapeResultsConditional, error) {
 	page := launchRod(raileasyUrl)
 	defer page.MustClose()
 
+	fmt.Println("re browser open")
 	// input stations
 	page.MustElement("#station-autocomplete-from").MustInput(req.Origin)
 	page.MustElementR("li", req.Origin).MustClick()
 	page.MustElement("#station-autocomplete-to").MustInput(req.Destination)
+	fmt.Println("re stations")
 	page.MustElementR("li", req.Destination).MustClick()
 
 	fmt.Println("re stations set")

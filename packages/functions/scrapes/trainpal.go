@@ -24,6 +24,8 @@ func ScrapeTrainpal(req Request) (ScrapeResultNonConditional, error) {
 	fmt.Println("browser launched")
 	defer page.MustClose()
 
+	fmt.Println("tp browser open")
+
 	// input stations
 	page.MustElement("#fromStation").MustInput(req.Origin)
 	page.MustElement("div.el-station_cdf6f").MustClick()
@@ -47,7 +49,7 @@ func ScrapeTrainpal(req Request) (ScrapeResultNonConditional, error) {
 
 	// select railcard
 	railcard := railcardsString[req.Railcard]
-	if railcard != "" {
+	if railcard != "No Railcard" {
 		setTrainpailrailcard(*page, railcard)
 	}
 
@@ -59,7 +61,11 @@ func ScrapeTrainpal(req Request) (ScrapeResultNonConditional, error) {
 	fmt.Println("tp searching")
 
 	// accept split tickets popup
-	page.MustElementR("button", "Got It").MustClick()
+	page.Race().ElementR("button", "Got It").MustHandle(func(e *rod.Element) {
+		e.MustClick()
+	}).ElementR("p", "Sorry, no trains are currently available.").MustHandle(func(e *rod.Element) {
+		panic("no trains available")
+	}).MustDo()
 
 	// gets journeys from page
 	outboundJourneys := page.MustElement("div.left-inner_ac0c4").MustElements("div.journey-section_d201d")

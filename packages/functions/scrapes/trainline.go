@@ -47,8 +47,6 @@ func ScrapeTrainline(req Request) (ScrapeResultNonConditional, error) {
 		railcardNumber = "1"
 	}
 
-	fmt.Println(railcard, railcardNumber)
-
 	form := map[string]string{
 		"OriginStation":             req.Origin,
 		"DestinationStation":        req.Destination,

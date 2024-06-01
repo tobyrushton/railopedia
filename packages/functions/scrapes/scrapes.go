@@ -6,6 +6,7 @@ import (
 
 	"github.com/go-rod/rod"
 	"github.com/go-rod/rod/lib/launcher"
+	"github.com/go-rod/stealth"
 	"github.com/tobyrushton/railopedia/packages/functions/utils"
 )
 
@@ -71,20 +72,30 @@ func launchRod(url string) *rod.Page {
 	var page *rod.Page
 
 	if sst {
-		fmt.Println("running in sst")
-		u := launcher.New().
+		trace := url == raileasyUrl
+		u := launcher.NewUserMode().
 			// where lambda runtime stores chromium
 			Bin("/opt/chromium").
 			Set("--no-sandbox").
 			Set("--disable-dev-shm-usage").
-			Set("--single-process").
-			Set("--headless").
+			// Set("--single-process").
 			Set("--disable-gpu").
+			Set("--headless").
+			Set("--ignore-certificate-errors").
+			// Set("disable-default-apps").
+			// Set("no-first-run").
+			Set("--enable-features", "NetworkService", "NetworkServiceInProcess").
 			MustLaunch()
 
-		page = rod.New().ControlURL(u).MustConnect().MustPage(url)
+		page = stealth.MustPage(
+			rod.New().
+				ControlURL(u).
+				MustConnect().
+				MustIgnoreCertErrors(true).
+				Trace(trace).
+				NoDefaultDevice(),
+		).MustNavigate(url).MustSetViewport(1920, 2000, 1, false)
 		fmt.Println("launched page")
-
 	} else {
 		page = rod.New().MustConnect().MustPage(url)
 	}

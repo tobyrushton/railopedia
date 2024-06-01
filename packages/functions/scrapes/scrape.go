@@ -3,6 +3,7 @@ package scrapes
 import (
 	"fmt"
 	"sort"
+	"time"
 )
 
 type Price struct {
@@ -30,6 +31,7 @@ func Scrape(req Request) ([]JourneyWithPrices, []Journey, error) {
 	raileasyChannel := make(chan ScrapeResultsConditional)
 
 	errChannel := make(chan error)
+	timeoutChannel := make(chan struct{})
 
 	// catches any panics and sends them to the error channel
 	catchPanic := func(t string) {
@@ -39,6 +41,14 @@ func Scrape(req Request) ([]JourneyWithPrices, []Journey, error) {
 			errChannel <- fmt.Errorf("panic: %v", r)
 		}
 	}
+
+	go func() {
+		time.Sleep(20 * time.Second)
+		timeoutChannel <- struct{}{}
+		timeoutChannel <- struct{}{}
+		timeoutChannel <- struct{}{}
+		timeoutChannel <- struct{}{}
+	}()
 
 	// scrape each site concurrently
 	go func() {
@@ -116,6 +126,8 @@ func Scrape(req Request) ([]JourneyWithPrices, []Journey, error) {
 				aggregateConditionalScrapeResultsSingle(raileasy, &journeysSingle, "Raileasy")
 			}
 		case <-errChannel:
+			continue
+		case <-timeoutChannel:
 			continue
 		}
 	}
