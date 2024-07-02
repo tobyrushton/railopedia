@@ -4,7 +4,7 @@ go 1.22
 
 require (
 	github.com/aws/aws-lambda-go v1.47.0
-	github.com/go-rod/rod v0.116.0
+	github.com/go-rod/rod v0.116.1
 	github.com/gocolly/colly/v2 v2.1.0
 )
 
@@ -22,7 +22,7 @@ require (
 	github.com/temoto/robotstxt v1.1.1 // indirect
 	github.com/ysmood/fetchup v0.2.3 // indirect
 	github.com/ysmood/goob v0.4.0 // indirect
-	github.com/ysmood/got v0.34.1 // indirect
+	github.com/ysmood/got v0.40.0 // indirect
 	github.com/ysmood/gson v0.7.3 // indirect
 	github.com/ysmood/leakless v0.8.0 // indirect
 	golang.org/x/net v0.0.0-20200602114024-627f9648deb9 // indirect
